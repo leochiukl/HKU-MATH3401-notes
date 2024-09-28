@@ -1,0 +1,78 @@
+\section{Limits and Continuity}
+\label{sect:limits-and-cont}
+\begin{enumerate}
+\item In MATH2241, we have learnt the concept of \emph{limits and continuity}
+in \(\R\). Here, we would extend the notion to a more general \emph{metric
+space}. As we will see, some definitions and terminologies are analogous to the
+ones we learnt in MATH2241.
+\item Throughout \cref{sect:limits-and-cont}, we shall consider a metric space
+\((X,d)\).
+\end{enumerate}
+\subsection{Convergence in a Metric Space}
+\begin{enumerate}
+\item A sequence \(\{x_n\}\) in \(X\) \defn{converges} to \(a\in X\) if for any
+\(\varepsilon>0\), there exists \(N\in\N\) such that
+\[
+d(x_n,a)<\varepsilon\quad\text{for any \(n\ge N\), \(n\in\N\).}
+\]
+In this case, we write \(\displaystyle \lim_{n\to \infty}x_n=a\) or
+\(\{x_n\}\to a\). We call \(a\) as \defn{limit} of \(\{x_n\}\). If the sequence
+\(\{x_n\}\) converges to \emph{some} \(a\in X\), we say that the sequence is
+\defn{convergent}. Otherwise, it is called \defn{divergent}.
+
+\begin{note}
+The definition of a \defn{sequence} is analogous to the one in MATH2241: It is
+a function from \(\N\) to \(X\).
+\end{note}
+
+\item \label{it:ms-conv-relate-real-conv} We can relate the notion of
+convergence in metric space with that in \(\R\) as follows:
+\[\{x_n\}\to a\iff \{d(x_n,a)\}\to 0.\]
+\begin{pf}
+Note that
+\begin{align*}
+&\hspace{1cm}\{x_n\}\to a\\
+&\iff \text{for any \(\varepsilon>0\), there exists \(N\in\N\) such that \(|d(x_n,a)-0|=d(x_n,a)<\varepsilon\) for any \(n\ge N\)}\\
+&\iff \{d(x_n,a)\}\to 0.
+\end{align*}
+\end{pf}
+\item Like the case for \(\R\), the limit here is unique also (if exists). This
+property can be proved using a similar approach as the one in MATH2241
+(essentially just replacing some symbols).
+\begin{proposition}
+\label{prp:limit-uniqueness}
+A sequence \(\{x_n\}\) in \(X\) can converge to at most one point in \(X\).
+\end{proposition}
+\begin{pf}
+Assume that \(\{x_n\}\to a\) and \(\{x_n\}\to b\) for some \(a,b\in X\).  Fix
+any \(\varepsilon>0\). Then there exist \(N_1,N_2\in \N\) such that
+\[
+d(x_n,a)<\frac{\varepsilon}{2}\quad\text{for any \(n\ge N_1\)},
+\]
+and
+\[
+d(x_n,a)<\frac{\varepsilon}{2}\quad\text{for any \(n\ge N_2\)}.
+\]
+Then, choose \(N=\max\{N_1,N_2\}\). By triangle inequality (M3), for any \(n\ge
+N\),
+\[
+d(a,b)\le d(x_n,a)+d(x_n,b)<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon.
+\]
+\end{pf}
+\item The following result gives some properties of a convergent sequence.
+\begin{proposition}
+\label{prp:conv-seq-prop}
+Suppose that \(\{x_n\}\to a\) in \(X\). Then,
+\begin{enumerate}
+\item \(\{x_n:n\in\N\}\) is bounded in \(X\).
+\item \(a\) is an adherent point of \(\{x_n:n\in\N\}\).
+\item If \(\{x_n:n\in\N\}\) is an infinite set, then \(a\) is an accumulation
+point of \(\{x_n:n\in\N\}\).
+\end{enumerate}
+\end{proposition}
+\begin{pf}
+\begin{enumerate}
+\item 
+\end{enumerate}
+\end{pf}
+\end{enumerate}

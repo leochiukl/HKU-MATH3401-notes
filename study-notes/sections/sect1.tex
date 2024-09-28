@@ -1343,8 +1343,8 @@ Note that
 \end{pf}
 
 \item Next, we will introduce the notion of \emph{accumulation point}. Let
-\(S\) be a subset of \(X\). A point \(x\in X\) is an \defn{accumulation point
-}of \(S\) (or \defn{limit point} of \(S\)) if it is an adherent point of
+\(S\) be a subset of \(X\). A point \(x\in X\) is an \defn{accumulation point}
+of \(S\) (or \defn{limit point} of \(S\)) if it is an adherent point of
 \(S\setminus\{x\}\), i.e., \(B(x,r)\cap(S\setminus\{x\})\ne\varnothing\) for
 any \(r>0\). The set of all accumulation points of \(S\) (in \(X\)) is called
 the \defn{derived set} of \(S\) in \(X\), and is denoted by \(S'\).
@@ -1884,15 +1884,20 @@ This forces \(B_S(x,r)\cap T=\varnothing\), so \(T\) is indeed also closed in
 \label{subsect:compactness-rn}
 \begin{enumerate}
 \item When we focus on the case where the underlying metric space is \(X=\R^n\)
-(equipped with standard Euclidean metric), we can have more fruitful results
-regarding compactness. The key goal of \cref{subsect:compactness-rn} is to
-prove the equivalence of the following statements for a subset \(S\) of
+\emph{equipped with standard Euclidean metric \(d\)}, we can have more fruitful
+results regarding compactness. The key goal of \cref{subsect:compactness-rn} is
+to prove the equivalence of the following statements for a subset \(S\) of
 \(\R^n\):
 \begin{enumerate}
 \item \(S\) is compact.
 \item \(S\) is closed and bounded.
 \item \(S\) has the Boltzano-Weierstrass property.
 \end{enumerate}
+\begin{warning}
+This equivalence may \emph{not} hold if the metric used is not standard
+Euclidean metric.
+\end{warning}
+
 Note that we have shown \(\text{(a)}\implies \text{(b)}\) in
 \cref{thm:compact-imp-closed-bounded} and \(\text{(a)}\implies \text{(c)}\) in
 \cref{thm:cpt-bw-prop}. Thus, it suffices to show that, \emph{under the metric
@@ -1909,14 +1914,157 @@ Every bounded infinite set \(S\subseteq \R^n\) has an accumulation point in
 \(\R^n\).
 \end{theorem}
 \begin{pf}
-TODO
+We prove only the case \(n=2\). Proofs for other cases are analogous. Firstly,
+due to the boundedness of \(S\), we are able to choose a sufficiently large
+\(N\) such that the square \([-N,N]\times [-N,N]\) fully contains \(S\), i.e.,
+\[
+S\subseteq [-N,N]^{2}.
+\]
+\begin{center}
+\begin{tikzpicture}
+\draw[-Latex] (-3,0) -- (3,0);
+\draw[-Latex] (0,-3) -- (0,3);
+\draw[blue] (-2,-2) rectangle (2,2);
+\draw[red, fill, opacity=0.3] (0.5,1) ellipse [x radius=1.3cm, y radius=0.5cm];
+\node[] () at (0.5,1) {\(S\)};
+\node[] () at (2.2,-0.2) {\(N\)};
+\node[] () at (-2.3,-0.2) {\(-N\)};
+\draw[yellow, line width=0.1cm, opacity=0.5] (0,0) rectangle (2,2);
+\node[] () at (2.3,1) {\(Q_1\)};
+\end{tikzpicture}
+\end{center}
+Since \(S\) is infinite, among the four quadrants of the square, there exists
+a quadrant that contains infinitely many points of \(S\). Denote it by \(Q_1\).
+
+Next, further divide \(Q_1\) into four quadrants. Similarly, one of them must
+contain infinitely many points of \(S\). Call it \(Q_2\). Note that
+\(Q_2\subseteq Q_1\), and also the side length of \(Q_2\) is half of that of
+\(Q_1\).
+\begin{center}
+\begin{tikzpicture}
+\draw[-Latex] (-3,0) -- (3,0);
+\draw[-Latex] (0,-3) -- (0,3);
+\draw[blue, opacity=0.5] (-2,-2) rectangle (2,2);
+\draw[red, fill, opacity=0.3] (0.5,1) ellipse [x radius=1.3cm, y radius=0.5cm];
+\node[] () at (0.5,1) {\(S\)};
+\node[] () at (2.2,-0.2) {\(N\)};
+\node[] () at (-2.3,-0.2) {\(-N\)};
+\draw[yellow, line width=0.1cm, opacity=0.5] (0,1) rectangle (1,2);
+%\draw[yellow, line width=0.1cm, opacity=0.5] (0,0) rectangle (2,2);
+\node[] () at (0.5,2.3) {\(Q_2\)};
+\draw[violet, dashed] (0,1) -- (2,1);
+\draw[violet, dashed] (1,0) -- (1,2);
+\end{tikzpicture}
+\end{center}
+Continuing in this fashion, we can obtain a nested sequence of quadrants
+\(\{Q_n\}_{n=1}^{\infty}\) such that each \(Q_n\) contains infinitely many
+points of \(S\), and for any \(n\in\N\), \(Q_{n+1}\) is a subset of \(Q_n\)
+with the side length being half of that of \(Q_n\).
+
+\textbf{Claim:} \(\{Q_n\}_{n=1}^{\infty}\) converges to a point \((x_0,y_0)\),
+for some \(x_0,y_0\in\R\).
+
+\begin{pf}
+Fix any \(n\in\N\) and consider the four corners of the square \(Q_n\).
+\begin{center}
+\begin{tikzpicture}
+\draw[blue] (0,0) rectangle (2,2);
+\node[blue] () at (2.5,1) {\(Q_n\)};
+\draw[red, fill] (0,0) circle [radius=0.5mm];
+\draw[red, fill] (2,0) circle [radius=0.5mm];
+\draw[red, fill] (0,2) circle [radius=0.5mm];
+\draw[red, fill] (2,2) circle [radius=0.5mm];
+\node[] () at (-0.3,-0.3) {\((a_n,c_n)\)};
+\node[] () at (2.3,-0.3) {\((b_n,c_n)\)};
+\node[] () at (-0.3,2.3) {\((a_n,d_n)\)};
+\node[] () at (2.3,2.3) {\((b_n,d_n)\)};
+\draw[violet, dashed] (0,1) -- (2,1);
+\draw[violet, dashed] (1,0) -- (1,2);
+\draw[->, orange] (0.2,0.2) -- (0.5,0.5);
+\draw[->, orange] (1.8,0.2) -- (1.5,0.5);
+\draw[->, orange] (0.2,1.8) -- (0.5,1.5);
+\draw[->, orange] (1.8,1.8) -- (1.5,1.5);
+\end{tikzpicture}
+\end{center}
+No matter which quadrant \(Q_{n+1}\) is, the four corners must ``move'' in the
+direction suggested by the \orc{orange} arrows (or do not ``move''). More
+precisely, we have:
+\begin{itemize}
+\item \(\{a_n\}\) and \(\{c_n\}\) are increasing; and
+\item \(\{b_n\}\) and \(\{d_n\}\) are decreasing.
+\end{itemize}
+Considering the initial large square \([-N,N]^{2}\), we can see that
+\(\{a_n\}\) and \(\{c_n\}\) are bounded above, and the sequences \(\{b_n\}\)
+and \(\{d_n\}\) are bounded below. Since the side lengths of the quadrants are
+shrinking (by half each time), we can apply monotone convergence theorem to
+argue that there exist \(x_0,y_0\in\R\) such that: 
+\begin{itemize}
+\item \(\{a_n\}\to x_0\), \(\{b_n\}\to x_0\); and
+\item \(\{c_n\}\to y_0\), \(\{d_n\}\to y_0\).
+\end{itemize}
 \end{pf}
 
+\textbf{Claim:} The point \(p=(x_0,y_0)\) is an accumulation point of \(S\).
+
+\begin{pf}
+It suffices to show that for any \(r>0\), \(B(p,r)\supseteq Q_n\) for some
+\(n\in\N\), as this would then imply that \(B(p,r)\) contains infinitely many
+points of \(S\), and thus \(p\) is an accumulation point of \(S\) by \cref{prp:acc-pt-inf-set}.
+
+Fix any \(r>0\). Since \(\{(a_n,c_n)\}\to p\), there exists \(M_1\in\N\) such
+that
+\[
+d(p,(a_n,c_n))<\frac{r}{4}
+\]
+for any positive integer \(n\ge M_1\). Also, there exists \(M_2\in\N\) such that
+the side length of \(Q_n\)
+\[
+\ell(Q_n)<\frac{r}{4}
+\]
+for any \(n\ge M_2\), as the side lengths are shrinking.
+
+Take \(M=\max\{M_1,M_2\}\), and choose any \(n\ge M\).  We then have for any
+\(q\in Q_n\),
+\[
+d(q,p)\le d(q,(a_n,c_n))+d((a_n,c_n),p)
+\le \sqrt{2}\ell(Q_n)+\frac{r}{4}
+\le \frac{\sqrt{2}}{4}r+\frac{r}{4}
+=\frac{\sqrt{2}+1}{4}r
+<r.
+\]
+So, \(Q_n\subseteq B(p,r)\) as desired.
+\begin{center}
+\begin{tikzpicture}
+\draw[blue] (0,0) rectangle (2,2);
+\node[blue] () at (2.5,1) {\(Q_n\)};
+\draw[red, fill] (0,0) circle [radius=0.5mm];
+\draw[red, fill] (2,0) circle [radius=0.5mm];
+\draw[red, fill] (0,2) circle [radius=0.5mm];
+\draw[red, fill] (2,2) circle [radius=0.5mm];
+\node[] () at (-0.3,-0.3) {\((a_n,c_n)\)};
+\draw[brown, fill] (0.5,0.7) circle [radius=0.5mm];
+\node[] () at (0.7,1) {\(p\)};
+\draw[pen colour=ForestGreen, very thick, decorate,decoration={calligraphic brace, amplitude=5pt, raise=0}] (0,0) -- (0.5,0.7)
+node[left=0.3cm, midway]{\(<r/4\)};
+\draw[pen colour=ForestGreen, very thick, decorate,decoration={mirror, calligraphic brace, amplitude=5pt, raise=0}] (0,0) -- (2,0)
+node[below=0.2cm, midway]{\(<r/4\)};
+\draw[brown, dashed] (0.5, 0.7) circle [radius=5cm];
+\node[brown] () at (3,4) {\(B(p,r)\)};
+\end{tikzpicture}
+\end{center}
+\end{pf}
+
+The result then follows by this claim.
+\end{pf}
+
+\begin{note}
+It is crucial that the metric \(d\) is Euclidean distance in this proof.
+\end{note}
 
 \item The next theorem is also a generalization to a theorem studied in
 MATH2241. This time it generalizes \emph{nested interval theorem}, and it is
 known as \emph{Cantor intersection theorem}. Boltzano-Weierstrass theorem in
-needed in the process of proving it.
+needed in its proof below.
 \begin{theorem}[Cantor intersection theorem]
 \label{thm:cantor-intersection}
 Every decreasing nest of closed and bounded nonempty subsets of \(\R^n\) has
@@ -1929,7 +2077,74 @@ sequence of non-empty closed subsets of \(\R^n\) satisfying
 then \(\displaystyle \bigcap_{k=1}^{\infty}Q_k\ne\varnothing\).
 \end{theorem}
 \begin{pf}
-TODO
+Assume to the contrary that 
+\begin{equation}
+\label{eq:cantor-int-contrary-assum}
+\bigcap_{k=1}^{\infty}Q_k=\varnothing.
+\end{equation}
+Then consider the following.
+\begin{enumerate}
+\item Since \(Q_1\) is nonempty by assumption, there exists \(x_1\in Q_1\triangleq Q_{n_1}\). By
+\cref{eq:cantor-int-contrary-assum}, there exists \(n_2\in\N\) such that \(x_1\notin
+Q_{n_2}\); Otherwise, the intersection would contain at least \(x_1\).
+\item Since \(Q_{n_2}\) is nonempty, there exists \(x_2\in Q_{n_2}\).
+By \cref{eq:cantor-int-contrary-assum}, there exists \(n_3\in\N\) such that
+\(x_2\notin Q_{n_3}\).
+\item Since \(Q_{n_3}\) is nonempty, there exists \(x_3\in Q_{n_3}\).
+By \cref{eq:cantor-int-contrary-assum}, there exists \(n_4\in\N\) such that
+\(x_3\notin Q_{n_4}\).
+\item ...
+\end{enumerate}
+Continuing in this way, we would get a sequence \(\{x_i\}_{i=1}^{\infty}\) such
+that \(x_i\notin Q_{n_i}\) for any \(i\in\N\).
+\begin{center}
+\begin{tikzpicture}
+\draw[blue] (0,0) ellipse [x radius=3cm, y radius=2cm];
+\node[blue] () at (3,-2) {\(Q_1=Q_{n_1}\)};
+\draw[blue, fill] (2,1) circle [radius=0.5mm];
+\node[blue] () at (2,0.5) {\(x_1\)};
+\draw[ForestGreen] (-0.3,0.2) ellipse [x radius=2cm, y radius=1.5cm];
+\node[ForestGreen] () at (2,-1) {\(Q_{n_2}\)};
+\draw[ForestGreen, fill] (1,1) circle [radius=0.5mm];
+\node[ForestGreen] () at (1,0.5) {\(x_2\)};
+\draw[orange] (-0.5,0) ellipse [x radius=1.5cm, y radius=1cm];
+\node[orange] () at (1,-1) {\(Q_{n_3}\)};
+\draw[orange, fill] (0,0.5) circle [radius=0.5mm];
+\node[orange] () at (0,0.2) {\(x_3\)};
+\node[] () at (0,0) {...};
+\end{tikzpicture}
+\end{center}
+By construction of the sequence \(\{x_i\}\), we have the following properties.
+\begin{enumerate}
+\item The set \(\{x_i:i\in\N\}\) is bounded, since \(Q_1\) is bounded.
+\item The set \(\{x_i:i\in\N\}\) contains infinitely many elements since the
+sequence contains distinct terms, i.e., \(x_{i}\ne x_{j}\) for any \(i\ne j\).
+\end{enumerate}
+Then, by Boltzano-Weierstrass theorem (\cref{thm:boltzano-weierstrass}), the
+set \(\{x_i:i\in\N\}\), being an infinite bounded subset of \(\R^n\), has an
+accumulation point \(p\) in \(\R^n\). We then want to show that \(\displaystyle
+p\in \bigcap_{k=1}^{\infty}Q_k\) to arrive at a contradiction.
+
+Fix any \(k\in\N\). By assumption, \(Q_k\) is closed so \(\overline{Q}_k=Q_k\).
+Hence, it suffices to show that \(p\) is an adherent point of \(Q_k\), which
+would then imply that \(p\in \overline{Q}_k=Q_k\). We shall prove this by
+definition.
+
+Fix any \(r>0\). Then we need to show that \(B(p,r)\cap Q_k\ne\varnothing\).
+Since \(p\) is an accumulation point of the set \(\{x_i:i\in\N\}\), for any
+\(r>0\) the open ball \(B(p,r)\) contains infinitely many points from
+\(\{x_i:i\in\N\}\) by \cref{prp:acc-pt-inf-set}. Hence, there exists \(m>k\)
+such that \(B(p,r)\) contains \(x_m\). But we know that \(x_m\in Q_{n_m}\) also
+by construction. So, we actually have
+\[
+x_m\in B(p,r)\cap Q_{n_m}\implies B(p,r)\cap Q_{n_m}\ne\varnothing.
+\]
+Note that \(n_m\ge m>k\), so \(Q_{n_m}\subseteq Q_k\) by assumption, implying
+that
+\[
+B(p,r)\cap Q_{k}\ne\varnothing,
+\]
+as desired.
 \end{pf}
 
 \item Using \emph{Cantor intersection theorem} and \emph{Lindel\"of's theorem},
@@ -1938,11 +2153,64 @@ space \(\R^n\). This implication is also known as \emph{Heine-Borel theorem}.
 
 \begin{theorem}[Heine-Borel theorem]
 \label{thm:heine-borel}
-Every closed and bounded subsets of \(\R^n\) is compact.
+Every closed and bounded subset of \(\R^n\) is compact.
 \end{theorem}
 \begin{pf}
-TODO
+Consider any closed and bounded set \(S\subseteq \R^n\). Let
+\(\mathcal{U}=\{U_{\lambda}:\lambda\in\Lambda\}\) be any open cover of \(S\),
+i.e.,
+\[
+\bigcup_{\lambda\in\Lambda}U_{\lambda}\supseteq S
+\]
+where \(U_{\lambda}\) is open (in \(\R^n\)) for any \(\lambda\in\Lambda\). To
+show the compactness, we want to find a finite subcover of \(\mathcal{U}\).
+
+We first use Lindel\"o{f}'s theorem (\cref{thm:lindelof}). It suggests that
+there exists a countable family \(\{U_k\}_{k=1}^{\infty}\) such that for any
+\(k\in\N\), \(U_k=U_{\lambda}\) for some \(\lambda\in\Lambda\), and it satisfies
+\[
+\bigcup_{k=1}^{\infty}U_k=\bigcup_{\lambda\in\Lambda}U_{\lambda}\supseteq S
+\]
+
+Next, let \(\displaystyle Q_k=\bigcup_{i=1}^{k}U_i\), which is open since it is
+an union of open sets. Then, we have
+\[
+\bigcup_{k=1}^{\infty}Q_k=\bigcup_{i=1}^{\infty}U_i\supseteq S.
+\]
+\textbf{Claim:} There exists \(N\in\N\) such that \(\displaystyle
+Q_{N}=\bigcup_{i=1}^{N}U_i\supseteq S\) .
+
+\begin{pf}
+Assume to the contrary that for any \(k\in\N\), \(S\) contains some elements
+not in \(Q_k\), i.e., \((X\setminus Q_{k})\cap S\ne\varnothing\). For any
+\(k\in\N\), note that:
+\begin{itemize}
+\item \((X\setminus Q_k)\cap S\) is closed (in \(\R^n\)) since \(X\setminus
+Q_k\) and \(S\) are both closed, so do their intersection.
+\item \((X\setminus Q_k)\cap S\) is bounded since \(S\) is bounded.
+\item \((X\setminus Q_{k+1})\subseteq (X\setminus Q_k)\).
+\end{itemize}
+Then, applying Cantor intersection theorem (\cref{thm:cantor-intersection}),
+\[
+\bigcap_{k=1}^{\infty}[(X\setminus Q_k)\cap S]\ne\varnothing.
+\]
+But on the other hand, we have
+\begin{align*}
+\bigcap_{k=1}^{\infty}[(X\setminus Q_k)\cap S]
+&=\bigcap_{k=1}^{\infty}[(X\cap S)\setminus (Q_k\cap S)]\\
+&=\bigcap_{k=1}^{\infty}[S\setminus (Q_k\cap S)]\\
+&=S\setminus \qty[\bigcup_{k=1}^{\infty}(Q_k\cap S)]\\
+&=S\setminus \qty[\qty(\bigcup_{k=1}^{\infty}Q_k)\cap S]\\
+&=S\setminus S&\text{(since \(\textstyle\bigcup_{k=1}^{\infty}Q_k\supseteq S\))}\\
+&=\varnothing.
+\end{align*}
+Contradiction.
 \end{pf}
+
+By the claim, we know that \(\{U_1,\dotsc,U_N\}\) is a finite subcover of
+\(\mathcal{U}\), as desired.
+\end{pf}
+
 
 \item Now, we are ready to prove the main result in
 \cref{subsect:compactness-rn} as follows.
@@ -1957,6 +2225,55 @@ Let \(S\) be a subset of \(\R^n\). Then the following are equivalent.
 \end{enumerate}
 \end{theorem}
 \begin{pf}
-TODO
+So far we have proved that \(\text{(a)}\iff\text{(b)}\)
+(\cref{thm:compact-imp-closed-bounded,thm:heine-borel}) and
+\(\text{(a)}\implies \text{(c)}\) (\cref{thm:cpt-bw-prop}). Hence, it
+suffices to prove that \(\text{(c)}\implies \text{(b)}\).
+
+First, assume that \(S\) has the Boltzano-Weierstrass property. We will first
+prove the \underline{boundedness} of \(S\). Assume to the contrary that \(S\)
+is not bounded (which implies that it is infinite). Then, for any \(k\in\N\) we
+can pick \(x_k\in S\) such that \(x_k\ge k\). But then the infinite set
+\(\{x_k:k\in\N\}\) cannot possibly have an accumulation point. For example,
+every open ball with radius \(1/2\) cannot possibly contain infinitely many
+\(x_n\)'s. Contradiction.
+
+Next, we will prove the \underline{closedness} of \(S\). By
+\cref{prp:equiv-crit-closed}, it suffices to prove that \(\overline{S}=S\).  We
+know that \(S\subseteq \overline{S}\) always, so it actually suffices to show
+that \(\overline{S}\subseteq S\). By
+\labelcref{it:closure-decompose-acc-isolate}, every point in \(\overline{S}\)
+is either an accumulation point or isolated point of \(S\). Since isolated
+point of \(S\) must belong to \(S\) by definition, it remains to show that
+\emph{every accumulation point of \(S\) belongs to \(S\)}.
+
+Let \(x\in\R^n\) be any accumulation point of \(S\). Then, for any \(k\in\N\),
+setting the radius \(r=1/k\), there exists \(x_k\in B(x,1/k)\cap S\). Since each open
+ball \(B(x,1/k)\) contains infinitely many points in \(S\), we can require the
+\(x_n\)'s to be all distinct, i.e., \(x_k\ne x_m\) for any positive integers
+\(n\ne m\). This then forms an infinite subset \(\{x_k:k\in\N\}\) of \(S\). By
+the Boltzano-Weierstrass property of \(S\), the set \(\{x_k:k\in\N\}\) has an
+accumulation point \(y\in S\).
+
+\textbf{Claim:} We have \(x=y\in S\).
+
+\begin{pf}
+Assume to the contrary that \(x\ne y\). Then, let \(r_0=d(y,x)>0\). Consider
+the open ball \(B(y,r_0/2)\). Since \(y\) is an accumulation point of
+\(\{x_k:k\in\N\}\), \(B(y,r_0/2)\) contains infinitely many \(x_n\)'s by
+\cref{prp:acc-pt-inf-set}. Choose a large \(N\in\N\) such that \(1/N<r_0/2\).
+Then, there exists \(k>N\) such that \(d(y,x_k)<r_0/2\). Also, for this \(k\),
+we have \(d(x_k,x)<1/k<1/N\) as \(x_k\in B(x,1/k)\). Hence,
+\[
+d(y,x)\le d(x_k,x)+d(y,x_k)
+<\frac{1}{N}+\frac{r_0}{2}
+<\frac{r_0}{2}+\frac{r_0}{2}
+=r_0,
+\]
+contradicting to the fact that \(r_0=d(y,x)\).
+\end{pf}
+
+By the claim, the arbitrarily chosen accumulation point \(x\) belongs to \(S\),
+as desired.
 \end{pf}
 \end{enumerate}
