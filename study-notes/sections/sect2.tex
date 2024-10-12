@@ -5,19 +5,22 @@
 in \(\R\). Here, we would extend the notion to a more general \emph{metric
 space}. As we will see, some definitions and terminologies are analogous to the
 ones we learnt in MATH2241.
-\item Throughout \cref{sect:limits-and-cont}, we shall consider a metric space
-\((X,d)\).
 \end{enumerate}
 \subsection{Convergence in a Metric Space}
+\label{subsect:conv-ms}
 \begin{enumerate}
+\item Throughout \Cref{subsect:conv-ms}, we shall consider an arbitrary metric
+space \((X,d)\).
 \item A sequence \(\{x_n\}\) in \(X\) \defn{converges} to \(a\in X\) if for any
-\(\varepsilon>0\), there exists \(N\in\N\) such that
+\(\varepsilon>0\), there exists \(N\in\N\) such that for any positive integer
+\(n\ge N\),
 \[
-d(x_n,a)<\varepsilon\quad\text{for any \(n\ge N\), \(n\in\N\).}
+d(x_n,a)<\varepsilon,
 \]
-In this case, we write \(\displaystyle \lim_{n\to \infty}x_n=a\) or
-\(\{x_n\}\to a\). We call \(a\) as \defn{limit} of \(\{x_n\}\). If the sequence
-\(\{x_n\}\) converges to \emph{some} \(a\in X\), we say that the sequence is
+i.e., \(x_n\in B(a,\varepsilon)\).  In this case, we write \(\displaystyle
+\lim_{n\to \infty}x_n=a\), \(\{x_n\}\to a\), or \(\{x_n\}_{n=1}^{\infty}\to
+a\). We call \(a\) as \defn{limit} of \(\{x_n\}\). If the sequence \(\{x_n\}\)
+converges to \emph{some} \(a\in X\), we say that the sequence is
 \defn{convergent}. Otherwise, it is called \defn{divergent}.
 
 \begin{note}
@@ -37,7 +40,7 @@ Note that
 \end{align*}
 \end{pf}
 \item Like the case for \(\R\), the limit here is unique also (if exists). This
-property can be proved using a similar approach as the one in MATH2241
+property can be proved using the same approach as the one in MATH2241
 (essentially just replacing some symbols).
 \begin{proposition}
 \label{prp:limit-uniqueness}
@@ -72,7 +75,579 @@ point of \(\{x_n:n\in\N\}\).
 \end{proposition}
 \begin{pf}
 \begin{enumerate}
-\item 
+\item When \(\{x_n\}\to a\), there exists \(N\in\N\) such that \(d(x_n,a)<1\)
+for any \(n\ge N\). Then, by setting
+\(M=\max\{d(x_1,a),\dotsc,d(x_{N-1},a),1\}\), we have \(d(x_n,a)<M\) for any
+\(n\in\N\). Applying triangle inequality (M3), we can then show that
+\(\{x_n:n\in\N\}\) is bounded in \(X\).
+
+\item Fix any \(r>0\). By assumption there exists \(N\in\N\) such that \(x_n\in
+B(a,r)\) for any \(n\ge N\). Thus, \(B(a,r)\cap\{x_n:n\in\N\}\ne\varnothing\),
+so \(a\) is an adherent point of \(\{x_n:n\in\N\}\).
+
+\item Fix any \(r>0\). By assumption there exists \(N\in\N\) such that \(x_n\in
+B(a,r)\) for any \(n\ge N\). Since \(\{x_n:n\in\N\}\) is infinite, the
+intersection \(B(a,r)\cap\{x_n:n\in\N\}\supseteq \{x_n:n\ge N\}\) is also
+infinite. Hence, by \Cref{prp:acc-pt-inf-set}, \(a\) is an accumulation point
+of \(\{x_n:n\in\N\}\).
 \end{enumerate}
+\end{pf}
+\item Using the concept of \emph{sequences}, we can obtain an useful
+characterization of adherent points and accumulation points as follows:
+\begin{proposition}
+\label{prp:adher-accum-seq-equiv}
+Let \(S\subseteq X\) and \(a\in X\). Then,
+\begin{enumerate}
+\item \(a\in\overline{S}\) iff there is a sequence \(\{x_n\}\) in \(S\) such
+that \(\{x_n\}\to a\).
+\item \(a\in S'\) iff there is an infinite sequence \(\{x_n\}\) of distinct
+points in \(S\) such that \(\{x_n\}\to a\).
+\end{enumerate}
+\end{proposition}
+\begin{pf}
+\begin{enumerate}
+\item ``\(\Rightarrow\)'': Suppose that \(a\in \overline{S}\). Then for any
+\(n\in\N\), there exists \(x_n\in S\) such that \(\displaystyle
+0\le d(x_n,a)<\frac{1}{n}\). We can see that the sequence \(\{x_n\}\) constructed in
+this way converges to \(a\), since \(\{d(x_n,a)\}\to 0\) by sandwich theorem.
+
+``\(\Leftarrow\)'': Assume that there is a sequence \(\{x_n\}\) in \(S\)
+converging to \(a\). By \Cref{prp:conv-seq-prop}, we know that \(a\) is an
+adherent point of \(\{x_n:n\in\N\}\), i.e., \(a\in\overline{\{x_n:n\in\N\}}\).
+Since the sequence \(\{x_n\}\) is in \(S\), we have \(\{x_n:n\in\N\}\subseteq
+S\). It then follows by \labelcref{it:clos-pre-subset} that
+\[a\in\overline{\{x_n:n\in\N\}}\subseteq \overline{S}.\]
+
+\item ``\(\Rightarrow\)'': Suppose that \(a\in S'\). Note first that for any
+\(n\in\N\), by \Cref{prp:acc-pt-inf-set}, \(B(a,1/n)\cap S\) is an infinite
+set. Thus, it is possible to choose \(x_n\in S\setminus
+\{x_1,\dotsc,x_{n-1}\}\) with \(\displaystyle 0\le d(x_n,a)<\frac{1}{n}\) for
+every \(n\in\N\). This constructs an infinite sequence \(\{x_n\}\) of distinct
+points in \(S\) with \(\{x_n\}\to a\).
+
+``\(\Leftarrow\)'': Assume there is an \emph{infinite} sequence \(\{x_n\}\) of
+distinct points in \(S\) such that \(\{x_n\}\to a\). By
+\Cref{prp:conv-seq-prop}, we know that \(a\in\{x_n:n\in\N\}'\). Since
+\(\{x_n:n\in\N\}\subseteq S\), it follows by \labelcref{it:deriv-pre-subset}
+that
+\[
+a\in\{x_n:n\in\N\}'\subseteq S'.
+\]
+\end{enumerate}
+\end{pf}
+\item With this sequential characterization, we can get yet another criterion
+for closedness.
+
+\begin{proposition}
+\label{prp:closed-seq-crit}
+Let \(S\subseteq X\). Then, the following are equivalent.
+\begin{enumerate}
+\item \(S\) is closed in \(X\).
+\item If \(\{x_n\}\) is a sequence in \(S\) with \(\{x_n\}\to a\), then \(a\in
+S\).
+\end{enumerate}
+\end{proposition}
+\begin{pf}
+\underline{\(\text{(a)}\implies \text{(b)}\)}: Suppose that \(S\) is closed in \(X\) and
+\(\{x_n\}\) is a sequence in \(S\) with \(\{x_n\}\to a\). Then by
+\Cref{prp:adher-accum-seq-equiv} and \Cref{prp:equiv-crit-closed}, we have
+\(a\in \overline{S}=S\).
+
+\underline{\(\text{(b)}\implies \text{(a)}\)}: Assume that (b) holds. Fix any
+\(a\in\overline{S}\). By \Cref{prp:adher-accum-seq-equiv}, there is a sequence
+\(\{x_n\}\) in \(S\) such that \(\{x_n\}\to a\). Applying (b) then gives \(a\in
+S\). This shows \(\overline{S}\subseteq S\). Since we must have \(S\subseteq
+\overline{S}\), it follows that \(\overline{S}=S\), hence \(S\) is closed in
+\(X\) by \Cref{prp:equiv-crit-closed}.
+\end{pf}
+\item Next, we will discuss a result about \emph{subsequences}, which is
+a generalization to the respective result in MATH2241. It can be proved using
+the same approach as the one in MATH2241.
+\begin{proposition}
+\label{prp:subseq-same-lim}
+Let \(\{x_n\}\) be a sequence in \(X\). Then \(\{x_n\}\to a\) iff
+\(\{x_{n_k}\}_{k=1}^{\infty}\to a\) for every subsequence \(\{x_{n_k}\}\) of
+\(\{x_n\}\).
+\end{proposition}
+\begin{note}
+The concept of \emph{subsequence} is defined in the same manner as the one for
+MATH2241: We first let \(n_1<n_2<n_3<\dotsb\) be positive integers sorted in
+strictly increasing order, and then the sequence \(\{x_{n_k}\}_{k=1}^{\infty}\)
+is a \defn{subsequence} of \(\{x_n\}\).
+\end{note}
+
+\begin{pf}
+``\(\Leftarrow\)'' is immediate since \(\{x_n\}\) is a subsequence of itself.
+So it remains to prove ``\(\Rightarrow\)''. Assume that \(\{x_n\}\to a\). For
+any \(\varepsilon>0\), there exists \(N\in\N\) such that
+\(d(x_n,a)<\varepsilon\) for any \(n\ge N\). Fix any subsequence
+\(\{x_{n_k}\}\) of \(\{x_n\}\). Then for any \(k\ge N\), since \(n_k\ge k\ge
+N\), we have \(d(x_{n_k},a)<\varepsilon\).
+\end{pf}
+\end{enumerate}
+\subsection{Complete Metric Spaces}
+\label{subsect:complete-ms}
+\begin{enumerate}
+\item Throughout \Cref{subsect:complete-ms}, we shall consider an arbitrary
+metric space \((X,d)\).
+
+\item To motivate the notion of \emph{complete metric spaces}. We consider the
+set \(\Q\) of rational numbers. It is well-known that
+\(\sqrt{2}\in\R\setminus\Q\) is \emph{irrational}. Nonetheless, using decimal
+representation, we can obtain better and better \emph{approximations} to
+\(\sqrt{2}\), using just rational numbers.
+
+More specifically, we can express \(\sqrt{2}\) as
+\(\fpeval{sqrt(2)}\cdots\). From this we can construct a sequence \(\{x_n\}\)
+in \(\Q\) as follows:
+\[
+x_1=\fpeval{round(sqrt(2),0)},\quad
+x_2=\fpeval{round(sqrt(2),1)},\quad
+x_3=\fpeval{round(sqrt(2),2)},\quad
+x_4=\fpeval{round(sqrt(2),3)},\quad
+x_5=\fpeval{round(sqrt(2),4)},\quad
+x_6=\fpeval{round(sqrt(2),5)},\quad
+x_7=\fpeval{round(sqrt(2),6)},\quad\cdots
+\]
+by rounding \(\sqrt{2}\) in increasing number of decimal places. We can show
+that \(\{x_n\}\to\sqrt{2}\notin\Q\). So, this sequence \(\{x_n\}\) does
+\emph{not} converge to any number in \(\Q\).
+
+However, it is not hard to observe that the terms in this sequence get ``closer
+and closer'' together, so intuitively it seems that the sequence should
+converge to a certain ``point''. Here that ``point'' is \(\sqrt{2}\), which is
+\emph{not} contained in \(\Q\). So in this sense, \(\Q\) appears to have
+something ``missing'' at \(\sqrt{2}\) and it is not so ``complete''.
+
+\item This kind of sequence with terms getting ``closer and closer'' together
+can be characterized by \emph{Cauchy sequence}. \begin{note} We have studied
+this concept in the special case of \(\R\) in MATH2241. Here we consider a more
+general one. \end{note}
+
+A sequence \(\{x_n\}\) in \(X\) is said to be a \defn{Cauchy sequence} if for
+any \(\varepsilon>0\), there exists \(N\in\N\) such that
+\(d(x_n,x_m)<\varepsilon\) for any \(n,m\ge N\).
+
+\item As a \emph{convergent} sequence also has the feature that the terms get
+``closer and closer'' together, intuitively it seems that it should also be a
+Cauchy sequence. This is indeed the case.
+
+\begin{proposition}
+\label{prp:conv-imp-cauchy}
+Every convergent sequence is Cauchy.
+\end{proposition}
+\begin{pf}
+Consider any convergent sequence \(\{x_n\}\to a\) in \(X\). Then for any
+\(\varepsilon>0\), there exists \(N\in\N\) such that
+\[
+d(x_n,a)<\frac{\varepsilon}{2}\quad\text{for any \(n\ge N\)}.
+\]
+Thus, for any \(n,m\ge N\), by triangle inequality (M3),
+\[
+d(x_n,x_m)\le d(x_n,a)+d(x_m,a)<\varepsilon\quad\text{for any \(n,m\ge N\)}.
+\]
+Thus, \(\{x_n\}\) is Cauchy.
+\end{pf}
+
+\item Intuitively, a Cauchy sequence ``stabilizes'' as the index gets larger.
+Hence, naturally we would expect that the \emph{distances} between terms
+respectively taken from two Cauchy sequences ``stabilize'' also. This intuitive
+idea is proven below.
+
+\begin{proposition}
+\label{prp:dist-cauchy-conv}
+Let \(\{x_n\}\) and \(\{y_n\}\) be two Cauchy sequences. Then, the sequence
+\(\{d(x_n,y_n)\}\) converges in \(\R\).
+\end{proposition}
+\begin{pf}
+Since the sequence \(\{d(x_n,y_n)\}\) is in \(\R\), it suffices to prove that
+the sequence \(\{d(x_n,y_n)\}\) is Cauchy.
+
+Fix any \(\varepsilon>0\). Since \(\{x_n\}\) and \(\{y_n\}\) are Cauchy, there
+exist \(N_1,N_2\in\N\) such that
+\begin{align*}
+d(x_n,x_m)&<\frac{\varepsilon}{2}\quad\text{for any \(n,m\ge N_1\)}\\
+d(y_n,y_m)&<\frac{\varepsilon}{2}\quad\text{for any \(n,m\ge N_2\)}.
+\end{align*}
+We then choose \(N=\max\{N_1,N_2\}\). Then, for any \(n,m\ge N\), we have
+\begin{align*}
+|d(x_n,y_n)-d(x_m,y_m)|
+&= |d(x_n,y_n)\vc{-d(x_n,y_m)+d(x_n,y_m)}-d(x_m,y_m)|\\
+&\le |d(x_n,y_n)\vc{-d(x_n,y_m)}|+|\vc{d(x_n,y_m)}-d(x_m,y_m)|&\text{(triangle inequality)}\\
+&\le |d(y_n,y_m)|+|d(x_n,x_m)|&\text{(M3)}\\
+&\le d(y_n,y_m)+d(x_n,x_m)\\
+&<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}\\
+&=\varepsilon.
+\end{align*}
+This shows that \(\{d(x_n,y_n)\}\) is Cauchy, as desired.
+\end{pf}
+
+\item In our previous \(\sqrt{2}\) example, the rational sequence there can be
+shown to be Cauchy but not convergent. So a Cauchy sequence is not necessarily
+convergent. Indeed, the convergence of Cauchy sequence allows us to
+characterize the notion of ``completeness''. Intuitively, divergence of a
+Cauchy sequence indicates a ``missing point''. To be ``complete'', there should
+be no ``missing point'', thus every Cauchy sequence should be convergent.
+
+A metric space \((X,d)\) is said to be \defn{complete} if \emph{every} Cauchy
+sequence in \(X\) converges in \(X\). A subset \(S\) of \(X\) is said to be
+\defn{complete} if, when considered as a metric space itself, \((S,d)\) is
+complete.
+
+\item Next, we shall establish an important result that the Euclidean space
+\(\R^k\) is complete for any \(k\in\N\).
+
+\begin{theorem}
+\label{thm:rk-complete}
+The metric space \(\R^k\) is complete for any \(k\in\N\).
+\end{theorem}
+\begin{pf}
+We shall base our proof on the fact that \(\R\) is complete. Consider any
+Cauchy sequence \(\{(x_n^{(1)},\dotsc,x_n^{(k)})\}\) in \(\R^k\). Note that for
+every \(i=1,\dotsc,k\), \(\{x_n^{(i)}\}\) is a Cauchy sequence in \(\R\). Then
+by the completeness of \(\R\), we must have \(\{x_n^{(i)}\}\to a^{(i)}\) for
+some \(a^{(i)}\in\R\). This then implies that
+\[
+\{(x_n^{(1)},\dotsc,x_n^{(k)})\}\to (a^{(1)},\dotsc,a^{(k)})\in\R^k.
+\]
+\end{pf}
+
+\item The next result connects \emph{compactness} with \emph{completeness}. It
+turns out that compactness, being a rather strong condition, does implies
+completeness.
+
+\begin{theorem}
+\label{thm:cpt-subset-comp}
+Every compact subset \(S\) of a metric space \(X\) is complete.
+\end{theorem}
+\begin{pf}
+Let \(\{x_n\}\) be any Cauchy sequence in \(S\).
+
+\underline{Case 1}: \(\{x_n:n\in\N\}\) is a finite set.
+
+Then there exists \(N\in\N\) such that \(x_n=x\in S\) for any \(n\ge N\). This
+shows \(\lim_{n\to \infty}x_n=x\in S\).
+\begin{note}
+For this case, we do even need compactness!
+\end{note}
+
+\underline{Case 2}: \(\{x_n:n\in\N\}\) is an infinite set.
+
+By \Cref{thm:cpt-bw-prop}, \(X\) has the Boltzano-Weierstrass property. Hence,
+as an infinite subset of \(X\), the set \(\{x_n:n\in\N\}\) has an accumulation
+point \(a\) in \(\{x_n:n\in\N\}\). Fix any \(\varepsilon>0\). First, since
+\(\{x_n\}\) is Cauchy, there exists \(N\in\N\) such that
+\(d(x_n,x_m)<\varepsilon/2\) for any \(n,m\ge N\). Also, since \(a\) is an
+accumulation point of \(\{x_n:n\in\N\}\), the intersection
+\(B(a,\varepsilon/2)\cap\{x_n:n\in\N\}\) is infinite. Thus, there exists \(m\ge
+N\) such that \(x_m\in B(a,\varepsilon/2)\).
+
+Now, applying triangle inequality, we have
+\[
+d(x_n,a)\le d(x_n,x_m)+d(x_m,a)<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon
+\]
+for any \(n\ge N\). This shows \(\{x_n\}\to a\), as desired.
+\end{pf}
+
+\subsubsection*{Construction of Completion (Optional)}
+\item Given a metric space \((X,d)\) which may not be complete, we can
+construct the \emph{completion} of \((X,d)\), denoted by
+\((\widetilde{X},\widetilde{d})\). The \defn{completion} of \((X,d)\) is the
+smallest complete metric space containing \(X\), i.e., for any complete metric
+space \((Y,d_Y)\) with \(Y\supseteq X\), the set \(\widetilde{X}\) is a subset
+of \(Y\) (with possibly some ``embedding''). \begin{note}
+The metric \(d_Y\) is the same as \(d\) except that its domain is changed to
+\(Y\times Y\).
+\end{note}
+
+Example: The completion of \(\Q\) equipped with standard Euclidean metric is
+\(\R\) with the same metric.
+
+\item Here we will demonstrate how to actually construct such completion.
+As suggested previously, every Cauchy sequence in \(X\) may be seen as
+corresponding to a ``point'', to which the terms are ``getting closer''. The
+intuitive idea is then to include all the Cauchy sequences in \(X\) in the
+completion, so that all the possible corresponding ``points'' are included ---
+There is not ``missing point''!
+
+\item However, it is not hard to notice that doing in this way would result in
+many redundancies. It appears that many Cauchy sequences actually correspond to
+the same ``point''. For example, both the Cauchy sequences \(\{0.9, 0.99,
+0.999, 0.9999, \dotsc\}\) and \(\{1.1, 1.01, 1.001, 1.0001, \dotsc\}\) appear
+to correspond to the same ``point'': \(1\). But we want the completion to be
+``smallest'', so all those redundancies should be removed.
+
+\item This leads us to consider the idea of \emph{equivalence classes}, to
+``represent'' each ``point'' by using only one element, namely the
+\emph{equivalence class} containing all the ``equivalent'' Cauchy sequences
+corresponding to the same ``point''.
+
+Hence, we would like to define an equivalence relation \(\sim\) on the set of
+all Cauchy sequences in \(X\) to capture our intuitive idea of ``corresponding
+to the same point''.
+
+\item To define such equivalence relation, we first introduce the following
+function. For any two Cauchy sequences \(\{x_n\}\) and \(\{y_n\}\) in \(X\),
+define the function
+\(\widetilde{\delta}:X\times X\to\R\) by
+\[\widetilde{\delta}(\{x_n\},\{y_n\})=\lim_{n\to \infty}d(x_n,y_n).\]
+Note that the limit \(\lim_{n\to \infty}d(x_n,y_n)\) always exists by
+\Cref{prp:dist-cauchy-conv}, so the function \(\widetilde{\delta}\) is well-defined.
+
+\item Next, we define \(\{x_n\}\) and \(\{y_n\}\) as \emph{equivalent}, written
+as \(\{x_n\}\sim\{y_n\}\), if \(\widetilde{\delta}(\{x_n\},\{y_n\})=0\).
+
+\begin{intuition} When the distance between two Cauchy sequences are zero, the
+terms in each Cauchy sequence should ``get closer'' to the same ``point''.
+\end{intuition}
+
+
+\item We now let
+\[
+\widetilde{X}=\{\text{all equivalence classes of Cauchy sequences in \(X\)}\}.
+\]
+Note that \(\widetilde{\delta}(\{x_n\},\{y_n\})\) is invariant after replacing
+either of the sequences by a Cauchy sequence equivalent to it.
+
+\begin{pf}
+WLOG, we only prove that
+\(\widetilde{\delta}(\{x_n\},\{y_n\})=\widetilde{\delta}(\{x_n\},\{z_n\})\), where
+\(\{z_n\}\) be any Cauchy sequence equivalent to \(\{y_n\}\), i.e.,
+\(\{z_n\}\sim\{y_n\}\).
+
+Using (M3) of the underlying metric \(d\), we have
+\[
+\widetilde{\delta}(\{x_n\},\{y_n\})\le
+\widetilde{\delta}(\{x_n\},\{z_n\})+\underbrace{\widetilde{\delta}(\{z_n\},\{y_n\})}_{0}
+=\widetilde{\delta}(\{x_n\},\{z_n\}).
+\]
+On the other hand, using (M3) of the metric \(d\) again, we get
+\[
+\widetilde{\delta}(\{x_n\},\{z_n\})\le
+\widetilde{\delta}(\{x_n\},\{y_n\})+\underbrace{\widetilde{\delta}(\{y_n\},\{z_n\})}_{0}
+=\widetilde{\delta}(\{x_n\},\{y_n\}).
+\]
+This shows that
+\(\widetilde{\delta}(\{x_n\},\{y_n\})=\widetilde{\delta}(\{x_n\},\{z_n\})\).
+\end{pf}
+
+With this property, the following function \(\widetilde{d}:\widetilde{X}\times
+\widetilde{X}\to\R\) is well-defined:
+\[
+\widetilde{d}([s_1],[s_2])=\widetilde{\delta}(s_1,s_2)
+\]
+where \(s_1=\{x_n\}\) and \(s_2=\{y_n\}\) are any elements taken from the equivalence classes
+\([s_1]\) and \([s_2]\) in \(\widetilde{X}\) respectively.
+
+
+\item We can then verify that \(\widetilde{d}\) is indeed a metric as follows.
+
+\begin{pf}
+(M1): Due to the nonnegativity of the underlying metric \(d\), we must have
+\(d([s_1],[s_2])=\widetilde{\delta}(s_1,s_2)\ge 0\). Next, observe that
+\(\widetilde{\delta}(s_1,s_2)=0\) iff \(s_1=s_2\), due to the underlying metric
+\(d\). Since equivalence classes are either equal or disjoint, it follows that
+\(d([s_1],[s_2])=0\) iff \([s_1]=[s_2]\).
+
+(M2): It follows from (M2) of the underlying metric \(d\):
+\(d(x_n,y_n)=d(y_n,x_n)\) for any \(n\in\N\).
+
+(M3): It follows from (M3) of the underlying metric \(d\).
+\end{pf}
+
+\item Now we define an \emph{embedding} \(\iota:X\to\widetilde{X}\) by
+\(\iota(x)=[\{x,x,x,\dotsc\}]\), i.e., the equivalence class containing the
+sequence \(\{x_n\}\) with \(x_n=x\) for any \(n\in\N\).
+
+The embedding \(\iota\) is an \emph{isometry} or \emph{distance-preserving
+map}, i.e., \(d(x,y)=\widetilde{d}(\iota(x),\iota(y))\) for any \(x,y\in X\).
+Then, by identifying every \(x\in X\) with the corresponding embedding
+\(\iota(x)\in\widetilde{X}\) (``treating them as the same''), we may say that
+\(X\) is a ``subset'' of \(\widetilde{X}\) (with embedding).
+
+\item Next, we will show that \((\widetilde{X},\widetilde{d})\) is indeed a
+\emph{complete} metric space. We want to show that every Cauchy sequence of
+equivalence classes in \(\widetilde{X}\) converges to a certain equivalence class in
+\(\widetilde{X}\).
+
+Fix any Cauchy sequence \(\{[s_n]\}_{n=1}^{\infty}\) of equivalence classes in
+\(\widetilde{X}\), where \(s_n\) is a Cauchy sequence
+\(\{x_m^{(n)}\}_{m=1}^{\infty}\) in \(X\) for any \(n\in\N\).
+
+To prove the convergence of \(\{[s_n]\}_{n=1}^{\infty}\), we will use a special
+kind of diagonal argument.  First fix any \(k\in\N\). Since
+\(s_k=\{x_m^{(k)}\}_{m=1}^{\infty}\) is Cauchy in \(X\), there exists
+\(N_k\in\N\) such that
+\[
+d\qty(x_{m_1}^{(k)},x_{m_2}^{(k)})<\frac{1}{k}
+\]
+for any \(m_1,m_2\ge N_k\). We denote the \(N_k\)th term in the sequence
+\(s_k\), namely \(x_{N_k}^{(k)}\), by \(y_k\). Then particularly we would have
+\begin{equation}
+\label{eq:completion-dxky}
+d\qty(x_{m_1}^{(k)},y_k)=d\qty(x_{m_1}^{(k)},x_{N_k}^{(k)})<\frac{1}{k}
+\end{equation}
+for any \(m_1\ge N_k\).
+
+We claim that the sequence \(\{[s_n]\}\) converges to the equivalence class
+containing the sequence
+\(\{y_k\}_{k=1}^{\infty}=\{x_{N_k}^{(k)}\}_{k=1}^{\infty}\), which is in \(\widetilde{X}\).
+
+\begin{pf}
+Firstly, we shall prove that \(\{y_k\}_{k=1}^{\infty}\) is a Cauchy sequence in
+\(X\), which shows that the equivalence class containing
+\(\{y_k\}_{k=1}^{\infty}\) is indeed in \(\widetilde{X}\).  Fix any
+\(\varepsilon>0\). Then, we choose a sufficiently large \(N\in\N\) such that:
+\begin{enumerate}
+\item \(1/N<\varepsilon/3\), and
+\item Considering any \(m,n\ge N\), there should exist a sufficiently large
+\(j\in\N\) such that \(d(x_j^{(n)},x_j^{(m)})<\varepsilon/3\) since
+\(\{[s_i]\}_{i=1}^{\infty}\) is Cauchy, which implies that
+\(\widetilde{\delta}(\{x_j^{(n)}\},\{x_j^{(m)}\})=\lim_{j\to
+\infty}d(x_j^{(n)},x_j^{(m)})\) can be arbitrarily small, as long as \(m,n\)
+are large enough.
+\end{enumerate}
+Then, for any \(m,n\ge N\) with a sufficiently large \(j\in\N\), that exceeds
+both \(N_m\) and \(N_n\), and makes \(d(x_j^{(n)},x_j^{(m)})<\varepsilon/3\),
+we have
+\[
+d(y_n,y_m)=d(x_{N_n}^{(n)},x_{N_m}^{(m)})
+\le
+d(x_{N_n}^{(n)},x_j^{(n)})+d(x_j^{(n)},x_j^{(m)})+d(x_j^{(m)},x_{N_m}^{(m)})
+<\frac{1}{n}+\frac{\varepsilon}{3}+\frac{1}{m}
+\le\frac{\varepsilon}{3}+\frac{\varepsilon}{3}+\frac{\varepsilon}{3}
+=\varepsilon,
+\]
+establishing the Cauchyness of \(\{y_k\}_{k=1}^{\infty}\) in \(X\).
+
+Next, we want to show that \(\{[s_n]\}\to [\{y_k\}_{k=1}^{\infty}]\). In other
+words, we need to show that for any \(\varepsilon>0\), there exists \(N\in\N\)
+such that
+\[
+\widetilde{d}([s_n],[\{y_k\}_{k=1}^{\infty}])
+=\widetilde{\delta}(s_n,\{y_k\}_{k=1}^{\infty})
+=\widetilde{\delta}(\{x_k^{(n)}\}_{k=1}^{\infty},\{y_k\}_{k=1}^{\infty})
+=\lim_{k\to \infty}d(x_k^{(n)},y_k)
+=\lim_{k\to \infty}d(x_k^{(n)},x_{N_k}^{(k)})
+<\varepsilon
+\]
+for any \(n\ge N\).
+
+We first fix any \(\varepsilon>0\), and then choose a sufficiently large
+\(N\in\N\) such that (i) \(1/N<\varepsilon/2\) and (ii) for any \(m,n\ge N\),
+we have \(d(y_n,y_m)=d(x_{N_n}^{(n)},x_{N_m}^{(m)})<\varepsilon/2\). Then, for any
+\(n\ge N\), we have
+
+\begin{align*}
+\widetilde{d}([s_n],[\{y_k\}_{k=1}^{\infty}])
+&=\lim_{k\to \infty}d(x_k^{(n)},x_{N_k}^{(k)})\\
+&\le\lim_{k\to \infty}d(x_k^{(n)},x_{N_n}^{(n)})+\lim_{k\to \infty}d(x_{N_n}^{(n)},x_{N_k}^{(k)}) \\
+&<\frac{1}{n}+\frac{\varepsilon}{2}&\text{(using \labelcref{eq:completion-dxky} for the first term; (ii) for the second term)} \\
+&\le\frac{1}{N}+\frac{\varepsilon}{2} \\
+&<\frac{\varepsilon}{2}+\frac{\varepsilon}{2} \\
+&=\varepsilon,
+\end{align*}
+completing the proof.
+\end{pf}
+\item Finally, we shall show that \((\widetilde{X},\widetilde{d})\) is the
+\emph{smallest} complete metric space containing \(X\). Consider another
+complete metric space \((Y,d_Y)\) containing \(X\) also, where
+\(d_Y\) is the same as \(d\) except that the domain
+becomes \(Y\times Y\).
+
+Note that for every class \([s]\in\widetilde{X}\), the Cauchy sequence \(s\) in
+\(X\) is also a Cauchy sequence in \(Y\), thus converges to some \(y\in Y\) by
+the completeness of \(Y\). From this, define a function \(\rho:\widetilde{X}\to
+Y\) by \(\rho([s])=y\).
+
+We claim that the function \(\rho\) is an isometry, and so the set
+\(\widetilde{X}\) can be regarded as a subset of \(Y\) with ``embedding''.
+
+\begin{pf}
+Consider any two classes \([s_1],[s_2]\in\widetilde{X}\). Suppose the
+corresponding Cauchy sequences \(s_1\) and \(s_2\) converge to \(y_1\) and
+\(y_2\) (both in \(Y\)) respectively.
+
+Since the definitions of \(d_Y\) and \(d\) coincide on \(X\times  X\), we may
+extend the definition of \(\widetilde{\delta}\) through replacing the
+underlying metric \(d\) by \(d_Y\), and changing its domain to \(Y\times Y\).
+Correspondingly, the domain of metric \(\widetilde{d}\) can be extended to
+\(\widetilde{Y}\times\widetilde{Y}\) where \(\widetilde{Y}\) is the set of all
+equivalence classes of Cauchy sequences in \(Y\).
+
+Now, to show that \[\widetilde{d}([s_1],[s_2])=d_Y(\rho([s_1]),\rho([s_2]))
+=d_Y(y_1,y_2),\] we first pick the Cauchy sequences \(\{y_1,y_1,\dotsc\}\in
+[s_1]\) and \(\{y_2,y_2,\dotsc\}\in [s_2]\).\footnote{We have
+\(\widetilde{\delta}(\{y_1,y_1,\dotsc\},s_1)=0\) since \(s_1\to y_1\); similar
+for another sequence.} Then, we have
+\[
+\widetilde{d}([s_1],[s_2])=\widetilde{\delta}(\{y_1,y_1,\dotsc\},\{y_2,y_2,\dotsc\})
+=d_Y(y_1,y_2),
+\]
+as desired.
+\end{pf}
+\end{enumerate}
+\subsection{Continuous Functions}
+\label{subsect:cts-fun}
+\begin{enumerate}
+\item As we have mentioned at the very beginning, in MATH3401 we are studying
+continuous functions between metric spaces. We have analyzed metric spaces in
+\Cref{sect:metric-spaces}. It is now time to study \emph{continuous functions},
+another central concept in MATH3401.
+
+\item The concept of continuous functions is utilized for studying the
+``equivalence problem'' in metric space topology, namely determining whether
+two metric spaces are ``equivalent'' in some sense. We will introduce a notion
+called \emph{homeomorphism}, which is related to the ``equivalence'' of metric
+spaces. Simply speaking, homeomorphism is a bijective continuous function whose
+inverse is also continuous.
+
+Throughout \Cref{subsect:cts-fun}, we shall use the notations \((X,d_{X})\) and
+\((Y,d_Y)\) to denote arbitrary metric spaces. Let us first generalize the
+\(\varepsilon\)-\(\delta\) definition of \emph{limit of function} studied in
+MATH2241 to the context of metric spaces.
+
+\item Let \(S\) be a subset of \(X\), and \(f:S\to Y\) be a function. Suppose
+that \(p\in X\) is an accumulation point of \(S\). Then, we write
+\(\displaystyle \lim_{x\to p}f(x)=b\) or \(f(x)\to b\) as \(x\to p\) if for any
+\(\varepsilon>0\), there exists \(\delta>0\) such that
+\[
+d_Y(f(x),b)<\varepsilon
+\]
+for any \(x\in S\setminus\{p\}\) with \(d_X(x,p)<\delta\), or in other words,
+\[
+f(x)\in B_Y(b,\varepsilon)
+\]
+for any \(x\in B_X(p,\delta)\cap S\setminus \{p\}\), or more compactly:
+\[
+f\big((B_X(p,\delta)\cap S\setminus \{p\})\big)\subseteq B_Y(b,\varepsilon).
+\]
+\item Like MATH2241, we have the following sequential criterion for limits of
+functions.
+\begin{proposition}
+\label{prp:lim-seq-crit}
+Let \(p\in X\) be an accumulation point of \(S\subseteq X\), \(b\in Y\), and
+\(f:S\to Y\) be any function. Then, \(\displaystyle \lim_{x\to p}f(x)=b\) iff
+\(\displaystyle \lim_{n\to \infty}f(x_n)=b\) for every sequence \(\{x_n\}\) in
+\(S\setminus\{p\}\) which converges to \(p\).
+\end{proposition}
+\begin{pf}
+TODO
+\end{pf}
+
+\item Next, we will consider a result applicable when the codomain is \(\R^n\),
+related to the Euclidean norm \(\|\cdot\|\).
+\begin{proposition}
+\label{prp:lim-norm}
+Let \(S\) be a subset of \(X\), \(p\in X\) be an accumulation point of \(S\),
+and \(f:S\to\R^n\) be any function. Then,
+\[
+\lim_{x\to p}f(x)=b\implies \lim_{x\to p}\|f(x)\|=\|b\|,
+\]
+where \(\|y\|=d_E(y,\vect{0})\) for any \(y\in\R^n\) (\(\vect{0}\) is
+the zero vector in \(\R^n\) and \(d_E\) is the Euclidean metric).
+\end{proposition}
+\begin{pf}
+TODO
 \end{pf}
 \end{enumerate}

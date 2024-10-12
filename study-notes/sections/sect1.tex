@@ -11,12 +11,12 @@ number may be regarded as a point \(\bullet\) in the real number line, and the
 absolute value function \(|\cdot|\) serves as a way to measure distance
 \faIcon{ruler}.
 
-The two notions \emph{points} and \emph{distances} form the basis for a
+The two notions \emph{points} and \emph{distances} form the foundation for a
 \emph{metric space} (a generalization to the setting or ``space'' we work in
 MATH2241).
 
 \item A high-level overview of MATH3401 is that we are studying
-\emph{continuous functions} on \emph{metric spaces}. (Note that the definition
+\emph{continuous functions} between \emph{metric spaces}. (Note that the definition
 of continuous functions in MATH2241 are only specific to the case studied
 there, and we will define the notion of continuity more generally later.)
 
@@ -121,8 +121,8 @@ immediately (M1)--(M3) are satisfied for all the points in \(Y\) also.
 \begin{enumerate}
 \item The definition of metric space is quite general. Indeed, many kinds of
 sets (equipped with a certain metric \(d\)) can be metric spaces. We will give
-some examples of metric spaces in \Cref{subsect:metric-sp-eg} (and \emph{prove}
-that some are indeed metric spaces).
+some examples of metric spaces in \Cref{subsect:metric-sp-eg} and \emph{prove}
+that some are indeed metric spaces.
 
 \item \label{it:metric-rn}
 (a familiar one) Let \(X=\R^n\). For any points \(P=(x_1,\dotsc,x_n)\)
@@ -177,7 +177,7 @@ dashed arrows} (one cannot ``drill through the Earth straightly'' to go to
 should be the distance between the two points.
 
 Mathematically, we define \(d(x,y)=\) the length of the smaller arc on the
-(unique) great circle (a planar circle on \(S^2\) with unit radius) joining the
+unique great circle (a planar circle on \(S^2\) with unit radius) joining the
 two points \(x\) and \(y\). Then, \((X,d)\) is again a metric space.
 
 \begin{pf}
@@ -193,10 +193,10 @@ where \(\displaystyle \delta_{xy}=\begin{cases}
 1&\text{if \(x=y\)};\\
 0&\text{otherwise}.
 \end{cases}
-\) This metric is called \defn{discrete metric} (under which the distance
+\) This metric is called \defn{discrete metric}, under which the distance
 between two different points is \emph{always} one, and the distance between two
-identical points are zero). \((X,d)\) is a metric space (sometimes called
-\defn{discrete metric space}).
+identical points are zero. \((X,d)\) is a metric space, which is sometimes
+called \defn{discrete metric space}.
 
 \begin{pf}
 Fix any \(x,y\in X\). Then, since \(d(x,y)=0\text{ or }1\), it must be
@@ -220,9 +220,9 @@ In either subcase, we have \(d(x,y)+d(y,z)\ge 1=d(x,z)\), as desired.
 \end{pf}
 \item As mentioned earlier, MATH3401 is about studying continuous functions on
 metric space. So, here we consider an example of a metric space for a set of
-\emph{continuous functions}. Let \(X=C[a,b]\), the set of all (real-valued)
+\emph{continuous functions}. Let \(X=C[a,b]\), the set of all real-valued
 continuous functions with domain \([a,b]\). In this case, each ``point'' is
-indeed a function (rather than a number or a vector). How should we measure the
+indeed a function, rather than a number. How should we measure the
 distance between two \emph{functions}?
 
 There are multiple ways to do so, but the following three are relatively more
@@ -363,10 +363,10 @@ Let \((X,d)\) be a metric space. For any nonempty set \(S\subseteq X\), the
 D(S)=\sup_{P,Q\in S}\{d(P,Q)\}.
 \]
 We have \(D(S)=\infty\) when the set \(\{d(P,Q):P,Q\in S\}\) is not bounded
-above. For convenience, we may extend the notion of \emph{diameter} to an empty
+above. For convenience, we extend the notion of \emph{diameter} to an empty
 set by defining \(D(\varnothing)=-\infty\).
 
-The set \(S\) is said to be \defn{bounded} if \(D(S)\ne\infty\) (equivalently,
+\item The set \(S\) is said to be \defn{bounded} if \(D(S)\ne\infty\) (equivalently,
 \(\{d(P,Q):P,Q\in S\}\) is bounded above, or there exists \(M>0\) such that
 \(d(P,Q)\le M\) for any \(P,Q\in S\)). A function from any non-empty set to \(X\)
 is said to be \defn{bounded} if its range is bounded.
@@ -390,15 +390,15 @@ object that are preserved under ``continuous deformations''. Here, we will
 introduce some important notions related to metric space topology.
 
 \item For the case of \(\R\), we are familiar with the notions of \emph{open
-interval} (not including its endpoints) and \emph{closed interval} (including
-its endpoints). We can generalize these notions to \emph{open sets} and
-\emph{closed sets} respectively, which are fundamental to metric space
-topology.
+interval} (interval not including its endpoints) and \emph{closed interval}
+(interval including its endpoints). We can generalize these notions to
+\emph{open sets} and \emph{closed sets} respectively, which are fundamental to
+metric space topology.
 
 \item To define open and closed sets, we need to introduce some preliminary
 notions. Consider a metric space \((X,d)\) throughout. Let \(a\in X\) and
-\(r>0\) (a real number). Then, the \defn{open ball} in \(X\) with center \(a\)
-and radius \(r\) is
+\(r>0\). Then, the \defn{open ball} in \(X\) with center \(a\) and radius \(r\)
+is
 \[
 B(a,r)=\{x\in X: d(a,x)\vc{<}r\},
 \]
@@ -434,8 +434,8 @@ where \(B_X(a,r)\) is the open ball with same center and radius, but in \(X\).
 point} of \(S\) if there exists \(r>0\) such that \[
 B(a,r)\subseteq S.
 \]
-The \defn{interior} of \(S\), denoted by \(S^{\circ}\) or
-\(\operatorname{int}S\), is the set of all interior points of \(S\).
+The \defn{interior} of \(S\), denoted by \defn{\(S^{\circ}\)} or
+\defn{\(\operatorname{int}S\)}, is the set of all interior points of \(S\).
 
 \begin{intuition}
 Viewing \(S\) as an ``island'', an interior point of \(S\) is a location at the
@@ -480,7 +480,7 @@ is \defn{open} in \(X\) if \(S=S^{\circ}\), and it is \defn{closed} in \(X\) if
 \end{center}
 \begin{remark}
 \item For convenience in wordings, sometimes we write ``\(S\) is an open
-(closed) subset of \(X\)'' or ``\(S\) is an open (closed) set \emph{in} \(X\)''
+(closed) subset/set of \(X\)'' or ``\(S\) is an open (closed) set in \(X\)''
 to mean that \(S\subseteq X\) is open (closed) in \(X\).
 
 \item When the set \(S\) is empty, there is no interior point of \(S\) (since \(S\)
@@ -488,9 +488,10 @@ does not even have element!). Thus, the interior of \(S\) is empty as well.
 Hence, we have \(S=S^{\circ}=\varnothing\), meaning that empty set is open in
 \(X\). (This holds true for any metric space \((X,d)\)!)
 
-\item The concepts of ``open'' and ``closed'' are with respect to the set \(X\)
-in the metric space, so we need to specify what set \(X\) we are referring to
-when talking about open and closed sets (unless it is clear from context).
+\item The concepts of ``open'' and ``closed'' are with respect to the metric
+space \((X,d)\). So, we should specify what metric space \((X,d)\) we are
+referring to when talking about open and closed sets, unless it is clear from
+context.
 \end{remark}
 \item \label{it:openness-equiv-def}
 We always have \(S\supseteq S^{\circ}\) since every interior point of
@@ -712,7 +713,7 @@ S\) which contains \(a\) in its interior (in \(S\)).
 \begin{enumerate}
 \item Here, we introduce several results that tell us some properties for the
 openness and closedness.
-\item The first one is about an equivalent criterion for showing that a set
+\item The first one is about an criterion for showing that a set
 \(S\) is open, which is somewhat ``similar'' to \(S\subseteq S^{\circ}\).
 \begin{proposition}
 \label{prp:open-set-exist-open-ball}
@@ -1032,13 +1033,13 @@ which implies that
 as desired.
 \end{pf}
 
-\item By \cref{prp:open-set-union-open-balls}, every open set \(U\subseteq \R^n\) is
+\item By \Cref{prp:open-set-union-open-balls}, every open set \(U\subseteq \R^n\) is
 a union of open balls:
 \[
 U=\bigcup_{\lambda\in\Lambda}B_{\lambda}\quad\text{(\(B_{\lambda}\) denotes an
 open ball)}.
 \]
-Then, applying \cref{thm:lindelof} on this suggests that \(U\) is indeed a
+Then, applying \Cref{thm:lindelof} on this suggests that \(U\) is indeed a
 \emph{countable union} of open balls (we set
 \(\{U_{\lambda}:\lambda\in\Lambda\}=\{B_{\lambda}:\lambda\in\Lambda\}\), which
 only contains open balls). So we can actually say more about the characteristic
@@ -1192,7 +1193,7 @@ it implies that \(I_x=I_u\) and \(I_y=I_u\) (respectively), and thus
 \end{enumerate}
 \end{pf}
 
-While the proof for \cref{lma:open-int-union-int} is rather lengthy, it paves
+While the proof for \Cref{lma:open-int-union-int} is rather lengthy, it paves
 the way for us to prove the following theorem more easily.
 \begin{theorem}
 \label{thm:union-disjoint-int}
@@ -1203,9 +1204,9 @@ a collection of intervals is \emph{unique}.
 \begin{pf}
 Consider any nonempty open subset \(U\) of \(\R\). For any \(x\in U\), let
 \(\displaystyle I_x=\bigcup_{\lambda\in\Lambda_{x}}B_{\lambda}\) (which carries the same
-meaning as that in \cref{lma:open-int-union-int}).
+meaning as that in \Cref{lma:open-int-union-int}).
 
-By \cref{lma:open-int-union-int}, we have \(I_x\cap I_y=\varnothing\) or
+By \Cref{lma:open-int-union-int}, we have \(I_x\cap I_y=\varnothing\) or
 \(I_x=I_y\) for any \(x,y\in U\). Thus, \(\mathcal{I}=\{\text{the distinct
 \(I_x\)'s}: x\in U\}\) is a collection (or set) of pairwise disjoint open
 intervals whose union is \(U\) (as the collection is just essentially obtained
@@ -1215,15 +1216,15 @@ from removing redundancies in \(\{I_x:x\in U\}\) whose union is
 U}\{x\}\subseteq \bigcup_{x\in U}I_x\subseteq U\).}, and removing redundancies
 would not affect the outcome for the union).
 
-Then, by Lindel\"{o}f's theorem (\cref{thm:lindelof}), there is a \emph{countable}
+Then, by Lindel\"{o}f's theorem (\Cref{thm:lindelof}), there is a \emph{countable}
 sub-collection of \(\mathcal{I}\) having union equal to \(U\). But when one
 removes an interval from \(\mathcal{I}\) (which is pairwise disjoint from each
 of the other open intervals in \(\mathcal{I}\)), the union of the remaining
 intervals in \(\mathcal{I}\) would \emph{not} be \(U\) anymore. This forces the
 sub-collection to be \(\mathcal{I}\) itself. Hence, \(\mathcal{I}\)
-is countable. This shows the existence part of \cref{thm:union-disjoint-int}.
+is countable. This shows the existence part of \Cref{thm:union-disjoint-int}.
 
-For the uniqueness part of \cref{thm:union-disjoint-int}, suppose that there
+For the uniqueness part of \Cref{thm:union-disjoint-int}, suppose that there
 are two such countable collections of pairwise disjoint open intervals
 \(\mathcal{I}=\{I_{\gamma}:\gamma\in\Gamma\}\) and
 \(\mathcal{J}=\{J_{\theta}:\theta\in\Theta\}\) (with some relabelling on the
@@ -1240,7 +1241,7 @@ Due the pairwise disjoint property, for any \(x\in U\), there exists a
 \emph{unique} \(I_{\gamma_x}\) and a \emph{unique} \(J_{\theta_x}\) (in
 \(\mathcal{I}\) and \(\mathcal{J}\) respectively) such that \(x\in I_{\gamma_x}\)
 and \(x\in J_{\theta_x}\). This implies that \(I_{\gamma_x}=I_x=J_{\theta_x}\) (see
-the claim in the proof of \cref{lma:open-int-union-int}).
+the claim in the proof of \Cref{lma:open-int-union-int}).
 
 As we consider all \(x\in U\), the equality would ``involve'' all pairs of
 intervals in \(\mathcal{I}\) and \(\mathcal{J}\), and so we conclude that
@@ -1251,17 +1252,17 @@ intervals in \(\mathcal{I}\) and \(\mathcal{J}\), and so we conclude that
 \label{subsect:adher-accum-bound-pts}
 \begin{enumerate}
 \item We have introduced the notion of \emph{openness} and \emph{closedness} in
-\cref{subsect:metric-spaces-topo}, which describe \emph{sets}. In
-\cref{subsect:adher-accum-bound-pts}, we will introduce some notions that
+\Cref{subsect:metric-spaces-topo}, which describe \emph{sets}. In
+\Cref{subsect:adher-accum-bound-pts}, we will introduce some notions that
 describe \emph{points} (in addition to \emph{interior points} in
-\cref{subsect:metric-spaces-topo}). Throughout
-\cref{subsect:adher-accum-bound-pts}, we shall work in a metric space
+\Cref{subsect:metric-spaces-topo}). Throughout
+\Cref{subsect:adher-accum-bound-pts}, we shall work in a metric space
 \((X,d)\).
 
 \item Let \(S\) be a subset of \(X\). A point \(x\in X\) is an \defn{adherent
 point} of \(S\) if \(B_X(x,r)\cap S\ne\varnothing\) for any \(r>0\). The set of
 all adherent points of \(S\) (in \(X\)) is called the \defn{closure} of \(S\)
-in \(X\), and is denoted by \(\overline{S}\).
+in \(X\), and is denoted by \defn{\(\overline{S}\)}.
 \begin{center}
 \begin{tikzpicture}
 \draw[fill, brown!20!white, draw=brown, dashed] (5,0) ellipse [x radius=2cm, y radius=1cm];
@@ -1324,7 +1325,7 @@ C\).
 
 \item Another way to view the concept of adherent point is to consider the
 notion of \emph{distance between a point and a set} (discussed in
-\cref{subsect:pt-set-dist}). We have the following equivalent criterion for
+\Cref{subsect:pt-set-dist}). We have the following criterion for
 adherent point:
 \begin{proposition}
 \label{prp:adherent-zero-dist-from-set}
@@ -1347,7 +1348,7 @@ Note that
 of \(S\) (or \defn{limit point} of \(S\)) if it is an adherent point of
 \(S\setminus\{x\}\), i.e., \(B(x,r)\cap(S\setminus\{x\})\ne\varnothing\) for
 any \(r>0\). The set of all accumulation points of \(S\) (in \(X\)) is called
-the \defn{derived set} of \(S\) in \(X\), and is denoted by \(S'\).
+the \defn{derived set} of \(S\) in \(X\), and is denoted by \defn{\(S'\)}.
 
 
 \begin{intuition}
@@ -1378,8 +1379,8 @@ S\supseteq \{2\}\) for any \(r>0\).
 \end{note} For this example, we can observe that \(2\) is ``isolated'' from
 other points in \(S\). This motivates the definition of \emph{isolated point}.
 
-\item Let \(S\) be a subset of \(X\). A point \(x\in S\) is an isolated point
-of \(S\) if there exists \(r>0\) such that \(B(x,r)\cap S=\{x\}\).
+\item Let \(S\) be a subset of \(X\). A point \(x\in S\) is an \defn{isolated
+point} of \(S\) if there exists \(r>0\) such that \(B(x,r)\cap S=\{x\}\).
 \begin{center}
 \begin{tikzpicture}
 \draw[-Latex] (0,0) -- (10,0);
@@ -1448,7 +1449,7 @@ the closure \(\overline{S}\) as a \emph{disjoint union} of the derived set
 \overline{S}=S'\sqcup S^{i}.
 \]
 
-\item It turns out that we can give an equivalent criterion for being an
+\item It turns out that we can give an criterion for being an
 accumulation point by considering \emph{cardinality}.
 \begin{proposition}
 \label{prp:acc-pt-inf-set}
@@ -1471,7 +1472,7 @@ taking away \(x\) (for any \(r>0\)), i.e., \(B(x,r)\cap
 (S\setminus\{x\})\ne\varnothing\) for any \(r>0\).
 \end{pf}
 
-\item Next, we will introduce a result that gives equivalent criteria for
+\item Next, we will introduce a result that gives criteria for
 \emph{closedness} of a set, using the notion of closure and derived set.
 
 \begin{proposition}
@@ -1493,10 +1494,10 @@ S=\varnothing\). This then contradicts to \(x\in S'\) (\(x\) is an accumulation
 point, hence adherent point of \(S\)).
 
 \underline{\(\text{(b)}\implies \text{(c)}\)}: Assume that \(S'\subseteq S\).
-Then, by \cref{prp:clos-union-deriv-s}, we have \(\overline{S}=S'\cup S=S\).
+Then, by \Cref{prp:clos-union-deriv-s}, we have \(\overline{S}=S'\cup S=S\).
 
 \underline{\(\text{(c)}\implies \text{(a)}\)}: Assume that \(\overline{S}=S\).
-By \cref{thm:closure-smallest-closed}, we know that \(\overline{S}\) is closed
+By \Cref{thm:closure-smallest-closed}, we know that \(\overline{S}\) is closed
 in \(X\), so does \(S\).
 \end{pf}
 
@@ -1519,12 +1520,13 @@ following definition of boundary point.
 \item Let \(S\subseteq X\) be a subset. A point \(x\in X\) is a \defn{boundary
 point} of \(S\) if \(B(x,r)\cap S\ne\varnothing\) and \(B(x,r)\cap (X\setminus
 S)\ne\varnothing\) for any \(r>0\). The set of all boundary points of \(S\) is
-called the \defn{boundary} of \(S\), and is denoted by \(\partial S\).
+called the \defn{boundary} of \(S\), and is denoted by \defn{\(\partial S\)}.
 
 \begin{remark}
-\item We can see that the condition here implies the one for adherent point (we also
-require that \(B(x,r)\cap (X\setminus S)\ne\varnothing\) for any \(r>0\).
-Hence, we have \(\partial S\subseteq \overline{S}\).
+\item By definition, we can write \(\partial
+S=\overline{S}\cap\overline{X\setminus S}\subseteq\overline{S}\). This
+implies that \(\partial S=\partial(X\setminus S)\) and \(\partial S\) is closed
+in \(X\) (as an intersection of two closed subsets in \(X\)).
 \item Note that \(S^{\circ}\cap \partial S=\varnothing\). This is because for
 any interior point \(x\) of \(S\), we need \(B(x,r)\subseteq S\) for any
 \(r>0\), so the ball \(B(x,r)\) cannot possibly contain elements outside \(S\),
@@ -1542,7 +1544,7 @@ The notion of boundary here coincides with our usual understanding of
 an \emph{\(n\)-sphere} (which is the ``boundary''/``surface'' of the ball in
 our usual understanding).
 
-\item\label{it:closure-decompose-bound-interior} Recall from
+\item \label{it:closure-decompose-bound-interior} Recall from
 \labelcref{it:closure-decompose-acc-isolate} that we can express the closure
 \(\overline{S}\) as the disjoint union of a set containing all accumulation
 points and another set containing all isolated points.
@@ -1567,6 +1569,302 @@ a subset of \(S\)) for any \(r>0\). Also, since \(x\in\overline{S}\), we have
 \(B(x,r)\cap S\ne\varnothing\) for any \(r>0\). It follows that \(x\in\partial
 S\subseteq \partial S\cup S^{\circ}\).
 \end{pf}
+\end{enumerate}
+\subsection{Properties of Interiors, Closures, Derived Sets, and Boundaries}
+\label{subsect:int-clos-deriv-bound-prop}
+\begin{enumerate}
+\item So far we have introduced multiple kinds of \emph{points}, including:
+\begin{enumerate}
+\item interior points \faIcon{arrows-alt-h} interior \(S^{\circ}\)
+\item adherent points \faIcon{arrows-alt-h} closure \(\overline{S}\)
+\item accumulation points \faIcon{arrows-alt-h} derived set \(S'\)
+\item boundary points \faIcon{arrows-alt-h} boundary \(\partial S\)
+\end{enumerate}
+In \Cref{subsect:int-clos-deriv-bound-prop} we will discuss some set-related
+properties about them. Throughout we let \((X,d)\) be a metric space and
+\(S,T\) be arbitrary subsets of \(X\).
+
+\item \label{it:interior-set-prop}
+Properties for interior \(S^{\circ}\):
+\begin{enumerate}
+\item\label{it:int-pre-subset} (preserving subset inclusion) \(S\subseteq
+T\implies S^{\circ}\subseteq T^{\circ}\).
+
+\begin{pf}
+Assume \(S\subseteq T\). For any \(s\in S^{\circ}\), there exists \(r>0\) such
+that \(B(s,r)\subseteq S\subseteq T\), so \(s\in T^{\circ}\). Hence
+\(S^{\circ}\subseteq T^{\circ}\).
+\end{pf}
+\item \label{it:int-idempot} (idempotence) \((S^{\circ})^{\circ}=S^{\circ}\).
+
+\begin{pf}
+We need to show that \(S^{\circ}\) is open in \(X\). Fix any \(x\in
+S^{\circ}\). Then there exists \(r>0\) such that \(B(x,r)\subseteq S\).
+
+It then suffices to show that \(B(x,r)\subseteq S^{\circ}\). First fix any
+\(y\in B(x,r)\). By the openness of \(B(x,r)\), there exists \(\delta>0\) such
+that \(B(y,\delta)\subseteq B(x,r)\subseteq S\), which implies that \(y\) is
+also an interior point of \(S\), i.e., \(y\in S^{\circ}\). This shows
+\(B(x,r)\subseteq S^{\circ}\).
+\end{pf}
+\item \(S^{\circ}\subseteq T\subseteq S\implies T^{\circ}=S^{\circ}\).
+
+\begin{pf}
+By \labelcref{it:int-pre-subset,it:int-idempot},
+\[
+S^{\circ}\subseteq T\subseteq S\implies 
+S^{\circ}=(S^{\circ})^{\circ}\subseteq T^{\circ}\subseteq S^{\circ}
+\implies T^{\circ}=S^{\circ}.
+\]
+\end{pf}
+\item (commutativity with intersection) \(S^{\circ}\cap T^{\circ}=(S\cap
+T)^{\circ}\).
+
+\begin{pf}
+``\(\subseteq\)'': Fix any \(x\in S^{\circ}\cap T^{\circ}\). Then there exist
+\(r_1,r_2>0\) such that \(B(x,r_1)\subseteq S\) and \(B(x,r_2)\subseteq T\).
+Let \(r=\min\{r_1,r_2\}>0\), and we have \(B(x,r)\subseteq S\cap T\). Thus,
+\(x\in(S\cap T)^{\circ}\).
+
+``\(\supseteq\)'': Note that \(S\cap T\subseteq S\) and \(S\cap T\subseteq T\).
+Thus, by \labelcref{it:int-pre-subset}, we have
+\[
+(S\cap T)^{\circ}\subseteq S^{\circ}\qqtext{and}
+(S\cap T)^{\circ}\subseteq T^{\circ}.
+\]
+This means \((S\cap T)^{\circ}\subseteq S^{\circ}\cap T^{\circ}\).
+\end{pf}
+\item \(S^{\circ}\cup T^{\circ}\subseteq (S\cup T)^{\circ}\).
+
+\begin{pf}
+We have \(S\subseteq S\cup T\) and \(T\subseteq S\cup T\).
+Thus, by \labelcref{it:int-pre-subset}, \(S^{\circ}\subseteq
+(S\cup T)^{\circ}\) and \(T^{\circ}\subseteq (S\cup T)^{\circ}\). Hence,
+\[
+S^{\circ}\cup T^{\circ}\subseteq (S\cup T)^{\circ}.
+\]
+\end{pf}
+
+\begin{warning}
+It is \underline{not} true that \(S^{\circ}\cup T^{\circ}\supseteq (S\cup
+T)^{\circ}\). For example, consider \(S=[0,1]\) and \(T=[1,2]\) in \(\R\).
+\end{warning}
+\end{enumerate}
+
+\item \label{it:clos-set-prop}
+Properties for closure \(\overline{S}\):
+\begin{enumerate}
+\item \label{it:clos-pre-subset} (preserving subset inclusion) \(S\subseteq
+T\implies \overline{S}\subseteq \overline{T}\).
+
+\begin{pf}
+Assume \(S\subseteq T\).  For any \(x\in\overline{S}\) and any \(r>0\), we have
+\[
+B(x,r)\cap T\supseteq B(x,r)\cap S\ne\varnothing,
+\]
+which implies \(B(x,r)\cap T\ne\varnothing\), so \(x\in \overline{T}\).
+\end{pf}
+\item \label{it:clos-idempot} (idempotence) \(\overline{(\overline{S})}=\overline{S}\).
+
+\begin{pf}
+Note that \(\overline{S}\) is closed, and hence the smallest closed set in
+\(X\) containing all elements in \(\overline{S}\) is precisely \(\overline{S}\)
+itself. This means that \(\overline{(\overline{S})}=\overline{S}\) by
+\Cref{thm:closure-smallest-closed}.
+\end{pf}
+\item \(S\subseteq T\subseteq \overline{S}\implies \overline{T}=\overline{S}\).
+
+\begin{pf}
+By \labelcref{it:clos-pre-subset,it:clos-idempot}, we have
+\[
+S\subseteq T\subseteq \overline{S}
+\implies
+\overline{S}\subseteq \overline{T}\subseteq \overline{(\overline{S})}=\overline{S}
+\implies
+\overline{T}=\overline{S}.
+\]
+\end{pf}
+\item (commutativity with union) \(\overline{S}\cup\overline{T}=\overline{S\cup T}\).
+
+\begin{pf}
+``\(\subseteq\)'':  We have \(S\subseteq S\cup T\) and \(T\subseteq S\cup T\).
+Thus, by \labelcref{it:clos-pre-subset}, \(\overline{S}\subseteq
+\overline{S\cup T}\) and \(\overline{T}\subseteq \overline{S\cup T}\). Hence,
+\[
+\overline{S}\cup\overline{T}\subseteq \overline{S\cup T}.
+\]
+``\(\supseteq\)'': Fix any \(x\in\overline{S\cup T}\) and any \(r>0\). Then we
+have
+\begin{equation}
+\label{eq:clos-union-rev-subs}
+[B(x,r)\cap S]\cup[B(x,r)\cap T]=B(x,r)\cap(S\cup T)\ne\varnothing.
+\end{equation}
+If \(B(x,r)\cap S\ne\varnothing\) for any \(r>0\), then
+\(x\in\overline{S}\subseteq \overline{S}\cup\overline{T}\) and we are done.
+So henceforth assume that \(B(x,r_0)\cap S=\varnothing\) for some \(r_0>0\). Then,
+\[
+B(x,r)\cap S=\varnothing
+\]
+for any \(0<r\le r_0\). By \Cref{eq:clos-union-rev-subs}, we must have
+\(B(x,r)\cap T\ne\varnothing\) for any \(0<r\le r_0\). Also, for any \(r>r_0\)
+we have
+\[
+B(x,r)\cap T\supseteq B(x,r_0)\cap T\ne\varnothing.
+\]
+Hence, we conclude that \(B(x,r)\cap T\ne\varnothing\) for any \(r>0\), thus
+\(x\in\overline{T}\subseteq \overline{S}\cup\overline{T}\).
+\end{pf}
+\item \(\overline{S}\cap\overline{T}\supseteq\overline{S\cap T}\).
+
+\begin{pf}
+Note that \(S\cap T\subseteq S\) and \(S\cap T\subseteq T\). Hence, by
+\labelcref{it:clos-pre-subset}, we have \(\overline{S\cap T}\subseteq
+\overline{S}\) and \(\overline{S\cap T}\subseteq \overline{T}\). Thus,
+\[
+\overline{S\cap T}\subseteq \overline{S}\cap\overline{T}.
+\]
+\end{pf}
+
+\begin{warning}
+It is \underline{not} true that
+\(\overline{S}\cap\overline{T}\subseteq\overline{S\cap T}\). For example,
+consider \(S=[0,1)\) and \(T=(1,2]\) in \(\R\).
+\end{warning}
+
+\end{enumerate}
+\item \label{it:deriv-set-prop}
+Properties for derived set \(S'\):
+\begin{enumerate}
+\item \label{it:deriv-pre-subset} (preserving subset inclusion) \(S\subseteq
+T\implies S'\subseteq T'\).
+
+\begin{pf}
+Assume \(S\subseteq T\).  For any \(x\in S'\) and any \(r>0\), we have
+\[
+B(x,r)\cap T\setminus \{x\}\supseteq B(x,r)\cap S\setminus \{x\}\ne\varnothing,
+\]
+which implies \(B(x,r)\cap T\setminus \{x\}\ne\varnothing\), so \(x\in T'\).
+\end{pf}
+\item \((S')'\subseteq S'\).
+
+\begin{pf}
+Fix any \(x\in(S')'\) and any \(r>0\). Then there exists \(y\in B(x,r)\cap
+S'\setminus \{x\}\). Let \(\delta=r-d(x,y)>0\). Then,
+\[
+B(y,\delta)\subseteq B(x,r).
+\]
+Since \(y\in S'\), by \Cref{prp:acc-pt-inf-set} we know that \(B(y,\delta)\cap
+S\setminus \{y\}\) is infinite, so we can find an element other than \(x\) in
+it. In other words, there exists
+\[
+z\in B(y,\delta)\cap S\setminus \{x,y\}
+\subseteq B(x,r)\cap S\setminus \{x\},
+\]
+which implies that \(B(x,r)\cap S\setminus \{x\}\) is nonempty, so \(x\in S'\).
+\end{pf}
+
+\begin{warning}
+It is \underline{not} true that \((S')'\supseteq S'\). For example, consider
+\(S=\{1/n:n\in\N\}\) in \(\R\).
+\end{warning}
+\item (commutativity with union) \(S'\cup T'=(S\cup T)'\).
+
+\begin{pf}
+Similar to the proof for the respective property for closure.
+\end{pf}
+\item \(S'\cap T'\supseteq (S\cap T)'\).
+
+\begin{pf}
+Similar to the proof for the respective property for closure.
+\end{pf}
+
+\begin{warning}
+It is \underline{not} true that \(S'\cap T'\subseteq (S\cap T)'\). For example, consider
+\(S=[0,1)\) and \(T=(1,2]\) in \(\R\).
+\end{warning}
+\end{enumerate}
+
+\item \label{it:bound-prop}
+Properties for boundary \(\partial S\):
+\begin{enumerate}
+\item \(\partial(\partial S)\subseteq \partial S\).
+
+\begin{pf}
+Firstly, since \(\partial S=\overline{S}\cap\overline{X\setminus S}\) and
+closure is closed, we know that \(\partial S\) is closed in \(X\), which
+implies that \(\overline{\partial S}=\partial S\). Thus,
+\[
+\partial(\partial S)=\overline{\partial S}\cap\overline{X\setminus \partial S}
+\subseteq \overline{\partial S}=\partial S
+\]
+\end{pf}
+
+\begin{warning}
+It is \underline{not} true that \(\partial(\partial S)\supseteq \partial S\). For example, consider
+\(S=\Q\) in \(\R\).
+\end{warning}
+\item \(\partial(S\cup T)\subseteq \partial S\cup\partial T\).
+
+\begin{pf}
+Note that
+\begin{align*}
+\partial(S\cup T)
+&=\overline{S\cup T}\cap\overline{X\setminus (S\cup T)}\\
+&=\overline{S\cup T}\cap\overline{(X\setminus S)\cap (X\setminus T)}\\
+&=(\overline{S}\cup\overline{T})\cap\overline{(X\setminus S)\cap (X\setminus T)}\\
+&\subseteq (\overline{S}\cup\overline{T})\cap\vc{(\overline{X\setminus S}\cap\overline{X\setminus T})}\\
+&= [\overline{S}\cap\vc{(\overline{X\setminus S}\cap\overline{X\setminus T})}]\cup
+[\overline{T}\cap\vc{(\overline{X\setminus S}\cap\overline{X\setminus T})}]\\
+&\subseteq [\overline{S}\cap\overline{X\setminus S}]\cup
+[\overline{T}\cap\overline{X\setminus T}]\\
+&=\partial S\cup\partial T.
+\end{align*}
+\end{pf}
+
+\begin{warning}
+It is \underline{not} true that \(\partial(S\cup T)\supseteq \partial
+S\cup\partial T\). For example, consider \(S=[0,2]\) and \(T=\{1\}\) in \(\R\).
+\end{warning}
+\item \label{it:bound-inter-subset} \(\partial(S\cap T)\subseteq \partial S\cup\partial T\).
+
+\begin{pf}
+Note that
+\begin{align*}
+\partial(S\cap T)
+&=\overline{S\cap T}\cap\overline{X\setminus (S\cap T)}\\
+&=\overline{S\cap T}\cap\overline{(X\setminus S)\cup (X\setminus T)}\\
+&=\overline{S\cap T}\cap (\overline{X\setminus S}\cup \overline{X\setminus T})\\
+&\subseteq \vc{(\overline{S}\cap\overline{T})}\cap(\overline{X\setminus S}\cup \overline{X\setminus T})\\
+&=[\vc{(\overline{S}\cap\overline{T})}\cap\overline{X\setminus S}]
+\cup[\vc{(\overline{S}\cap\overline{T})}\cap\overline{X\setminus T}]\\
+&\subseteq (\overline{S}\cap\overline{X\setminus S})
+\cup(\overline{T}\cap\overline{X\setminus T})\\
+&=\partial S\cup\partial T.
+\end{align*}
+\end{pf}
+
+\begin{warning}
+It is \underline{not} true that \(\partial(S\cap T)\supseteq \partial
+S\cup\partial T\). For example, consider \(S=[0,1]\) and \(T=\{2\}\) in \(\R\).
+\end{warning}
+
+\item \(\partial(S\setminus T)\subseteq \partial S\cup\partial T\).
+
+\begin{pf}
+Note that \(\partial S=\partial(X\setminus S)\). Thus, by
+\labelcref{it:bound-inter-subset} we have
+\[
+\partial(S\setminus T)=\partial(S\cap(X\setminus T))
+\subseteq \partial S\cup\partial(X\setminus T)
+=\partial S\cup\partial T.
+\]
+\end{pf}
+
+\begin{warning}
+It is \underline{not} true that \(\partial(S\setminus T)\supseteq \partial
+S\cup\partial T\). For example, consider \(S=[0,1]\) and \(T=\{2\}\) in \(\R\).
+\end{warning}
+\end{enumerate}
 \end{enumerate}
 \subsection{Compactness}
 \label{subsect:compactness}
@@ -1597,11 +1895,11 @@ interval). A continuous function defined on \([0,\infty)\) can be
 \item To preserve this property from extreme value theorem, we thus need to
 enforce additional constraint on closed sets. It turns out that by restricting
 our attention to \emph{compact sets}, the property is preserved.  We shall
-discuss the notion of \emph{compactness} in \cref{subsect:compactness}.
+discuss the notion of \emph{compactness} in \Cref{subsect:compactness}.
 
 \item Before defining compactness, we need to introduce some preliminary
 terminologies. Let \((X,d)\) be a metric space throughout
-\cref{subsect:compactness}. Let \(S\) be a subset of \(X\). Then, a family
+\Cref{subsect:compactness}. Let \(S\) be a subset of \(X\). Then, a family
 \(\mathcal{F}\) of subsets of \(X\) is said to be a \defn{cover} of \(S\) (in
 \(X\)) if
 \[
@@ -1746,7 +2044,7 @@ Every compact subset of \(X\) is closed (in \(X\)) and bounded.
 \begin{pf}
 Let \(S\subseteq X\) be any compact set. If \(S\) is empty, then its diameter
 is conventionally set as \(-\infty\), which is not \(\infty\). Thus, it is
-bounded. Also, we know from \cref{prp:both-open-and-closed} that empty set must
+bounded. Also, we know from \Cref{prp:both-open-and-closed} that empty set must
 be closed in \(X\). So we are done with this case.
 
 Henceforth, we assume that \(S\ne\varnothing\). Fix any \(x\in S\). We first
@@ -1856,7 +2154,7 @@ T\subseteq \bigcup_{i=1}^{n}U_i.
 Thus, the family \(\{U_1,\dotsc,U_n\}\) serves as a finite subcover of
 \(\mathcal{F}=\{U_{\lambda}:\lambda\in\Lambda\}\), as desired.
 \end{pf}
-\item In fact, we can generalize \cref{thm:subset-closed-in-cpt-is-cpt} a bit to
+\item In fact, we can generalize \Cref{thm:subset-closed-in-cpt-is-cpt} a bit to
 the case below.
 
 \begin{corollary}
@@ -1866,18 +2164,42 @@ Let \((X,d)\) be a metric space.  Then, every closed subset of a compact set
 \end{corollary}
 \begin{pf}
 Let \(S\subseteq X\) be any compact set, and let \(T\subseteq S\) be a closed
-set in \(X\). Then, we know that \(X\setminus T\) is open in \(X\), so for any
-\(x\in X\setminus T\), there exists \(r>0\) such that \(B_X(x,r)\cap
-T=\varnothing\).
+set in \(X\). Note that we can write \(T=T\cap S\). Then, since \(T\) is closed
+in \(X\), by \labelcref{it:open-closed-equiv-crit-metric-subspace} we know that
+\(T\) is also closed in \(S\).  Then, we can apply
+\Cref{thm:subset-closed-in-cpt-is-cpt}.
+\end{pf}
+\item We now consider the compactness of union/intersection of compact sets:
+\begin{enumerate}
+\item \label{it:cpt-union-cpt} The union of \emph{finitely many} compact sets in \(X\) is compact in
+\(X\).
+\item \label{it:cpt-intersect-cpt} The intersection of \emph{any collection} of compact sets in \(X\) is
+compact in \(X\).
+\end{enumerate}
+\begin{pf}
+\begin{enumerate}
+\item Write \(\displaystyle S=\bigcup_{i=1}^{n}S_i\) where \(S_i\) is compact
+for each \(i=1,\dotsc,n\).  Fix any open cover \(\mathcal{F}\) of the union
+\(\bigcup_{i=1}^{n}S_i\). Note that for every \(i=1,\dotsc,n\), \(\mathcal{F}\)
+also covers \(S_i\), thus there exists a finite subcover \(\mathcal{F}_i\)
+where \(\displaystyle \bigcup_{F\in\mathcal{F}_i}F\supseteq S_i\) by the compactness of \(S_i\).
 
-Now, fix any \(x\in X\setminus S\subseteq X\setminus T\). For the same \(r\),
-we have
+Then, the union \(\mathcal{G}=\mathcal{F}_1\cup\dotsb\cup \mathcal{F}_n\) is a finite
+subcover of \(\mathcal{F}\), since \(\mathcal{F}_i\) is finite for each
+\(i=1,\dotsc,n\), and
 \[
-B_S(x,r)\cap T\subseteq B_X(x,r)\cap T=\varnothing
+\bigcup_{F\in\mathcal{G}}F\supseteq \bigcup_{i=1}^{n}S_i=S.
 \]
-(as \(S\subseteq X\), we have \(B_S(x,r)\subseteq B_X(x,r)\)).
-This forces \(B_S(x,r)\cap T=\varnothing\), so \(T\) is indeed also closed in
-\(S\).  Then, we can apply \cref{thm:subset-closed-in-cpt-is-cpt}.
+\item Write \(\displaystyle S=\bigcap_{\lambda\in\Lambda}S_{\lambda}\) where
+\(S_{\lambda}\) is compact, hence closed (by
+\Cref{thm:compact-imp-closed-bounded}), for any \(\lambda\in\Lambda\).  By
+\labelcref{it:closed-sets-intersect-closed}, the intersection \(S=\displaystyle
+\bigcap_{i=1}^{n}S_i\) is also closed in \(X\). Now pick any set in the
+collection of compact sets, say \(S_{\lambda^*}\), and we can see that
+\(\displaystyle \bigcap_{i=1}^{n}S_i\subseteq S_{\lambda^*}\).  Thus, as a
+closed subset of a compact set, we conclude by
+\Cref{cor:closed-subset-of-cpt-is-cpt} that the intersection is compact in \(X\).
+\end{enumerate}
 \end{pf}
 \end{enumerate}
 \subsection{Compactness in \(\R^n\)}
@@ -1885,7 +2207,7 @@ This forces \(B_S(x,r)\cap T=\varnothing\), so \(T\) is indeed also closed in
 \begin{enumerate}
 \item When we focus on the case where the underlying metric space is \(X=\R^n\)
 \emph{equipped with standard Euclidean metric \(d\)}, we can have more fruitful
-results regarding compactness. The key goal of \cref{subsect:compactness-rn} is
+results regarding compactness. The key goal of \Cref{subsect:compactness-rn} is
 to prove the equivalence of the following statements for a subset \(S\) of
 \(\R^n\):
 \begin{enumerate}
@@ -1899,8 +2221,8 @@ Euclidean metric.
 \end{warning}
 
 Note that we have shown \(\text{(a)}\implies \text{(b)}\) in
-\cref{thm:compact-imp-closed-bounded} and \(\text{(a)}\implies \text{(c)}\) in
-\cref{thm:cpt-bw-prop}. Thus, it suffices to show that, \emph{under the metric
+\Cref{thm:compact-imp-closed-bounded} and \(\text{(a)}\implies \text{(c)}\) in
+\Cref{thm:cpt-bw-prop}. Thus, it suffices to show that, \emph{under the metric
 space \(\R^n\)}, we have \(\text{(b)}\implies \text{(a)}\) and
 \(\text{(c)}\implies \text{(b)}\) also.
 
@@ -2009,7 +2331,7 @@ argue that there exist \(x_0,y_0\in\R\) such that:
 \begin{pf}
 It suffices to show that for any \(r>0\), \(B(p,r)\supseteq Q_n\) for some
 \(n\in\N\), as this would then imply that \(B(p,r)\) contains infinitely many
-points of \(S\), and thus \(p\) is an accumulation point of \(S\) by \cref{prp:acc-pt-inf-set}.
+points of \(S\), and thus \(p\) is an accumulation point of \(S\) by \Cref{prp:acc-pt-inf-set}.
 
 Fix any \(r>0\). Since \(\{(a_n,c_n)\}\to p\), there exists \(M_1\in\N\) such
 that
@@ -2083,15 +2405,15 @@ Assume to the contrary that
 \bigcap_{k=1}^{\infty}Q_k=\varnothing.
 \end{equation}
 Then consider the following.
-\begin{enumerate}
+\begin{enumerate}[label={(\arabic*)}]
 \item Since \(Q_1\) is nonempty by assumption, there exists \(x_1\in Q_1\triangleq Q_{n_1}\). By
-\cref{eq:cantor-int-contrary-assum}, there exists \(n_2\in\N\) such that \(x_1\notin
+\Cref{eq:cantor-int-contrary-assum}, there exists \(n_2\in\N\) such that \(x_1\notin
 Q_{n_2}\); Otherwise, the intersection would contain at least \(x_1\).
 \item Since \(Q_{n_2}\) is nonempty, there exists \(x_2\in Q_{n_2}\).
-By \cref{eq:cantor-int-contrary-assum}, there exists \(n_3\in\N\) such that
+By \Cref{eq:cantor-int-contrary-assum}, there exists \(n_3\in\N\) such that
 \(x_2\notin Q_{n_3}\).
 \item Since \(Q_{n_3}\) is nonempty, there exists \(x_3\in Q_{n_3}\).
-By \cref{eq:cantor-int-contrary-assum}, there exists \(n_4\in\N\) such that
+By \Cref{eq:cantor-int-contrary-assum}, there exists \(n_4\in\N\) such that
 \(x_3\notin Q_{n_4}\).
 \item ...
 \end{enumerate}
@@ -2120,12 +2442,12 @@ By construction of the sequence \(\{x_i\}\), we have the following properties.
 \item The set \(\{x_i:i\in\N\}\) contains infinitely many elements since the
 sequence contains distinct terms, i.e., \(x_{i}\ne x_{j}\) for any \(i\ne j\).
 \end{enumerate}
-Then, by Boltzano-Weierstrass theorem (\cref{thm:boltzano-weierstrass}), the
+Then, by Boltzano-Weierstrass theorem (\Cref{thm:boltzano-weierstrass}), the
 set \(\{x_i:i\in\N\}\), being an infinite bounded subset of \(\R^n\), has an
 accumulation point \(p\) in \(\R^n\). We then want to show that \(\displaystyle
 p\in \bigcap_{k=1}^{\infty}Q_k\) to arrive at a contradiction.
 
-Fix any \(k\in\N\). By assumption, \(Q_k\) is closed so \(\overline{Q}_k=Q_k\).
+Fix any \(k\in\N\). By assumption, \(Q_k\) is closed, so \(\overline{Q}_k=Q_k\).
 Hence, it suffices to show that \(p\) is an adherent point of \(Q_k\), which
 would then imply that \(p\in \overline{Q}_k=Q_k\). We shall prove this by
 definition.
@@ -2133,7 +2455,7 @@ definition.
 Fix any \(r>0\). Then we need to show that \(B(p,r)\cap Q_k\ne\varnothing\).
 Since \(p\) is an accumulation point of the set \(\{x_i:i\in\N\}\), for any
 \(r>0\) the open ball \(B(p,r)\) contains infinitely many points from
-\(\{x_i:i\in\N\}\) by \cref{prp:acc-pt-inf-set}. Hence, there exists \(m>k\)
+\(\{x_i:i\in\N\}\) by \Cref{prp:acc-pt-inf-set}. Hence, there exists \(m>k\)
 such that \(B(p,r)\) contains \(x_m\). But we know that \(x_m\in Q_{n_m}\) also
 by construction. So, we actually have
 \[
@@ -2142,9 +2464,11 @@ x_m\in B(p,r)\cap Q_{n_m}\implies B(p,r)\cap Q_{n_m}\ne\varnothing.
 Note that \(n_m\ge m>k\), so \(Q_{n_m}\subseteq Q_k\) by assumption, implying
 that
 \[
-B(p,r)\cap Q_{k}\ne\varnothing,
+B(p,r)\cap Q_{k}\ne\varnothing.
 \]
-as desired.
+Thus, \(p\in\overline{Q}_k=Q_k\). As \(k\in\N\) is arbitrary, it follows that
+\(\displaystyle p\in\bigcap_{k=1}^{\infty}Q_k\), which contradicts
+\Cref{eq:cantor-int-contrary-assum}.
 \end{pf}
 
 \item Using \emph{Cantor intersection theorem} and \emph{Lindel\"of's theorem},
@@ -2165,7 +2489,7 @@ i.e.,
 where \(U_{\lambda}\) is open (in \(\R^n\)) for any \(\lambda\in\Lambda\). To
 show the compactness, we want to find a finite subcover of \(\mathcal{U}\).
 
-We first use Lindel\"o{f}'s theorem (\cref{thm:lindelof}). It suggests that
+We first use Lindel\"o{f}'s theorem (\Cref{thm:lindelof}). It suggests that
 there exists a countable family \(\{U_k\}_{k=1}^{\infty}\) such that for any
 \(k\in\N\), \(U_k=U_{\lambda}\) for some \(\lambda\in\Lambda\), and it satisfies
 \[
@@ -2190,7 +2514,7 @@ Q_k\) and \(S\) are both closed, so do their intersection.
 \item \((X\setminus Q_k)\cap S\) is bounded since \(S\) is bounded.
 \item \((X\setminus Q_{k+1})\subseteq (X\setminus Q_k)\).
 \end{itemize}
-Then, applying Cantor intersection theorem (\cref{thm:cantor-intersection}),
+Then, applying Cantor intersection theorem (\Cref{thm:cantor-intersection}),
 \[
 \bigcap_{k=1}^{\infty}[(X\setminus Q_k)\cap S]\ne\varnothing.
 \]
@@ -2213,7 +2537,7 @@ By the claim, we know that \(\{U_1,\dotsc,U_N\}\) is a finite subcover of
 
 
 \item Now, we are ready to prove the main result in
-\cref{subsect:compactness-rn} as follows.
+\Cref{subsect:compactness-rn} as follows.
 
 \begin{theorem}
 \label{thm:cpt-equiv-criteria-rn}
@@ -2226,8 +2550,8 @@ Let \(S\) be a subset of \(\R^n\). Then the following are equivalent.
 \end{theorem}
 \begin{pf}
 So far we have proved that \(\text{(a)}\iff\text{(b)}\)
-(\cref{thm:compact-imp-closed-bounded,thm:heine-borel}) and
-\(\text{(a)}\implies \text{(c)}\) (\cref{thm:cpt-bw-prop}). Hence, it
+(\Cref{thm:compact-imp-closed-bounded,thm:heine-borel}) and
+\(\text{(a)}\implies \text{(c)}\) (\Cref{thm:cpt-bw-prop}). Hence, it
 suffices to prove that \(\text{(c)}\implies \text{(b)}\).
 
 First, assume that \(S\) has the Boltzano-Weierstrass property. We will first
@@ -2239,7 +2563,7 @@ every open ball with radius \(1/2\) cannot possibly contain infinitely many
 \(x_n\)'s. Contradiction.
 
 Next, we will prove the \underline{closedness} of \(S\). By
-\cref{prp:equiv-crit-closed}, it suffices to prove that \(\overline{S}=S\).  We
+\Cref{prp:equiv-crit-closed}, it suffices to prove that \(\overline{S}=S\).  We
 know that \(S\subseteq \overline{S}\) always, so it actually suffices to show
 that \(\overline{S}\subseteq S\). By
 \labelcref{it:closure-decompose-acc-isolate}, every point in \(\overline{S}\)
@@ -2261,7 +2585,7 @@ accumulation point \(y\in S\).
 Assume to the contrary that \(x\ne y\). Then, let \(r_0=d(y,x)>0\). Consider
 the open ball \(B(y,r_0/2)\). Since \(y\) is an accumulation point of
 \(\{x_k:k\in\N\}\), \(B(y,r_0/2)\) contains infinitely many \(x_n\)'s by
-\cref{prp:acc-pt-inf-set}. Choose a large \(N\in\N\) such that \(1/N<r_0/2\).
+\Cref{prp:acc-pt-inf-set}. Choose a large \(N\in\N\) such that \(1/N<r_0/2\).
 Then, there exists \(k>N\) such that \(d(y,x_k)<r_0/2\). Also, for this \(k\),
 we have \(d(x_k,x)<1/k<1/N\) as \(x_k\in B(x,1/k)\). Hence,
 \[
