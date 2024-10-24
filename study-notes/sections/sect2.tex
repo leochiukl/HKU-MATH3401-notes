@@ -597,10 +597,11 @@ another central concept in MATH3401.
 
 \item The concept of continuous functions is utilized for studying the
 ``equivalence problem'' in metric space topology, namely determining whether
-two metric spaces are ``equivalent'' in some sense. We will introduce a notion
-called \emph{homeomorphism}, which is related to the ``equivalence'' of metric
-spaces. Simply speaking, homeomorphism is a bijective continuous function whose
-inverse is also continuous.
+two metric spaces are ``equivalent'' in some sense. More specifically, we would
+like to investigate whether two metric spaces have ``similar shape''. We will
+introduce a notion called \emph{homeomorphism}, which is related to the
+``equivalence'' of metric spaces. Simply speaking, homeomorphism is a bijective
+continuous function whose inverse is also continuous.
 
 Throughout \Cref{subsect:cts-fun}, we shall use the notations \((X,d_{X})\) and
 \((Y,d_Y)\) to denote arbitrary metric spaces. Let us first generalize the
@@ -622,6 +623,30 @@ for any \(x\in B_X(p,\delta)\cap S\setminus \{p\}\), or more compactly:
 \[
 f\big((B_X(p,\delta)\cap S\setminus \{p\})\big)\subseteq B_Y(b,\varepsilon).
 \]
+\begin{note}
+We require \(p\in X\) to be an accumulation point of \(S\) to ensure that
+\(B_X(p,\delta)\cap S\setminus \{p\}\) is nonempty for any \(\delta>0\)
+\faIcon{arrow-right} excluding ``boring'' cases.
+\end{note}
+
+\item \label{it:ms-lim-fun-relate-real-lim-fun} We can relate the notion of
+limit of function between metric spaces with that for real functions
+(studied in MATH2241) as follows.
+
+\[
+\lim_{x\to p}f(x)=b\iff \lim_{x\to p}d_Y(f(x),b)=0
+\]
+\begin{pf}
+Note that
+\begin{align*}
+&\hspace{1cm}\lim_{x\to p}f(x)=b\\
+&\iff \text{for any \(\varepsilon>0\), there exists \(\delta>0\) such that \(|d_Y(f(x),b)-0|=d_Y(f(x),b)<\varepsilon
+\)}\\
+&\hspace{1.5cm}\text{for any \(x\in B_X(p,\delta)\cap S\setminus\{p\}\)}\\
+&\iff \lim_{x\to p}d_Y(f(x),b)=0.
+\end{align*}
+\end{pf}
+
 \item Like MATH2241, we have the following sequential criterion for limits of
 functions.
 \begin{proposition}
@@ -632,7 +657,28 @@ Let \(p\in X\) be an accumulation point of \(S\subseteq X\), \(b\in Y\), and
 \(S\setminus\{p\}\) which converges to \(p\).
 \end{proposition}
 \begin{pf}
-TODO
+``\(\Rightarrow\)'': Assume that \(\displaystyle \lim_{x\to p}f(x)=b\). This
+means for any \(\varepsilon>0\), there exists \(\delta>0\) such that
+\(d_Y(f(x),b)<\varepsilon\) for any \(x\in B_X(p,\delta)\cap S\setminus\{p\}\).
+
+Next, consider any sequence \(\{x_n\}\) in \(S\setminus \{p\}\) which converges
+to \(p\). For the positive \(\delta>0\), by convergence there exists \(N\in\N\)
+such that for any \(n\ge N\), we have \(d_X(x_n,p)<\delta\), which implies that
+\[
+x_n\in B_X(p,\delta)\cap S\setminus \{p\},
+\]
+thus \(d_Y(f(x_n),b)<\varepsilon\). This proves \(\lim_{n\to \infty}f(x_n)=b\).
+
+``\(\Leftarrow\)'': We prove by contrapositive. Assume that \(\lim_{x\to
+p}f(x)\ne b\). Then there exists \(\varepsilon_0>0\) such that for any \(n\ge
+N\), there exists \(x_n\in B(p,1/n)\cap S\setminus \{p\}\) with
+\(d(f(x_n),b)\ge \varepsilon_0\).
+
+By construction we have \(0<d(x_n,p)<1/n\) for any \(n\in\N\). Hence, by
+sandwich theorem, we have \(\{d(x_n,p)\}\to 0\), which means that \(\{x_n\}\to
+p\).  On the other hand, we have \(d(f(x_n),b)\ge \varepsilon_0\) for any
+\(n\in\N\), for some \(\varepsilon_0>0\). This suggests that \(\lim_{n\to
+\infty}f(x_n)\ne b\).
 \end{pf}
 
 \item Next, we will consider a result applicable when the codomain is \(\R^n\),
@@ -648,6 +694,642 @@ where \(\|y\|=d_E(y,\vect{0})\) for any \(y\in\R^n\) (\(\vect{0}\) is
 the zero vector in \(\R^n\) and \(d_E\) is the Euclidean metric).
 \end{proposition}
 \begin{pf}
-TODO
+Assume that \(\lim_{x\to p}f(x)=b\). Then, \(\lim_{x\to
+p}d(f(x),b)=\lim_{x\to p}\|f(x)-b\|=0\). By reverse triangle inequality, we
+have
+\[
+0\le \big|\|f(x)\|-\|b\|\big|\le \|f(x)-b\|.
+\]
+Hence, using sandwich theorem, we get
+\[
+\lim_{x\to p}\big|\|f(x)\|-\|b\|\big|=0,
+\]
+implying that \(\lim_{x\to p}\|f(x)\|=\|b\|\).
+\end{pf}
+\item Now, we discuss the concept of continuity. Like the limit of function,
+the definition here is also generalized from the one in MATH2241. Let \(S\) be
+a subset of \(X\). A function \(f:S\to Y\) is \defn{continuous} at \(p\in S\)
+if for any \(\varepsilon>0\), there exists \(\delta>0\) such that
+\[d_Y(f(x),f(p))<\varepsilon\]
+for any
+\(x\in S\) with \(d_X(x,p)<\delta\), or more compactly,
+\(f(B_X(p,\delta)\cap S)\subseteq B_Y(f(p),\varepsilon)\).
+The function \(f\) is said to be \defn{continuous on \(S\)} if it is continuous
+at every \(p\in S\). Sometimes we simply call \(f\) as \defn{continuous} when
+\(f\) is continuous on its domain.
+
+\item  Every point \(p\in S\) must be an adherent
+point of \(S\), thus can be classified into (i) accumulation point of \(S\) and
+(ii) isolated point of \(S\). We have the following results about continuity
+for (i) and (ii) respectively.
+\begin{enumerate}
+\item \label{it:cts-isolate} If \(p\in S\) is an isolated point of \(S\), then \(f\) must be
+continuous at \(p\).
+
+\begin{pf}
+Assume that \(p\in S\) is an isolated point of \(S\). Then there exists
+\(\delta_0>0\) such that \(B_X(p,\delta_0)\cap S=\{p\}\). Now, for any
+\(\varepsilon>0\), choose \(\delta=\delta_0\), and then we have
+\[
+d_Y(f(x),f(p))=d_Y(f(p),f(p))=0<\varepsilon
+\]
+for any \(x\in B_X(p,\delta)\cap S=\{p\}\).
+\end{pf}
+\item \label{it:cts-acc} If \(p\in S\) is an accumulation point of \(S\), then \(f\) is continuous
+at \(p\) iff \(\lim_{x\to p}f(x)=f(p)\).
+
+\begin{pf}
+Assume that \(p\in S\) is an accumulation point of \(S\).
+
+``\(\Rightarrow\)'': For any \(\varepsilon>0\), the continuity of \(f\)
+suggests that there exists \(\delta>0\) such that \(f(B_X(p,\delta)\cap S)\subseteq
+B_Y(f(p),\varepsilon)\), which implies \(f(B_X(p,\delta)\cap S\setminus \{p\})\subseteq
+B_Y(f(p),\varepsilon)\), thus \(\lim_{x\to p}f(x)=f(p)\).
+
+``\(\Leftarrow\)'': For any \(\varepsilon>0\), \(\lim_{x\to p}f(x)=f(p)\)
+suggests that there exists \(\delta>0\) such that \(f(B_X(p,\delta)\cap S\setminus
+\{p\})\subseteq B_Y(f(p),\varepsilon)\). Note that \(f(p)\) always belongs to
+\(B_Y(f(p),\varepsilon)\). Thus, we can conclude that
+\[
+f(B_X(p,\delta))\subseteq B_Y(f(p),\varepsilon),
+\]
+meaning that \(f\) is continuous at \(p\).
 \end{pf}
 \end{enumerate}
+\item Without specifying whether \(p\in S\) is an isolated point or
+accumulation point of \(S\), we can have the following criterion for
+continuity based on limit of sequence.
+
+\begin{proposition}
+\label{prp:cts-seq-lim-crit}
+Let \(S\) be a subset of \(X\).  A function \(f:S\to Y\) is continuous at
+\(p\in S\) iff \(\lim_{n\to \infty}f(x_n)=f(p)\) whenever \(\{x_n\}\) is a
+sequence in \(S\) converging to \(p\).
+\end{proposition}
+\begin{pf}
+\underline{Case 1}: \(p\in X\) is an isolated point of \(X\).
+
+In this case, \(f\) is always continuous at \(p\). On the other hand, consider
+any sequence \(\{x_n\}\) in \(S\) with \(\{x_n\}\to p\). Since \(p\) is an
+isolated point of \(X\), there exists \(N\in\N\) such that, for any \(n\ge N\),
+\(x_n=p\) (which implies that \(f(x_n)=f(p)\)). Thus, \(\lim_{n\to
+\infty}f(x_n)=f(p)\).
+
+\underline{Case 2}: \(p\in X\) is an accumulation point of \(X\).
+
+Note that
+\begin{align*}
+&\text{\(f\) is continuous at \(p\)}\\
+&\iff \lim_{x\to p}f(x)=f(p)&\text{(\labelcref{it:cts-acc})}\\
+&\iff \lim_{n\to \infty}f(x_n)=f(p)\text{ for any sequence \(\{x_n\}\) in
+\(S\setminus \{p\}\) converging to \(p\)}&\text{(\Cref{prp:lim-seq-crit})}\\
+&\iff \lim_{n\to \infty}f(x_n)=f(p)\text{ for any sequence \(\{x_n\}\) in
+\(S\) converging to \(p\)}.
+\end{align*}
+To prove the last equivalence, consider:
+\begin{itemize}
+\item ``\(\Leftarrow\)'': Immediate.
+\item ``\(\Rightarrow\)'': Assume that \(\lim_{n\to \infty}f(x_n)=f(p)\) for
+any sequence \(\{x_n\}\) in \(S\setminus \{p\}\) converging to \(p\).
+
+Now, consider any sequence \(\{x_n\}\) in \(S\) converging to \(p\). If it only
+contains finitely many terms different from \(p\), then it is immediate that
+\(\lim_{n\to \infty}f(x_n)=f(p)\). So henceforth we suppose that it has
+infinitely many terms different from \(p\).
+
+For any \(\varepsilon>0\), there exists \(N\in \N\) such that
+\[
+d_X(x_n,p)<\varepsilon
+\]
+for any \(n\ge N\). After excluding all terms equal to \(p\) from the sequence
+\(\{x_n\}\), we can get another sequence \(\{y_n\}\) in \(S\setminus \{p\}\).
+Note that \(\{y_n\}\) also converges to \(p\) since it is just a subsequence of
+\(\{x_n\}\). By assumption, we then have
+\[
+\lim_{n\to \infty}f(y_n)=f(p).
+\]
+Now, we add the excluded terms that are equal to \(p\) back to the sequence
+\(\{y_n\}\) to reassemble \(\{x_n\}\). Observe that we still have
+\[
+\lim_{n\to \infty}f(x_n)=f(p),
+\]
+by considering the definition.
+\end{itemize}
+\end{pf}
+\item Next we consider composition of continuous functions. Here we generalize
+the corresponding result in MATH2241 to make it applicable for general metric
+spaces.
+
+\begin{proposition}
+\label{prp:compo-cts}
+If \(f:X\to Y\) is continuous at \(p\in X\) and \(g:Y\to Z\) is continuous at
+\(f(p)\in Y\), then the composition \(g\circ f:X\to Z\) is continuous at \(p\).
+\end{proposition}
+\begin{pf}
+Fix any \(\varepsilon>0\). Due to the continuity of \(g\), there exists
+\(\delta_1>0\) such that
+\[
+y\in \vc{B_Y(f(p),\delta_1)}\implies g(y)\in B_Z(g\circ f(p),\varepsilon).
+\]
+Using this \(\delta_1\) to serve as the role of ``\(\varepsilon\)'', due to the
+continuity of \(f\), there exists \(\delta>0\) such that
+\[
+x\in B_X(p,\delta)\implies f(x)\in \vc{B_Y(f(p),\delta_1)}.
+\]
+Combining the two implications gives
+\[
+x\in B_X(p,\delta)\implies g\circ f(x)=g(f(x))\in B_Z(g\circ f(p),\varepsilon),
+\]
+meaning that \(g\circ f\) is continuous at \(p\).
+\end{pf}
+\item Some further properties about ``combining'' continuous functions in
+different ways are as follows.
+\begin{proposition}
+\label{prp:cts-prop}
+\hfill
+\begin{enumerate}
+\item If \(f,g:X\to\C\) are continuous at \(p\), then so are \(f+g\), \(f-g\),
+\(fg\), and \(f/g\). For \(f/g\), we need to require that \(g(p)\ne 0\).
+\item If \(f,g:X\to\C^n\) are continuous at \(p\), then so are \(f+g\),
+\(\lambda f\), \(f\cdot g\), and \(\|f\|\), where \(\lambda\in\C\) and
+``\(\cdot\)'' denotes (pointwise) dot/inner product.
+\item If \(f_i:X\to\C\) is continuous at \(p\) for any \(i=1,\dotsc,n\), then
+so is the vector-valued function \(f=(f_1,\dotsc,f_n):X\to\C^n\). The converse
+also holds.
+\end{enumerate}
+\end{proposition}
+\begin{pf}
+Omitted.
+\end{pf}
+
+\begin{remark}
+\item Since the identity function from \(\C\) to \(\C\) is continuous, we can obtain
+many continuous functions based on \Cref{prp:cts-prop}.
+\item We consider the set \(\C\) of complex numbers in this result since it is
+a ``large'' set equipped with some natural arithmetic operations (``\(+\)'', ``\(-\)'',
+``\(\cdot\)'', ``\(/\)'').
+\end{remark}
+\end{enumerate}
+
+\subsection{Relationship Between Continuity and Topological Concepts}
+\begin{enumerate}
+\item Next, we will discuss the relationships between continuity and some
+topological concepts discussed in \Cref{sect:metric-spaces}, namely
+\emph{openness}, \emph{closedness}, and \emph{compactness}. They give us some
+useful criteria and necessary/sufficient conditions for continuity.
+
+\item The first one is about criterion of continuity using the concept of
+openness and closedness.
+
+\begin{theorem}
+\label{thm:cts-crit-open-closed}
+\hfill
+\begin{enumerate}
+\item A function \(f:X\to Y\) is continuous on \(X\) iff the preimage \(f^{-1}(T)\)
+of any open set \(T\subseteq Y\) is open in \(X\).
+\item A function \(f:X\to Y\) is continuous on \(X\) iff the preimage \(f^{-1}(T)\)
+of any closed set \(T\subseteq Y\) is closed in \(X\).
+\end{enumerate}
+\end{theorem}
+\begin{note}
+The two instances of ``open'' (``closed'') carry different meanings. One of
+them is ``in \(Y\)'', while another is ``in \(X\)''.
+\end{note}
+
+\begin{pf}
+\hfill
+\begin{enumerate}
+\item ``\(\Rightarrow\)'': Assume that \(f\) is continuous on \(X\) and
+consider any open set \(T\subseteq Y\). For any \(x_0\in f^{-1}(T)\), we have
+\(f(x_0)=y_0\in T\). By the openness of \(T\), there exists \(\varepsilon>0\)
+such that \(B(y_0,\varepsilon)\subseteq T\).
+
+Since \(f\) is continuous at \(x_0\), there exists \(\delta>0\) such that
+\[
+f(B_X(x_0,\delta))\subseteq B_Y(f(y_0),\varepsilon),
+\]
+which implies that
+\[
+\vc{B_X(x_0,\delta)}\subseteq f^{-1}(B_Y(y_0,\varepsilon))\vc{\subseteq f^{-1}(T)},
+\]
+hence \(f^{-1}(T)\) is open in \(X\).
+
+``\(\Leftarrow\)'': Assume that the preimage \(f^{-1}(T)\)
+of any open set \(T\subseteq Y\) is open in \(X\). Fix any \(\varepsilon>0\).
+Then we want to find \(\delta>0\) such that
+\[
+f(B_X(p,\delta))\subseteq B_Y(f(p),\varepsilon).
+\]
+Since the open ball \(B_Y(f(p),\varepsilon)\) is open in \(Y\), by assumption,
+the preimage \(f^{-1}(B_Y(f(p),\varepsilon))\) is open in \(X\). Now, since
+\(p\) lies in the preimage \(f^{-1}(B_Y(f(p),\varepsilon))\), by openness
+there exists \(\delta>0\) such that
+\[
+B(p,\delta)\subseteq f^{-1}(B_Y(f(p),\varepsilon)),
+\]
+which implies that
+\[
+f(B(p,\delta))\subseteq B(f(p),\varepsilon),
+\]
+as desired.
+
+\item It follows from (a) and the fact that \(f^{-1}(Y\setminus T)=X\setminus
+f^{-1}(T)\):
+\begin{align*}
+&\text{\(f\) is continuous on \(X\)}\\
+&\iff \text{\(f^{-1}(S)\) is open in \(X\) for any open \(S\subseteq Y\)}&\text{(a)}\\
+&\iff \text{\(f^{-1}(Y\setminus T)\) is open in \(X\) for any closed \(T\subseteq Y\)}\\
+&\iff \text{\(X\setminus f^{-1}(T)\) is open in \(X\) for any closed \(T\subseteq Y\)}\\
+&\iff \text{\(f^{-1}(T)\) is closed in \(X\) for any closed \(T\subseteq Y\)}.
+\end{align*}
+\end{enumerate}
+\end{pf}
+
+\begin{warning}
+The criterion here is about \emph{preimage}, but not \emph{image}. In general,
+the image of an open (closed) set under a continuous function may
+\underline{not} be open (closed).
+\end{warning}
+
+\item A function that maps open sets to open sets is said to be \defn{open}; a
+function that maps closed sets to closed sets is said to be \defn{closed}. Open
+mappings may not be closed and closed mappings may not be open in general.
+
+\item Counterexamples about open/closed/continuous mappings:
+\begin{note}
+The metric spaces involved below are all equipped with Euclidean metrics (with
+suitable domains).
+\end{note}
+\begin{enumerate}
+\item \emph{Continuous but not open mapping:} the constant zero function
+\(f:\R\to\R\) defined by \(f(x)=0\) for any \(x\in\R\).
+
+\begin{pf}
+It is clearly continuous but the open set \((0,1)\subseteq\R\) is mapped to
+\(\{0\}\) which is \emph{not} open in \(\R\).
+\end{pf}
+
+\item \emph{Continuous but not closed mapping:} the identity function
+\(f:X=(0,1)\to\R\) defined by \(f(x)=x\) for any \(x\in(0,1)\).
+
+\begin{pf}
+It is clearly continuous. But, \((0,1)\) is \emph{closed} in
+\(X=(0,1)\), while \(f((0,1))=(0,1)\) is \emph{not closed} in \(\R\).
+\end{pf}
+
+\item \emph{Continuous mapping that is \underline{neither} open \underline{nor}
+closed:} function \(f:\R\to\R\) defined by \(\displaystyle f(x)=\frac{x^2}{1+x^2}\) for any
+\(x\in\R\).
+
+\begin{pf}
+It is clearly continuous. Now consider the set \(\R\) which is both open and
+closed in \(\R\). However, \(f(\R)=[0,1)\) which is \emph{neither} open
+\emph{nor} closed in \(\R\).
+\end{pf}
+
+\item \emph{Open but not continuous mapping:} function \(f:\R\to\{0,1\}\) defined by
+\[
+f(x)=\begin{cases}
+0&\text{if \(x\ge 0\)},\\
+1&\text{if \(x<0\)}.
+\end{cases}
+\]
+\begin{pf}
+It is clearly an open mapping since \(\varnothing\), \(\{0\}\), \(\{1\}\), and
+\(\{0,1\}\) are all open in \(\{0,1\}\).  But it is not continuous at \(0\).
+\end{pf}
+
+\item \emph{Closed but not continuous mapping:} function \(f:\R\to\{0,1\}\) defined by
+\[
+f(x)=\begin{cases}
+0&\text{if \(x\ge 0\)},\\
+1&\text{if \(x<0\)}.
+\end{cases}
+\]
+\begin{pf}
+It is clearly a closed mapping since \(\varnothing\), \(\{0\}\), \(\{1\}\), and
+\(\{0,1\}\) are all closed in \(\{0,1\}\).  But it is not continuous at \(0\).
+\end{pf}
+
+\item \emph{Bijective open but not continuous mapping:} function
+\(f:[0,\infty)\to\{-1\}\cup(0,\infty)\) defined by
+\[
+f(x)=\begin{cases}
+-1&\text{if \(x=0\)},\\
+x&\text{if \(x>0\)}.
+\end{cases}
+\]
+\begin{pf}
+It is clearly bijective. To show that it is an open mapping, consider the
+following. Fix any open subset \(S\) of \([0,\infty)\).
+
+\underline{Case 1}: \(0\in S\).
+
+Then, the image \(f(S)=\{-1\}\cup (S\setminus \{0\})\). Note that \(\{-1\}\)
+and \(S\setminus \{0\}\) are both open in \(\{-1\}\cup(0,\infty)\), so do their
+union.
+
+\underline{Case 2}: \(0\notin S\).
+
+Then the image \(f(S)=S\subseteq (0,\infty)\), and we can see that \(S\) is
+open in \(\{-1\}\cup (0,\infty)\).
+
+However, we can clearly see that \(f\) is not continuous at \(0\).
+\end{pf}
+
+\item \emph{Open but not closed mapping:} function \(f:X=(0,1)\to\R\)
+defined by \(f(x)=x\) for any \(x\in(0,1)\).
+
+\begin{pf}
+It is an open mapping since every every set \(S\subseteq (0,1)\) which is open
+in \((0,1)\) is also open in \(\R\), by considering the definition. On the
+other hand, \((0,1)\) is closed in \((0,1)\) but \(f((0,1))=(0,1)\) is not
+closed in \(\R\). Thus it is not a closed mapping.
+\end{pf}
+
+\item \emph{Closed but not open mapping:} the constant zero function
+\(f:\R\to\R\) defined by \(f(x)=0\) for any \(x\in\R\).
+
+\begin{pf}
+It is a closed mapping since \(\varnothing\) and \(\{0\}\) are both closed in
+\(\R\). However, the open set \((0,1)\subseteq \R\) is mapped to \(\{0\}\)
+which is not open in \(\R\). Thus it is not an open mapping.
+\end{pf}
+\end{enumerate}
+
+\item The next property of continuous function is that it maps \emph{compact}
+sets to \emph{compact} sets.
+
+\begin{theorem}
+\label{thm:cts-map-cpt-to-cpt}
+Let \(f:X\to Y\) be a continuous function and \(C\subseteq X\) be a compact
+set. Then, the image \(f(C)\) is compact in \(Y\).
+\end{theorem}
+\begin{pf}
+Take any open cover \(\{U_{\lambda}:\lambda\in\Lambda\}\) of \(f(C)\):
+\[
+\bigcup_{\lambda\in\Lambda}U_{\lambda}\supseteq f(C).
+\]
+This implies that
+\[
+f^{-1}\qty(\bigcup_{\lambda\in\Lambda}U_{\lambda})=\bigcup_{\lambda\in\Lambda}f^{-1}(U_{\lambda})
+\supseteq C.
+\]
+Due to the continuity of \(f\), \(f^{-1}(U_{\lambda})\) is open in \(X\) for
+any \(\lambda\in\Lambda\). Hence, \(\{f^{-1}(U_{\lambda}):\lambda\in\Lambda\}\)
+serves as an open cover of \(C\). By the compactness of \(C\), there exists a
+finite sub-cover \(\{f^{-1}(U_i):i=1,\dotsc,n\}\) of \(C\):
+\[
+f^{-1}\qty(\bigcup_{i=1}^{n}U_i)=\bigcup_{i=1}^{n}f^{-1}(U_i)\supseteq C,
+\]
+which implies that
+\[
+\bigcup_{i=1}^{n}U_i\supseteq f(C),
+\]
+so we have found a finite sub-cover of \(f(C)\): \(\{U_i:i=1,\dotsc,n\}\).
+\end{pf}
+
+\item Using \Cref{thm:cts-map-cpt-to-cpt}, we can generalize the
+\emph{boundedness theorem} in MATH2241 as follows.
+\begin{corollary}
+\label{cor:cts-cpt-bounded}
+If \(f:X\to Y\) is continuous and \(C\subseteq X\) is compact, then \(f\) is
+bounded on \(C\), i.e., the image \(f(C)\) is bounded.
+\end{corollary}
+\begin{pf}
+By \Cref{thm:cts-map-cpt-to-cpt}, we know that \(f(C)\) is compact, which
+implies that it is bounded by \Cref{thm:compact-imp-closed-bounded}.
+\end{pf}
+
+\item Next, we generalize the \emph{extreme value theorem} in MATH2241.
+
+\begin{theorem}
+\label{thm:cts-cpt-evt}
+If \(f:X\to\R\) is continuous on a compact set \(C\subseteq X\), then \(f\)
+attains its maximum and minimum in \(C\), i.e., there exist \(p,q\in C\) such that
+\[
+f(p)=\max f(C)
+\qqtext{and}
+f(q)=\min f(C)
+\]
+\end{theorem}
+\begin{pf}
+By \Cref{thm:cts-map-cpt-to-cpt}, the image \(f(C)\) is compact in \(\R\).
+Thus, it is also closed and bounded in \(\R\) by
+\Cref{thm:compact-imp-closed-bounded}. By the completeness axiom of \(\R\), the
+supremum \(M=\sup f(C)\) exists in \(\R\). Now fix any \(r>0\). Firstly, since
+\(M\) is the supremum of \(f(C)\), there exists \(y\in f(C)\) such that
+\(M-r<y\). Next, as \(M\) is an upper bound of \(f(C)\), we have \(y\le
+M<M+r\). It follows that \(B(M,r)\cap f(C)=(M-r,M+r)\cap f(C)\supseteq
+\{y\}\ne\varnothing\). This means that \(M\) is an adherent point of \(f(C)\).
+
+Hence, we have \(M\in\overline{f(C)}=f(C)\), where the equality holds due to the
+closedness of \(f(C)\). This means that \(\max f(C)=M=f(p)\) for some \(p\in
+C\).  Similarly, we can show that \(f(q)=\min f(C)\) for some \(q\in C\).
+
+\end{pf}
+
+\item Now we consider the continuity of inverse function. The following result
+suggests a sufficient condition for the inverse of a continuous function to be
+also continuous.
+
+\begin{theorem}
+\label{thm:cts-fn-inv-cts}
+Let \(f:X\to Y\) be a function. Suppose that \(X\) is compact, and \(f\) is
+both bijective and continuous. Then, the inverse \(f^{-1}:Y\to X\) is also
+continuous.
+\end{theorem}
+\begin{pf}
+First of all, due to the bijectivity of \(f\), the inverse \(f^{-1}\) exists.
+Now fix any closed set \(C\subseteq X\). By the compactness of \(X\) and
+\Cref{cor:closed-subset-of-cpt-is-cpt}, \(C\) is a compact set. Hence, by the
+continuity of \(f\) and \Cref{thm:cts-map-cpt-to-cpt}, \(f(C)\) is also
+compact, thus closed in \(Y\).
+
+Note that the preimage of \(C\) under \(f^{-1}\) is
+\[
+(f^{-1})^{-1}(C)=\{y\in Y:f^{-1}(y)\in C\}
+=\{y \in Y: f(f^{-1}(y))\in f(C)\}
+=\{y\in Y:y\in f(C)\}
+=f(C).
+\]
+So, the preimage \((f^{-1})^{-1}(C)\) is closed in \(Y\). By
+\Cref{thm:cts-crit-open-closed}, we conclude that \(f^{-1}\) is continuous.
+\end{pf}
+
+\item For \Cref{thm:cts-fn-inv-cts} to hold, it is important that \(X\) is
+compact. Without the compactness, we can construct a counterexample as follows.
+Let \(X=Y=[0,1]\). Equip \(X\) with the discrete metric and \(Y\) with the
+standard Euclidean metric. Note that \(X\) is \emph{not} compact since
+\(\mathcal{F}=\{\{x\}: x\in X\}\) is an open cover of \(X\) without any finite
+subcover. Here, since the discrete metric is used, \(\{x\}\) is an open set in
+\(X\).
+
+Now consider the function \(f:X\to Y\) defined by \(f(x)=x\) for any \(x\in
+X\). It is both bijective and continuous. Its inverse is \(f^{-1}:Y\to X\),
+defined by \(f^{-1}(y)=y\) for any \(y\in Y\). Note that \(f^{-1}\) is
+\emph{not} continuous. To see this, take \(\{0\}\subseteq X\). It is open in
+\(X\) under the discrete metric, but the preimage \(f^{-1}(\{0\})=\{0\}\) is
+\emph{not} open in \(Y\) under the Euclidean metric.
+\end{enumerate}
+
+\subsection{Homeomorphisms}
+\begin{enumerate}
+\item Now, we introduce an important notion that has already been mentioned at
+the beginning of \Cref{subsect:cts-fun}: \emph{homeomorphism}. A bijective
+continuous function \(f:X\to Y\) whose inverse \(f^{-1}\) is also continuous is
+called a \defn{homeomorphism} or a \defn{topological mapping} of \(X\) onto
+\(Y\). Two metric spaces \(X\) and \(Y\) are said to be \defn{homeomorphic},
+denoted by \(X\cong Y\), if there is a homeomorphism of \(X\) onto \(Y\).
+
+\begin{note}
+\(\cong\) is an equivalence relation. To see this, note that:
+\begin{enumerate}
+\item The identity function from \(X\) to \(X\) is a homeomorphism.
+\item If \(f:X\to Y\) is a homeomorphism, then so is \(f^{-1}:Y\to X\).
+\item If \(f:X\to Y\) and \(g:Y\to Z\) are homeomorphisms, then so is the
+composition \(g\circ f:X\to Z\).
+\end{enumerate}
+\end{note}
+\item The idea of homeomorphic metric spaces can be intuitively understood as
+follows.  Let \(f:X\to Y\) be a continuous function, and imagine that \(X\) and
+\(Y\) are elastic geometric objects. Intuitively, the continuous function \(f\)
+``moves'' the points in \(X\) such that the points ``close together''
+originally are still ``close together'' in \(Y\): there is not ``abrupt
+change''. In other words, there can be bending, twisting, stretching, dilating,
+contracting, etc. on \(X\), but there cannot be \emph{tearing} on \(X\), since
+it can make points originally close together become far apart. In short, \(f\)
+``continuously deforms'' the object \(X\) to the object \(Y\). So, two metric
+spaces are homeomorphic if one can be ``continuously deformed'' to another, and
+back.
+
+\item In the following, we will prove a result that gives several criteria for
+homeomorphism. Before proving that, we consider the following lemma.
+
+\begin{lemma}
+\label{lma:bij-cts-crit}
+Let \(f:X\to Y\) be a bijective function. Then the following are equivalent.
+\begin{enumerate}
+\item \(f\) is continuous.
+\item \(f^{-1}\) is open.
+\item \(f^{-1}\) is closed.
+\end{enumerate}
+\end{lemma}
+\begin{pf}
+For clarity, here we denote the preimage and image of a set \(S\) under a
+function \(g\) by \(g^{\leftarrow}(S)\) and \(g^{\rightarrow}(S)\)
+respectively.
+
+Note that the preimage of \(T\) under \(f\) is
+\begin{align*}
+f^{\leftarrow}(T)&=\{x\in X:\blc{f(x)}\in T\} \\
+&=\{x\in X:f^{-1}(\blc{f(x)})\in f^{-1\rightarrow}(T)\} \\
+&=\{x\in X:x\in f^{-1\rightarrow}(T)\}\\
+&=f^{-1\rightarrow}(T),
+\end{align*}
+the image of \(T\) under \(f^{-1}\).
+
+Then, by \Cref{thm:cts-crit-open-closed}, we know that:
+\begin{itemize}
+\item \(f\) is continuous iff \(f^{-1\rightarrow}(T)=f^{\leftarrow}(T)\) is
+open in \(X\) for any open set \(T\subseteq Y\), i.e., \(f^{-1}\) is open.
+\item \(f\) is continuous iff \(f^{-1\rightarrow}(T)=f^{\leftarrow}(T)\) is
+closed in \(X\) for any closed set \(T\subseteq Y\), i.e., \(f^{-1}\) is closed.
+\end{itemize}
+Hence the result follows.
+\end{pf}
+
+\begin{theorem}
+\label{thm:hmph-crit}
+Let \(f:X\to Y\) be a bijective function. Then the following are equivalent.
+\begin{enumerate}
+\item \(f\) is a homeomorphism, i.e., \(f\) and \(f^{-1}\) are both continuous.
+\item \(f\) is continuous and open.
+\item \(f\) is continuous and closed.
+\end{enumerate}
+\end{theorem}
+\begin{pf}
+Note that \(f^{-1}\) is bijective. By \Cref{lma:bij-cts-crit}, the following
+are equivalent:
+\begin{itemize}
+\item \(f^{-1}\) is continuous.
+\item \(f=(f^{-1})^{-1}\) is open.
+\item \(f=(f^{-1})^{-1}\) is closed.
+\end{itemize}
+Then the result follows.
+\end{pf}
+
+\item A property of a set which remains invariant under
+homeomorphisms/topological mappings is called a \defn{topological property} or
+a \defn{topological invariant}.
+
+Examples of topological properties:
+\begin{itemize}
+\item \emph{openness/closedness:} By \Cref{thm:hmph-crit}, a homeomorphism is a
+mapping that is both open and closed, thus preserving both openness and
+closedness.
+\item \emph{compactness:} By \Cref{thm:cts-map-cpt-to-cpt}, compactness is
+preserved by continuous function, hence also by homeomorphism.
+\end{itemize}
+Non-example of topological property:
+\begin{itemize}
+\item \emph{distance between two points:} Take \(X=(0,1)\) and \(Y=(0,2)\),
+both equipped with the standard Euclidean metric \(d\). Then, the function
+\(f:X\to Y\) defined by \(f(x)=2x\) can be shown to be a homeomorphism.
+However, we have
+\[
+d(0.25,0.75)=|0.75-0.25|\ne |1.5-0.5|=d(0.5,1.5)=d(f(0.25),f(0.75)).
+\]
+\end{itemize}
+\item We see that a homeomorphism may not preserve the distance. In view of
+this, we define a notion related to the preservation of distance. A function
+\(f:X\to Y\) is called an \defn{isometry}\footnote{\emph{iso:} ``equal'';
+\emph{metry:} ``measure''} if it preserves the metric or distance, i.e.,
+\[
+d_Y(f(p),f(q))=d_X(p,q)
+\]
+for any \(p,q\in X\), where \(d_X\) and \(d_Y\) denote the metrics for \(X\)
+and \(Y\) respectively. Two metric spaces are said to be \defn{isometric} if
+there is an isometry of \(X\) onto \(Y\).
+
+\item The concepts of isometry and homeomorphism are related by the following
+result.
+\begin{proposition}
+\label{prp:surj-iso-hmph}
+Let \(f:X\to Y\) be a function. If \(f\) is a surjective isometry, then it is a
+homeomorphism.
+\end{proposition}
+\begin{pf}
+Firstly, we prove the injectivity of \(f\). Suppose that
+\(f(x_1)=f(x_2)\) for some \(x_1,x_2\in X\). Then, we have
+\[
+d_X(x_1,x_2)=d_Y(f(x_1),f(x_2))=0,
+\]
+which implies that \(x_1=x_2\), establishing the injectivity. Together with the
+surjectivity of \(f\), we know that \(f\) is bijective, thus \(f^{-1}\) exists.
+
+Next, we will prove that \(f\) is continuous. Fix any \(x\in X\) and any
+\(\varepsilon>0\). Consider any \(z\in B_X(x,\varepsilon)\). Then, we have
+\[
+d_Y(f(z),f(x))=d_X(z,x)<\varepsilon,
+\]
+thus \(f(z)\in B_{Y}(f(x),\varepsilon)\). Since \(z\) is arbitrary, we have
+\[
+f(B_X(x,\delta))\subseteq B_Y(f(x),\varepsilon),
+\]
+by choosing \(\delta=\varepsilon\).  This means that \(f\) is continuous.
+
+Finally, we will show that \(f^{-1}\) is continuous. Note that
+\[
+d_Y(y_1,y_2)=d_Y(f(f^{-1}(y_1)),f(f^{-1}(y_2)))=d_X(f^{-1}(y_1),f^{-1}(y_2))
+\]
+for any \(y_1,y_2\in Y\), so \(f^{-1}:Y\to X\) is also an isometry. Thus, by
+replacing ``\(f\)'' by ``\(f^{-1}\)'' in the argument above, we have, for any
+\(y\in Y\) and any \(\varepsilon>0\),
+\[
+f^{-1}(B_Y(y,\delta))\subseteq B_X(f^{-1}(y),\varepsilon)
+\]
+where \(\delta=\varepsilon\), establishing the continuity of \(f^{-1}\).
+\end{pf}
+\end{enumerate}
+
