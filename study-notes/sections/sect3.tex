@@ -1,6 +1,7 @@
 \section{Connectedness}
 \label{sect:connectedness}
 \subsection{Connectedness}
+\label{subsect:connectedness}
 \begin{enumerate}
 \item We have generalized the \emph{extreme value theorem} in
 \Cref{thm:cts-cpt-evt}. Then the next natural thing to do is to generalize the
@@ -196,11 +197,13 @@ a corresponding result in \(\R^n\). In the case for proving
 \Cref{thm:union-disjoint-int}, we have utilized the notion of \emph{maximal
 open interval}. Here, we need an analogous notion. A maximal connected set in a
 metric space is called a \defn{connected component} of the metric space.
+
 Here, maximality of a connected set \(S\) in a metric space \(X\) means that
 for any connected set \(T\) in \(X\) with \(T\supseteq S\), we have \(T=S\).
 There is not a connected set in \(X\) that is a \emph{proper superset} of
-\(S\).
-
+\(S\). In particular, this implies a connected component must be nonempty,
+since any singleton is a connected set in \(X\), which is a proper superset of
+an empty set.
 
 \item Like the case for \(\R\), such maximal connected set is indeed a certain
 union. To be more precise, we have the following result.
@@ -226,8 +229,11 @@ by the maximality of \(V_x\), we must have \(U_x=V_x\), establishing the
 uniqueness.
 \end{pf}
 
-Hence, every connected component \(S\) of a metric space can be expressed as
-the union of all connected sets containing a certain fixed element in \(S\).
+Consider any connected component \(U\) of \(X\) and pick any \(x\in U\). By
+\Cref{prp:conn-comp-union}, we know that the union of all connected sets in
+\(X\) that contain \(x\), i.e., \(U_x\), is the unique connected component of
+\(X\) that contains \(x\). This then means that \(U\) is just given by this
+unique connected component \(U_x\).
 
 \item \label{it:conn-compo-ident-or-disjoint}
 Observe that connected components of \(X\) are either identical or disjoint.
@@ -246,15 +252,13 @@ Firstly, since \(U_x\) and \(U_y\) are connected with nonempty intersection,
 \(U_x\cup U_y=U_y\) as another subset inclusion always holds. Thus,
 \(U_x=U_y\).
 \end{pf}
-Consequently, every subset \(S\) of a metric space \(X\) can be expressed as a
-disjoint union of connected components of the metric subspace \(S\). It can be
-partitioned into several disjoint connected ``pieces''.
 
-\begin{pf}
-Start with the family \(\{U_x\}_{x\in S}\) of connected components of \(S\)
-whose union must be \(S\). By removing redundancies, we can obtain a family of
-disjoint connected components whose union is \(S\).
-\end{pf}
+\item \label{it:expr-disjoint-union-conn-compo} By going through all elements
+in any subset \(S\) of \(X\) and applying \Cref{prp:conn-comp-union} for each
+of them, we can obtain a unique collection of disjoint connected components of
+\(S\) whose union is \(S\), which contains all distinct connected components of
+\(S\). In other words, \(S\) can always be uniquely decomposed into a disjoint
+union of connected components of \(S\).
 
 \item Next we will introduce some properties of connected components. Before
 that, we consider the following lemmas.
@@ -348,8 +352,8 @@ Note that every radius of the open ball \(B(x,r)\) (\gc{green} line segments in
 the picture above) is homeomorphic to the interval \([0,r)\subseteq \R\), which
 is connected by \Cref{lma:int-conn}. Since connectedness is a topological
 property, every radius is connected. Furthermore, the intersection of all the
-radii is \(\{x\}\), thus nonempty. Noting the open ball \(B(x,r)\) is indeed
-the union of all the radii (with nonempty intersection), we conclude by
+radii is \(\{x\}\), thus nonempty. Noting that the open ball \(B(x,r)\) is
+indeed the union of all the radii (with nonempty intersection), we conclude by
 \Cref{prp:conn-union-nonemp-int-conn} that the open ball \(B(x,r)\) is
 connected.
 
@@ -357,5 +361,261 @@ Since \(T\) contains \(x\), it must be the union of all connected sets
 containing \(x\) by \Cref{prp:conn-comp-union}.  Hence, we must have
 \(B(x,r)\subseteq T\). Thus, \(T\) is open in \(\R^n\).
 \end{enumerate}
+\end{pf}
+\item To close \Cref{subsect:connectedness}, we will prove a result analogous
+to \Cref{thm:union-disjoint-int} but for \(\R^n\) below.
+
+\begin{theorem}
+\label{thm:open-count-union-conn-compo}
+Every nonempty open subset \(S\) of \(\R^{n}\) can be uniquely expressed as a
+\emph{countable} disjoint union of nonempty open connected sets in \(\R^n\).
+Furthermore, these open connected sets are all the connected components of
+\(S\).
+\end{theorem}
+\begin{pf}
+From \labelcref{it:expr-disjoint-union-conn-compo}, we know that \(S\) can be
+expressed as a disjoint union of the connected components of \(S\). So to prove
+the existence of such expression, it suffices to prove that (i) each connected
+component is open in \(\R^n\), and (ii) the disjoint union is countable. Since
+\(S\subseteq \R^n\), (i) follows from \Cref{prp:conn-compo-prop}.
+
+Next, due to Lindel\"{o}f's theorem (\Cref{thm:lindelof}), we can assume
+WLOG that such collection of connected components is countable, proving (ii).
+
+It then remains to prove the uniqueness. Suppose we can write
+\(S=\sqcup_{n=1}^{\infty}C_n\) where each \(C_n\) is a nonempty open connected
+subset of \(S\). Consider any \(C_n\) and pick any \(x\in C_n\). Due to the
+connectedness of \(C_n\), we know that \(C_n\subseteq U_x\) where \(U_x\)
+denotes the connected component containing \(x\), i.e., the union of all
+connected sets containing \(x\). Note that we can write \(C_n=S\setminus
+\sqcup_{m\ne n}C_m\) where \(\sqcup_{m\ne n}C_m\) is open in \(S\) (as a union
+of open sets), thus \(C_n\) is closed in \(S\) as well.
+
+Since \(C_n\subseteq U_x\), this then implies that \(C_n=C_n\cap U_x\) is both
+closed and open in \(U_x\), by
+\labelcref{it:open-closed-equiv-crit-metric-subspace}. We claim that
+\(C_n=U_x\). If this was not the case, i.e., \(C_n\) is a proper subset of
+\(U_x\), then \(C_n\) would be a proper nonempty closed and open subset of
+\(U_x\), which implies that \(U_x\) is disconnected by \Cref{prp:discon-crit},
+contradiction. From this, we can deduce that the collection \(\{C_n\}\) is
+indeed just the collection of all the connected components of \(S\). This proves the
+uniqueness.
+\end{pf}
+\end{enumerate}
+\subsection{Path-connectedness}
+\label{subsect:path-conn}
+\begin{enumerate}
+\item In \Cref{subsect:path-conn}, we will discuss another notion of
+``connectedness'', which is called path-connectedness. Recall that we have
+defined connectedness as a state of being not disconnected. This is somewhat
+indirect and may be unintuitive. In contrast, the concept of path-connectedness
+is more direct and carries a clear geometric intuition. It turns out that
+path-connectedness implies connectedness, so the former provides us an
+``intuitive'' way to prove connectedness.
+
+\item Before defining path-connectedness, we first define what a path is. A
+\defn{path} in a metric space \(X\) is a continuous function \(\gamma:[0,1]\to
+X\). For convenience, sometimes we call the image of \(\gamma\), i.e.,
+\(\gamma([0,1])\), as path also.
+
+In the latter sense of path, every path in \(X\) would be a connected set in
+\(X\). This is because \([0,1]\) is connected (as an interval; see
+\Cref{lma:int-conn}) and continuous function preserves connectedness
+(\Cref{prp:cts-preserv-conn}).
+
+\item Two paths can be ``joined'' to form another path. If \(\alpha:[0,1]\to
+X\) and \(\beta:[0,1]\to X\) are paths with \(\alpha(0)=p\),
+\(\alpha(1)=\beta(0)=q\) (``ending point'' of \(\alpha\) = ``starting point''
+of \(\beta\)), and \(\beta(1)=r\), then the function \(\gamma:[0,1]\to X\)
+defined by
+\[
+\gamma(t)=\begin{cases}
+\alpha(2t)&\text{if \(0\le t\le 1/2\)},\\
+\beta(2t-1)&\text{if \(1/2\le t\le 1\)}
+\end{cases}
+\]
+is a path in \(X\) joining \(p\) to \(r\) through \(\alpha\) and \(\beta\).
+\begin{center}
+\begin{tikzpicture}
+\draw[blue, fill] (0,0) circle [radius=0.5mm];
+\draw[blue, fill] (2,1) circle [radius=0.5mm];
+\draw[blue, fill] (4,-0.5) circle [radius=0.5mm];
+\draw[violet] (0,0) .. controls (0.4,-0.5) and (1.2,0) .. (2,1);
+\node[violet] () at (1,-0.7) {\(\alpha\)};
+\draw[brown] (2,1) .. controls (3,0.7) and (3.6,0.2) .. (4,-0.5);
+\node[brown] () at (3.2,0.9) {\(\beta\)};
+\end{tikzpicture}
+\end{center}
+
+This is called the \defn{product} of the paths \(\alpha\) and \(\beta\),
+denoted by \(\beta\cdot \alpha\). \begin{warning}
+This does not denote the usual product of two functions!
+\end{warning}
+
+\item A metric space \(X\) is \defn{path-connected} if any two points \(p\),
+\(q\) in \(X\) can be joined by a path in \(X\), i.e., there exists a path
+\(\gamma\) in \(X\) such that \(\gamma(0)=p\) and \(\gamma(1)=q\). We can also
+define path-connectedness for a subset \(S\) of \(X\), by considering it as a
+metric subspace.
+
+\item We first prove that path-connectedness implies connectedness.
+\begin{theorem}
+\label{thm:path-conn-imp-conn}
+Every path-connected set \(X\) is connected.
+\end{theorem}
+\begin{pf}
+Consider any \(2\)-valued function \(f:X\to\{0,1\}\) and a specific point
+\(a\in X\).
+
+Fix any \(x\in X\). By the path-connectedness, there exists a path \(\gamma\)
+in \(X\) such that \(\gamma(0)=a\) and \(\gamma(1)=x\). As the image
+\(\gamma([0,1])\) (also referred as path) is connected, the restriction
+\(f|_{\gamma([0,1])}\) is constant, thus \(f(x)=f(a)=\text{constant}\).
+Hence \(f\) is a constant function.
+\end{pf}
+
+\item How about another implication? It does not hold in general, but it does
+hold true under the following special case.
+
+\begin{theorem}
+\label{thm:open-conn-rn-path-conn}
+Every open connected set \(S\) in \(\R^n\) is path-connected.
+\end{theorem}
+\begin{pf}
+Fix \(a\in S\). Let \(A=\{x\in S:\text{\(x\) and \(a\) are joined by a path in
+\(S\)}\}\) and \(B=S\setminus A\). Note that \(A\ne\varnothing\) as \(a\in A\).
+By construction, \(A\) is path-connected. Also, we observe that \(A\sqcup
+B=S\).
+
+It then suffices to show that \(A\) and \(B\) are both open in \(S\), which
+forces \(B=\varnothing\) (thus \(S=A\) is path-connected) by the connectedness
+of \(S\).
+
+For any \(x\in A\subseteq S\), there is a path \(\alpha\) in \(S\) joining
+\(a\) to \(x\).  By the openness of \(S\), there exists \(r_x>0\) such that
+\(B_{\R^n}(x,r_x)\subseteq S\). It is not hard to show that the open ball
+\(B_{\R^n}(x,r_x)\) is path-connected (by considering the line segment joining
+two points). So for any \(y\in B_{\R^n}(x,r_x)\), there is a path \(\beta\) in
+\(S\) joining \(x\) to \(y\).
+
+\begin{center}
+\begin{tikzpicture}
+\draw[blue, fill] (0,0) circle [radius=0.5mm];
+\draw[blue, fill] (4,1) circle [radius=0.5mm];
+\draw[blue, dashed] (4,1) circle [radius=15mm];
+\draw[blue, fill] (5,0.5) circle [radius=0.5mm];
+\draw[violet] (0,0) .. controls (1.4,-0.5) and (3.2,0) .. (4,1);
+\node[violet] () at (1,-0.7) {\(\alpha\)};
+\draw[brown] (4,1) -- (5,0.5)
+node[midway, above]{\(\beta\)};
+\node[] () at (0,0.2) {\(a\)};
+\node[] () at (4,1.2) {\(x\)};
+\node[] () at (5,0.7) {\(y\)};
+\end{tikzpicture}
+\end{center}
+
+Then the product \(\beta\cdot\alpha\) is a path in \(S\) joining \(a\) to
+\(y\), thus \(y\in A\). As \(y\in B_{\R^n}(x,r_x)\) is arbitrary, we conclude
+that \(B_{\R^n}(x,r_x)\subseteq A\), thus \(A\) is open in \(\R^n\). Since
+\(A=A\cap S\), by \labelcref{it:open-closed-equiv-crit-metric-subspace}, \(A\)
+is also open in \(S\).
+
+Next, for any \(z\in B\subseteq S\), there exists \(r_z>0\) such that
+\(B_{\R^n}(z,r_z)\subseteq S\). Fix any \(w\in B_{\R^n}(z,r_z)\subseteq S\),
+and there is a path \(\gamma\) in \(S\) joining \(w\) to \(z\).
+
+If we had \(w\in S\setminus B=A\), then there would be a path \(\delta\) in
+\(S\) joining \(a\) to \(w\), hence the product \(\gamma\cdot\delta\) would be
+a path in \(S\) joining \(a\) to \(z\). This means \(z\in A\), contradiction.
+Thus we must have \(w\in B\). As \(w\in B_{\R^n}(z,r_z)\) is arbitrary, we
+conclude that \(B_{\R^n}(z,r_z)\subseteq B\), and thus, similarly, \(B\) is
+open in \(S\).
+\end{pf}
+
+\item To close \Cref{subsect:path-conn}, we present an example which is
+connected but not path-connected. Define \(\blc{A=\qty{(x,\sin\frac{1}{x})\in\R^2:x\in (0,1]}}\), \(\mgc{B=\{(0,0)\}}\), and \(X=A\cup B\).
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[domain=0.01:1, xmin=-0.3, xmax=1.1, ymin=-1.1, ymax=1.1, samples=500, axis lines=middle]
+\addplot[blue]{sin(deg(1/x))};
+\draw[magenta, fill] (0,0) circle [radius=0.7mm];
+\end{axis}
+\end{tikzpicture}
+\end{center}
+Then, \(X\) is connected but not path-connected.
+
+\begin{pf}
+\underline{Connected}: Since \((0,1]\) is connected and the function
+\(g(x)=(x,\sin 1/x)\) is continuous (as each component is continuous), \(A\) is
+connected. Now consider any \(2\)-valued function \(f\) on \(X\). The
+restriction \(f|_{A}\equiv C\) for some constant \(C\), due to the
+connectedness of \(A\). Since \((0,0)\in\overline{A}\) and \(f\) is continuous,
+\(f((0,0))=C\) also (by \Cref{prp:adher-accum-seq-equiv,prp:cts-seq-lim-crit}),
+implying that \(f\) is constant.
+
+\underline{Not path-connected}: Assume to the contrary that \(X\) is
+path-connected. Then there exists a path \(\gamma:[0,1]\to X\) such that
+\(\gamma(0)=(0,0)\) and \(\gamma(1)=(1/\pi,0)\). Note that the path can
+``stay'' at \((0,0)\) for some time, but will eventually ``leave'' it since
+\(\gamma(1)\ne (0,0)\). So, by removing the period of ``staying'' at \((0,0)\)
+and scaling the remaining part accordingly, we can assume WLOG that
+\(\inf\qty{t\in [0,1]: \gamma(t)\ne (0,0)}=0\), i.e., the path ``immediately''
+leaves \((0,0)\) after the ``initial time point''.
+\begin{center}
+\begin{tikzpicture}
+\draw[-Latex] (0,0) -- (10,0) node[right] {\(t\)};
+\node[magenta] () at (2,0) {[};
+\node[] () at (2,-0.5) {\(0\)};
+\node[magenta] () at (8,0) {]};
+\node[] () at (8,-0.5) {\(1\)};
+\draw[blue, very thick] (2,0) -- (5,0);
+\draw[blue, very thick] (5,0) .. controls (6,2) and (7,-2) .. (8,0);
+\end{tikzpicture}
+\begin{tikzpicture}
+\draw[-Latex, orange, ultra thick] (5,3) -- (5,1);
+\draw[-Latex] (0,0) -- (10,0) node[right] {\(t\)};
+\node[magenta] () at (2,0) {[};
+\node[] () at (2,-0.5) {\(0\)};
+\node[magenta] () at (8,0) {]};
+\node[] () at (8,-0.5) {\(1\)};
+\draw[green!50!black, very thick] (2,0) .. controls (4,2) and (6,-2) .. (8,0);
+\end{tikzpicture}
+\end{center}
+
+By the continuity of \(\gamma\), there exists \(\delta_0>0\) such
+that for any \(t<\delta_0\), \(\|\gamma(t)-(0,0)\|<\frac{1}{2}\).
+
+By the assumption about the infimum, there exists a sequence \(\{t_n\}\to 0\)
+such that \(\gamma(t_n)\ne (0,0)\) for any \(n\in\N\). Then, choose a
+\(0<t_{n_1}<\delta_0\) and choose \(N_1\in\N\) such that
+\(\displaystyle N_1\pi<\frac{1}{t_{n_1}}<(N_1+1)\pi\). Next, choose
+\(\displaystyle
+0<t_{n_2}<\frac{1}{4N_1\pi}<\frac{1}{(N_1+1)\pi}<t_{n_1}<\delta_0\) such that
+\(\gamma(t_{n_2})\ne (0,0)\).
+
+Note that these choices of \(t_{n_1}\) and \(t_{n_2}\) are sufficiently far
+apart that the path \(\gamma\) reaches at least one ``peak'' between
+\(t_{n_1}\) and \(t_{n_2}\), i.e., there exists \(s\in(t_{n_1},t_{n_2})\) such
+that \(\gamma(s)=(x,1)\) for some \(x\in (0,1]\).
+
+Note that \(\gamma(t_{n_1}),\gamma(t_{n_2})\in \gamma([0,\delta_0])\). Since
+\(\gamma([0,\delta_0])\) is connected, we conclude that every point \(p\)
+``between'' \(\gamma(t_{n_1})\) and \(\gamma(t_{n_2})\), i.e., \(p\) with
+\(p=\gamma(u)\) where \(u\in(t_{n_1},t_{n_2})\), belongs to
+\(\gamma([0,\delta_0])\) as well, for otherwise, one can construct two nonempty
+disjoint open subsets of \(\gamma([0,\delta_0])\) whose union is
+\(\gamma([0,\delta_0])\), through splitting based on the ``missing point''.
+\begin{center}
+\begin{tikzpicture}
+\draw[blue, fill] (0,0) circle [radius=0.5mm];
+\draw[blue, fill] (4,0) circle [radius=0.5mm];
+\draw[violet, very thick] (0,0) .. controls (1,2) .. (1.95,0.05);
+\draw[green!50!black, very thick] (2.05,-0.05) .. controls (3,-2) .. (4,0);
+\draw[red] (2,0) circle [radius=0.7mm];
+\end{tikzpicture}
+\end{center}
+
+Particularly, it means that \((x,1)=\gamma(s)\in \gamma([0,\delta_0])\). But
+\(\|\gamma(s)-(0,0)\|=\|(x,1)-(0,0)\|>1>1/2\), contradiction.
 \end{pf}
 \end{enumerate}
