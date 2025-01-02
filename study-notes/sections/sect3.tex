@@ -55,12 +55,11 @@ Furthermore, since \(A\) is closed in \(X\), \(B=X\setminus A\) is open in
 \(X\). Also, we can see that \(A\cap B=\varnothing\) and \(X=A\sqcup B\).
 \end{pf}
 
-\item Proving that a metric space is \underline{dis}connected is usually not
-too difficult, since all we need to do is to find an example of \(A\) and \(B\)
-satisfying the specified conditions. On the other hand, it is much more
-difficult to prove that a metric space is connected, since we need to show that
-there \emph{do not exist} any such sets \(A\) and \(B\). We need to consider all
-possible choices!
+\item To prove that a metric space is \underline{dis}connected, we can just
+find an example of \(A\) and \(B\) satisfying the specified conditions. On the
+other hand, it is much more difficult to prove that a metric space is
+connected, since we need to show that there \emph{do not exist} any such sets
+\(A\) and \(B\). We need to consider all possible choices!
 
 To simplify the arguments, the use of a continuous function which takes only
 two possible values is very helpful.
@@ -126,7 +125,7 @@ Particularly, this implies that connectedness is a topological property, i.e.,
 preserved by homeomorphisms.
 
 \item We can then generalize the intermediate value theorem we learn in MATH2241.
-\begin{theorem}
+\begin{theorem}[Intermediate value theorem]
 \label{thm:ivt-conn}
 Let \(f:X\to\R\) be a continuous function on a connected metric space \(X\). If
 \(f\) takes on two different values \(a,b\in X\), then \(f\) takes on every
@@ -171,7 +170,7 @@ intersection.
 \begin{proposition}
 \label{prp:conn-union-nonemp-int-conn}
 Let \(\{U_{\alpha}\}_{\alpha\in\Lambda}\) be a collection of connected
-subsets of \(X\) with \(\displaystyle \bigcap_{\alpha\in\Lambda}U_{\alpha}\ne\varnothing\).
+subsets of \(X\) with \(\bigcap_{\alpha\in\Lambda}U_{\alpha}\ne\varnothing\).
 Then, the union \(\bigcup_{\alpha\in\Lambda}U_{\alpha}\) is connected.
 \end{proposition}
 \begin{pf}
@@ -415,8 +414,8 @@ path-connectedness implies connectedness, so the former provides us an
 
 \item Before defining path-connectedness, we first define what a path is. A
 \defn{path} in a metric space \(X\) is a continuous function \(\gamma:[0,1]\to
-X\). For convenience, sometimes we call the image of \(\gamma\), i.e.,
-\(\gamma([0,1])\), as path also.
+X\). For convenience, sometimes we call the image of \(\gamma\)
+(\(\gamma([0,1])\)) as path also.
 
 In the latter sense of path, every path in \(X\) would be a connected set in
 \(X\). This is because \([0,1]\) is connected (as an interval; see
@@ -533,7 +532,11 @@ open in \(S\).
 \end{pf}
 
 \item To close \Cref{subsect:path-conn}, we present an example which is
-connected but not path-connected. Define \(\blc{A=\qty{(x,\sin\frac{1}{x})\in\R^2:x\in (0,1]}}\), \(\mgc{B=\{(0,0)\}}\), and \(X=A\cup B\).
+connected but not path-connected. Define
+\(\blc{A=\qty{(x,\sin\frac{1}{x})\in\R^2:x\in (0,1]}}\), \(\mgc{B=\{(0,0)\}}\),
+and \(X=A\cup B\). \begin{note}
+\(X\) is known as the \defn{topologist's sine curve}.
+\end{note}
 \begin{center}
 \begin{tikzpicture}
 \begin{axis}[domain=0.01:1, xmin=-0.3, xmax=1.1, ymin=-1.1, ymax=1.1, samples=500, axis lines=middle]
@@ -588,7 +591,7 @@ that for any \(t<\delta_0\), \(\|\gamma(t)-(0,0)\|<\frac{1}{2}\).
 By the assumption about the infimum, there exists a sequence \(\{t_n\}\to 0\)
 such that \(\gamma(t_n)\ne (0,0)\) for any \(n\in\N\). Then, choose a
 \(0<t_{n_1}<\delta_0\) and choose \(N_1\in\N\) such that
-\(\displaystyle N_1\pi<\frac{1}{t_{n_1}}<(N_1+1)\pi\). Next, choose
+\(N_1\pi<\frac{1}{t_{n_1}}<(N_1+1)\pi\). Next, choose
 \(\displaystyle
 0<t_{n_2}<\frac{1}{4N_1\pi}<\frac{1}{(N_1+1)\pi}<t_{n_1}<\delta_0\) such that
 \(\gamma(t_{n_2})\ne (0,0)\).

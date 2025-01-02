@@ -17,11 +17,12 @@ space \((X,d)\).
 \[
 d(x_n,a)<\varepsilon,
 \]
-i.e., \(x_n\in B(a,\varepsilon)\).  In this case, we write \(\displaystyle
+i.e., \(x_n\in B(a,\varepsilon)\).  In this case, we write \(
 \lim_{n\to \infty}x_n=a\), \(\{x_n\}\to a\), or \(\{x_n\}_{n=1}^{\infty}\to
 a\). We call \(a\) as \defn{limit} of \(\{x_n\}\). If the sequence \(\{x_n\}\)
-converges to \emph{some} \(a\in X\), we say that the sequence is
-\defn{convergent}. Otherwise, it is called \defn{divergent}.
+converges to \emph{some} \(a\in X\), we say that the sequence
+\defn{converges}/is \defn{convergent}. Otherwise, we say that it
+\defn{diverges}/is \defn{divergent}.
 
 \begin{note}
 The definition of a \defn{sequence} is analogous to the one in MATH2241: It is
@@ -65,7 +66,8 @@ d(a,b)\le d(x_n,a)+d(x_n,b)<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsi
 \item The following result gives some properties of a convergent sequence.
 \begin{proposition}
 \label{prp:conv-seq-prop}
-Suppose that \(\{x_n\}\to a\) in \(X\). Then,
+Let \(\{x_n\}\) be a sequence in \(X\) and \(a\in X\).  Suppose that
+\(\{x_n\}\to a\). Then,
 \begin{enumerate}
 \item \(\{x_n:n\in\N\}\) is bounded in \(X\).
 \item \(a\) is an adherent point of \(\{x_n:n\in\N\}\).
@@ -107,8 +109,8 @@ points in \(S\) such that \(\{x_n\}\to a\).
 \begin{pf}
 \begin{enumerate}
 \item ``\(\Rightarrow\)'': Suppose that \(a\in \overline{S}\). Then for any
-\(n\in\N\), there exists \(x_n\in S\) such that \(\displaystyle
-0\le d(x_n,a)<\frac{1}{n}\). We can see that the sequence \(\{x_n\}\) constructed in
+\(n\in\N\), there exists \(x_n\in S\) such that \(
+0\le d(x_n,a)<1/n\). We can see that the sequence \(\{x_n\}\) constructed in
 this way converges to \(a\), since \(\{d(x_n,a)\}\to 0\) by sandwich theorem.
 
 ``\(\Leftarrow\)'': Assume that there is a sequence \(\{x_n\}\) in \(S\)
@@ -121,7 +123,7 @@ S\). It then follows by \labelcref{it:clos-pre-subset} that
 \item ``\(\Rightarrow\)'': Suppose that \(a\in S'\). Note first that for any
 \(n\in\N\), by \Cref{prp:acc-pt-inf-set}, \(B(a,1/n)\cap S\) is an infinite
 set. Thus, it is possible to choose \(x_n\in S\setminus
-\{x_1,\dotsc,x_{n-1}\}\) with \(\displaystyle 0\le d(x_n,a)<\frac{1}{n}\) for
+\{x_1,\dotsc,x_{n-1}\}\) with \(0\le d(x_n,a)<1/n\) for
 every \(n\in\N\). This constructs an infinite sequence \(\{x_n\}\) of distinct
 points in \(S\) with \(\{x_n\}\to a\).
 
@@ -140,7 +142,7 @@ for closedness.
 
 \begin{proposition}
 \label{prp:closed-seq-crit}
-Let \(S\subseteq X\). Then, the following are equivalent.
+Let \(S\subseteq X\) and \(a\in X\). Then, the following are equivalent.
 \begin{enumerate}
 \item \(S\) is closed in \(X\).
 \item If \(\{x_n\}\) is a sequence in \(S\) with \(\{x_n\}\to a\), then \(a\in
@@ -165,9 +167,9 @@ a generalization to the respective result in MATH2241. It can be proved using
 the same approach as the one in MATH2241.
 \begin{proposition}
 \label{prp:subseq-same-lim}
-Let \(\{x_n\}\) be a sequence in \(X\). Then \(\{x_n\}\to a\) iff
-\(\{x_{n_k}\}_{k=1}^{\infty}\to a\) for every subsequence \(\{x_{n_k}\}\) of
-\(\{x_n\}\).
+Let \(\{x_n\}\) be a sequence in \(X\) and \(a\in X\). Then \(\{x_n\}\to a\)
+iff \(\{x_{n_k}\}_{k=1}^{\infty}\to a\) for every subsequence \(\{x_{n_k}\}\)
+of \(\{x_n\}\).
 \end{proposition}
 \begin{note}
 The concept of \emph{subsequence} is defined in the same manner as the one for
@@ -328,7 +330,7 @@ Let \(\{x_n\}\) be any Cauchy sequence in \(S\).
 Then there exists \(N\in\N\) such that \(x_n=x\in S\) for any \(n\ge N\). This
 shows \(\lim_{n\to \infty}x_n=x\in S\).
 \begin{note}
-For this case, we do even need compactness!
+For this case, we do not even need compactness!
 \end{note}
 
 \underline{Case 2}: \(\{x_n:n\in\N\}\) is an infinite set.
@@ -347,6 +349,23 @@ Now, applying triangle inequality, we have
 d(x_n,a)\le d(x_n,x_m)+d(x_m,a)<\frac{\varepsilon}{2}+\frac{\varepsilon}{2}=\varepsilon
 \]
 for any \(n\ge N\). This shows \(\{x_n\}\to a\), as desired.
+\end{pf}
+
+\item The following result also concerns about the completeness of some subset
+of a metric space. But here we need to impose a strong requirement that the
+original metric space should be complete.
+
+\begin{proposition}
+\label{prp:cls-subset-cpl-ms-cpl}
+Every closed subset \(S\) of a complete metric space \(X\) is complete.
+\end{proposition}
+\begin{pf}
+Fix any Cauchy sequence \(\{x_n\}\) in \(S\). Since the metric for \(S\) is induced by that for \(X\), \(\{x_n\}\) is still Cauchy when considered as a sequence in \(X\).
+
+Because \(X\) is complete, \(\{x_n\}\) converges to
+some \(x\in X\). Since \(\{x_n\}\) is in \(S\), we have \(x\in\overline{S}\) by \Cref{prp:adher-accum-seq-equiv}.
+
+As \(S\) is closed in \(X\), \(\overline{S}=S\) by \Cref{prp:equiv-crit-closed}, thus \(x\in S\). Hence \(\{x_n\}\) is convergent in \(S\).
 \end{pf}
 
 \subsubsection*{Construction of Completion (Optional)}
@@ -610,7 +629,7 @@ MATH2241 to the context of metric spaces.
 
 \item Let \(S\) be a subset of \(X\), and \(f:S\to Y\) be a function. Suppose
 that \(p\in X\) is an accumulation point of \(S\). Then, we write
-\(\displaystyle \lim_{x\to p}f(x)=b\) or \(f(x)\to b\) as \(x\to p\) if for any
+\(\lim_{x\to p}f(x)=b\) or \(f(x)\to b\) as \(x\to p\) if for any
 \(\varepsilon>0\), there exists \(\delta>0\) such that
 \[
 d_Y(f(x),b)<\varepsilon
@@ -652,12 +671,12 @@ functions.
 \begin{proposition}
 \label{prp:lim-seq-crit}
 Let \(p\in X\) be an accumulation point of \(S\subseteq X\), \(b\in Y\), and
-\(f:S\to Y\) be any function. Then, \(\displaystyle \lim_{x\to p}f(x)=b\) iff
-\(\displaystyle \lim_{n\to \infty}f(x_n)=b\) for every sequence \(\{x_n\}\) in
+\(f:S\to Y\) be any function. Then, \(\lim_{x\to p}f(x)=b\) iff
+\(\lim_{n\to \infty}f(x_n)=b\) for every sequence \(\{x_n\}\) in
 \(S\setminus\{p\}\) which converges to \(p\).
 \end{proposition}
 \begin{pf}
-``\(\Rightarrow\)'': Assume that \(\displaystyle \lim_{x\to p}f(x)=b\). This
+``\(\Rightarrow\)'': Assume that \(\lim_{x\to p}f(x)=b\). This
 means for any \(\varepsilon>0\), there exists \(\delta>0\) such that
 \(d_Y(f(x),b)<\varepsilon\) for any \(x\in B_X(p,\delta)\cap S\setminus\{p\}\).
 
@@ -874,12 +893,11 @@ a ``large'' set equipped with some natural arithmetic operations (``\(+\)'', ``\
 \subsection{Relationship Between Continuity and Topological Concepts}
 \begin{enumerate}
 \item Next, we will discuss the relationships between continuity and some
-topological concepts discussed in \Cref{sect:metric-spaces}, namely
-\emph{openness}, \emph{closedness}, and \emph{compactness}. They give us some
+topological concepts discussed in \Cref{sect:metric-spaces}. They give us some
 useful criteria and necessary/sufficient conditions for continuity.
 
-\item The first one is about criterion of continuity using the concept of
-openness and closedness.
+\item The first one is about an important criterion of continuity using the
+concept of openness and closedness.
 
 \begin{theorem}
 \label{thm:cts-crit-open-closed}
@@ -951,9 +969,12 @@ the image of an open (closed) set under a continuous function may
 \underline{not} be open (closed).
 \end{warning}
 
-\item A function that maps open sets to open sets is said to be \defn{open}; a
-function that maps closed sets to closed sets is said to be \defn{closed}. Open
-mappings may not be closed and closed mappings may not be open in general.
+\item A function that maps open sets to open sets is said to be \emph{open}; a
+function that maps closed sets to closed sets is said to be \emph{closed}. More
+explicitly, a function \(f:X\to Y\) is \defn{open} (\defn{closed}) if the image
+\(f(S)\) is open (closed) in \(Y\) for any open (closed) subset \(S\) of \(X\).
+
+Open mappings may not be closed and closed mappings may not be open in general.
 
 \item Counterexamples about open/closed/continuous mappings:
 \begin{note}
@@ -978,13 +999,13 @@ It is clearly continuous. But, \((0,1)\) is \emph{closed} in
 \end{pf}
 
 \item \emph{Continuous mapping that is \underline{neither} open \underline{nor}
-closed:} function \(f:\R\to\R\) defined by \(\displaystyle f(x)=\frac{x^2}{1+x^2}\) for any
+closed:} function \(f:\R\to\R\) defined by \(f(x)=x^2/(1+x^2)\) for any
 \(x\in\R\).
 
 \begin{pf}
-It is clearly continuous. Now consider the set \(\R\) which is both open and
-closed in \(\R\). However, \(f(\R)=[0,1)\) which is \emph{neither} open
-\emph{nor} closed in \(\R\).
+It is clearly continuous. The set \(\R\) which is both open and closed in
+\(\R\), but \(f(\R)=[0,1)\) which is \emph{neither} open \emph{nor} closed in
+\(\R\). So it is neither open nor closed mapping.
 \end{pf}
 
 \item \emph{Open but not continuous mapping:} function \(f:\R\to\{0,1\}\) defined by
@@ -1042,9 +1063,9 @@ defined by \(f(x)=x\) for any \(x\in(0,1)\).
 
 \begin{pf}
 It is an open mapping since every every set \(S\subseteq (0,1)\) which is open
-in \((0,1)\) is also open in \(\R\), by considering the definition. On the
-other hand, \((0,1)\) is closed in \((0,1)\) but \(f((0,1))=(0,1)\) is not
-closed in \(\R\). Thus it is not a closed mapping.
+in \((0,1)\) is also open in \(\R\). On the other hand, \((0,1)\) is closed in
+\((0,1)\) but \(f((0,1))=(0,1)\) is not closed in \(\R\). Thus it is not a
+closed mapping.
 \end{pf}
 
 \item \emph{Closed but not open mapping:} the constant zero function
@@ -1057,8 +1078,101 @@ which is not open in \(\R\). Thus it is not an open mapping.
 \end{pf}
 \end{enumerate}
 
-\item The next property of continuous function is that it maps \emph{compact}
-sets to \emph{compact} sets.
+\item \label{it:cts-preserv-pts} After that, we are going to discuss some
+results/counterexamples about \emph{preservation} of various kinds of points
+discussed in \Cref{sect:metric-spaces} under a continuous function \(f:X\to
+Y\).
+\begin{enumerate}
+\item \emph{\rc{not} preserving interior points:} Take \(X=Y=\R\), where \(X\) and
+\(Y\) are equipped with discrete and Euclidean metrics respectively. Define
+\(f\) by \(f(x)=x\) and take \(S=[0,1]\).
+
+Note that \([0,1]^{\circ}=[0,1]\) under discrete metric while
+\([0,1]^{\circ}=(0,1)\) under Euclidean metric. Thus,
+\[
+f(S^{\circ})=f([0,1])=[0,1]\not\subseteq (0,1)=f(S)^{\circ}.
+\]
+\item \emph{\gc{preserving} adherent points:} Fix any \(S\subseteq X\). Since
+\(S\subseteq f^{-1}(f(S))\subseteq f^{-1}(\overline{f(S)})\), we have
+\[
+\overline{S}\subseteq
+\overline{f^{-1}(\overline{f(S)})}=f^{-1}(\overline{f(S)}).
+\]
+The last equality holds since \(\overline{f(S)}\) is closed in \(Y\) and thus
+the preimage \(f^{-1}(\overline{f(S)})\) is closed in \(X\). Hence, we have
+\[
+\vc{f(}\overline{S}\vc{)}\subseteq
+\vc{f(}f^{-1}(\blc{\overline{f(S)}})\vc{)}
+\subseteq \blc{\overline{f(S)}}.
+\]
+\item 
+\begin{enumerate}
+\item \emph{\gc{preserving} accumulation points \gc{under injectivity}:}
+Consider any \(S\subseteq X\) and fix any \(y\in f(S')\). Then \(y=f(x)\) for
+some \(x\in S'\). As \(x\in S'\), there is an infinite sequence of distinct
+points \(\{s_n\}\) in \(S\) such that \(\{s_n\}\to x\).
+
+Due to the injectivity of \(f\), \(\{f(s_n)\}\) is still an infinite sequence
+of distinct points in \(f(S)\). Also, since \(f\) is continuous,
+\(\{f(s_n)\}\to f(x)\).  Thus \(y\in f(x)\in f(S)'\). This means
+\(f(S')\subseteq f(S)'\).
+\item \emph{\rc{not} preserving accumulation points \rc{in general}:} Take \(X=\R\)
+and \(Y=\{0\}\) (both with Euclidean metric). Define \(f\) by \(f(x)=0\) and
+take \(S=[0,1]\). Then,
+\[
+f(S')=f([0,1])=\{0\}\not\subseteq \varnothing=\{0\}'=f(S)'
+\]
+\end{enumerate}
+\item \emph{\rc{not} preserving isolated points:} Take \(X=Y=\R\), where \(X\) and
+\(Y\) are equipped with discrete and Euclidean metrics respectively (same
+setting as the one for interior points). Define \(f\) by \(f(x)=x\) and take
+\(S=X=\R\).
+
+Note that \(\R'=\varnothing\) under discrete metric while \(\R'=\R\) under
+Euclidean metric. Thus,
+\[
+f(S\setminus S')=f(\R\setminus\varnothing)=f(\R)=\R\not\subseteq 
+\varnothing=\R\setminus \R=f(S)\setminus f(S)'.
+\]
+\item \begin{enumerate}
+\item \emph{\gc{preserving} boundary points \gc{under injectivity}:}
+Consider any \(S\subseteq X\) and fix any \(y\in f(\partial S)\). Then
+\(y=f(x)\) for some \(x\in \partial S\). As \(x\in \partial
+S=\overline{S}\cap\overline{X\setminus S}\), there are sequences \(\{s_n\}\) in
+\(S\) and \(\{t_n\}\) in \(X\setminus S\) such that \(\{s_n\}\to x\) and
+\(\{t_n\}\to x\).
+
+Note that \(\{f(s_n)\}\) is in \(f(S)\). Also, due to the injectivity of \(f\),
+\(\{f(t_n)\}\) is in \(Y\setminus f(S)\). Since \(f\) is continuous,
+\(\{f(s_n)\}\to f(x)=y\) and \(\{f(t_n)\}\to f(x)=y\). Hence
+\(y\in\overline{f(S)}\cap\overline{Y\setminus f(S)}=\partial f(S)\). This means
+\(f(\partial S)\subseteq \partial f(S)\).
+
+\item \emph{\rc{not} preserving boundary points \rc{in general}:} Take \(X=\R\)
+and \(Y=\{0\}\). Define \(f\) by \(f(x)=0\) and take \(S=[0,1]\) (same as the
+one for accumulation points). Then,
+\[
+f(\partial S)=f(\{0,1\})=\{0\}\not\subseteq \varnothing=\partial \{0\}=\partial f(S).
+\]
+\end{enumerate}
+\end{enumerate}
+To summarize, we have the following for continuous functions:
+\begin{center}
+\begin{tabular}{ccc}
+\toprule
+type of points&preserve in general?&preserve assuming injectivity?\\
+\midrule
+interior&\xmark&\xmark \\
+adherent&\cmark&\cmark \\
+accumulation&\xmark&\cmark \\
+isolated&\xmark&\xmark\\
+boundary&\xmark&\cmark \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\item A remarkable property of continuous function is that it preserves
+\emph{compactness}.
 
 \begin{theorem}
 \label{thm:cts-map-cpt-to-cpt}
@@ -1075,10 +1189,11 @@ This implies that
 f^{-1}\qty(\bigcup_{\lambda\in\Lambda}U_{\lambda})=\bigcup_{\lambda\in\Lambda}f^{-1}(U_{\lambda})
 \supseteq C.
 \]
-Due to the continuity of \(f\), \(f^{-1}(U_{\lambda})\) is open in \(X\) for
-any \(\lambda\in\Lambda\). Hence, \(\{f^{-1}(U_{\lambda}):\lambda\in\Lambda\}\)
-serves as an open cover of \(C\). By the compactness of \(C\), there exists a
-finite sub-cover \(\{f^{-1}(U_i):i=1,\dotsc,n\}\) of \(C\):
+Due to the continuity of \(f\), the preimage \(f^{-1}(U_{\lambda})\) is open in
+\(X\) for any \(\lambda\in\Lambda\). Hence,
+\(\{f^{-1}(U_{\lambda}):\lambda\in\Lambda\}\) serves as an open cover of \(C\).
+By the compactness of \(C\), there exists a finite sub-cover
+\(\{f^{-1}(U_i):i=1,\dotsc,n\}\) of \(C\):
 \[
 f^{-1}\qty(\bigcup_{i=1}^{n}U_i)=\bigcup_{i=1}^{n}f^{-1}(U_i)\supseteq C,
 \]
@@ -1133,16 +1248,16 @@ C\).  Similarly, we can show that \(f(q)=\min f(C)\) for some \(q\in C\).
 suggests a sufficient condition for the inverse of a continuous function to be
 also continuous.
 
-\begin{theorem}
-\label{thm:cts-fn-inv-cts}
+\begin{proposition}
+\label{prp:cts-fn-inv-cts}
 Let \(f:X\to Y\) be a function. Suppose that \(X\) is compact, and \(f\) is
 both bijective and continuous. Then, the inverse \(f^{-1}:Y\to X\) is also
 continuous.
-\end{theorem}
+\end{proposition}
 \begin{pf}
 First of all, due to the bijectivity of \(f\), the inverse \(f^{-1}\) exists.
 Now fix any closed set \(C\subseteq X\). By the compactness of \(X\) and
-\Cref{cor:closed-subset-of-cpt-is-cpt}, \(C\) is a compact set. Hence, by the
+\Cref{thm:subset-closed-in-cpt-is-cpt}, \(C\) is a compact set. Hence, by the
 continuity of \(f\) and \Cref{thm:cts-map-cpt-to-cpt}, \(f(C)\) is also
 compact, thus closed in \(Y\).
 
@@ -1157,7 +1272,7 @@ So, the preimage \((f^{-1})^{-1}(C)\) is closed in \(Y\). By
 \Cref{thm:cts-crit-open-closed}, we conclude that \(f^{-1}\) is continuous.
 \end{pf}
 
-\item For \Cref{thm:cts-fn-inv-cts} to hold, it is important that \(X\) is
+\item For \Cref{prp:cts-fn-inv-cts} to hold, it is important that \(X\) is
 compact. Without the compactness, we can construct a counterexample as follows.
 Let \(X=Y=[0,1]\). Equip \(X\) with the discrete metric and \(Y\) with the
 standard Euclidean metric. Note that \(X\) is \emph{not} compact since
@@ -1198,10 +1313,10 @@ follows.  Let \(f:X\to Y\) be a continuous function, and imagine that \(X\) and
 originally are still ``close together'' in \(Y\): there is not ``abrupt
 change''. In other words, there can be bending, twisting, stretching, dilating,
 contracting, etc. on \(X\), but there cannot be \emph{tearing} on \(X\), since
-it can make points originally close together become far apart. In short, \(f\)
-``continuously deforms'' the object \(X\) to the object \(Y\). So, two metric
-spaces are homeomorphic if one can be ``continuously deformed'' to another, and
-back.
+it can cause points that were originally close together to become far apart. In
+short, \(f\) ``continuously deforms'' the object \(X\) to the object \(Y\). So,
+two metric spaces are homeomorphic if one can be ``continuously deformed'' to
+another, and back.
 
 \item In the following, we will prove a result that gives several criteria for
 homeomorphism. Before proving that, we consider the following lemma.
@@ -1289,8 +1404,8 @@ this, we define a notion related to the preservation of distance. A function
 d_Y(f(p),f(q))=d_X(p,q)
 \]
 for any \(p,q\in X\), where \(d_X\) and \(d_Y\) denote the metrics for \(X\)
-and \(Y\) respectively. Two metric spaces are said to be \defn{isometric} if
-there is an isometry of \(X\) onto \(Y\).
+and \(Y\) respectively. Two metric spaces \(X\) and \(Y\) are said to be
+\defn{isometric} if there is an isometry of \(X\) onto \(Y\).
 
 \item The concepts of isometry and homeomorphism are related by the following
 result.

@@ -94,8 +94,8 @@ chosen when \(X=\R^n\) would the Euclidean distance.
 
 This definition of metric space captures the idea of \emph{points} and
 \emph{distances}. For any \(x,y\in X\), \(d(x,y)\) is the \defn{distance
-between \(x\) and \(y\) with respect to \(d\)}. Elements in \(X\) are
-\defn{points}.
+between \(x\) and \(y\) with respect to \(d\)}. Elements in \(X\) are said to
+be \defn{points}.
 
 \item Sometimes we only want to focus on a certain ``part'' of a metric space
 (without altering the way of measuring distance). This leads to the notion of
@@ -148,11 +148,22 @@ P=Q.
 \(i=1,\dotsc,n\).
 
 (M3) can be proven by using some algebraic tricks and Cauchy-Swartz inequality,
-but we shall omit the details.
+but we shall omit the details here.
 \end{pf}
 
 \item Let \(X=S^2=\{(x,y,z):x^2+y^2+z^2=1\}\subseteq\R^3\), an unit sphere in
 \(\R^3\).
+
+To motivate the definition of the following metric, suppose that the unit
+sphere represents the ``Earth'' \faIcon{globe-americas}, and the two points
+(\({\color{violet}\bullet}\) and \({\color{brown}\bullet}\)) on it represent
+two places. Now, suppose that you want to travel \faIcon{plane} from
+\({\color{violet}\bullet}\) to \({\color{brown}\bullet}\). Intuitively, the
+shortest path for the travel is represented by the {\color{green!50!black}green
+dashed arrows} (one cannot ``drill through the Earth straightly'' to go to
+\({\color{brown}\bullet}\)!). It then appears that the arc length of that path
+should be the distance between the two points.
+
 \begin{center}
 \begin{tikzpicture}
 \draw[blue] (0,0) circle [radius=3cm];
@@ -166,15 +177,6 @@ but we shall omit the details.
 \draw[->, dashed, red] (start) .. controls (-5.7,-6.95) and (3.7,5.95) .. (end);
 \end{tikzpicture}
 \end{center}
-To motivate the definition of the following metric, suppose that the unit
-sphere represents the ``Earth'' \faIcon{globe-americas}, and the two points
-(\({\color{violet}\bullet}\) and \({\color{brown}\bullet}\)) on it represent
-two places. Now, suppose that you want to travel \faIcon{plane} from
-\({\color{violet}\bullet}\) to \({\color{brown}\bullet}\). Intuitively, the
-shortest path for the travel is represented by the {\color{green!50!black}green
-dashed arrows} (one cannot ``drill through the Earth straightly'' to go to
-\({\color{brown}\bullet}\)!). It then appears that the arc length of that path
-should be the distance between the two points.
 
 Mathematically, we define \(d(x,y)=\) the length of the smaller arc on the
 unique great circle (a planar circle on \(S^2\) with unit radius) joining the
@@ -189,14 +191,14 @@ define
 \[
 d(x,y)=1-\delta_{xy}
 \]
-where \(\displaystyle \delta_{xy}=\begin{cases}
+where \(\delta_{xy}=\begin{cases}
 1&\text{if \(x=y\)};\\
 0&\text{otherwise}.
 \end{cases}
 \) This metric is called \defn{discrete metric}, under which the distance
 between two different points is \emph{always} one, and the distance between two
-identical points are zero. \((X,d)\) is a metric space, which is sometimes
-called \defn{discrete metric space}.
+identical points are zero. \((X,d)\) is a metric space, which is called
+\defn{discrete metric space}.
 
 \begin{pf}
 Fix any \(x,y\in X\). Then, since \(d(x,y)=0\text{ or }1\), it must be
@@ -218,9 +220,10 @@ be nonnegative).
 In either subcase, we have \(d(x,y)+d(y,z)\ge 1=d(x,z)\), as desired.
 \end{itemize}
 \end{pf}
-\item As mentioned earlier, MATH3401 is about studying continuous functions on
+\item \label{it:fun-ms-lp-norm}
+As mentioned earlier, MATH3401 is about studying continuous functions on
 metric space. So, here we consider an example of a metric space for a set of
-\emph{continuous functions}. Let \(X=C[a,b]\), the set of all real-valued
+\emph{continuous functions}. Let \(X=C([a,b])\), the set of all real-valued
 continuous functions with domain \([a,b]\). In this case, each ``point'' is
 indeed a function, rather than a number. How should we measure the
 distance between two \emph{functions}?
@@ -324,7 +327,7 @@ set \(S\)} is
 d(P,S)=\inf_{x\in S}d(P,x).
 \]
 \begin{note}
-The notation \(\displaystyle \inf_{x\in S}d(P,x)\) is another way to write
+The notation \(\inf_{x\in S}d(P,x)\) is another way to write
 \(\inf\{d(P,x):x\in S\}\). This applies to ``\(\sup\)'' similarly.
 \end{note}
 \item Now, after ``arriving'' the set \(S\) (``island''), we may start
@@ -560,7 +563,7 @@ node[pos=-0.3]{outside \(S\)!};
 Next, we will prove that \(S\) is both open and closed in \(Y\). For the
 openness, we will only show that \(0\) is an interior point of \(Y\). (Every
 other point in \(S\) is clearly an interior point of \(Y\), by choosing
-a sufficiently small \(r>0\) (e.g., \(\displaystyle
+a sufficiently small \(r>0\) (e.g., \(
 r=\frac{1}{2}\cdot \max\{\text{distance between the point and \(0\)}, \text{distance
 between the point and \(1\)}\}\)).)
 
@@ -601,7 +604,7 @@ For any \(a\in X\) and \(r>0\), the open ball \(S=B(a,r)\) is open in
 
 \begin{pf}
 For any \(x\in S\), let \(r_0=d(x,a)\), which is less than \(r\) by the
-definition of open ball. Now, choose \(\displaystyle r_1=\frac{r-r_0}{2}\).
+definition of open ball. Now, choose \(r_1=\frac{r-r_0}{2}\).
 Then, for any \(y\in B(x,r_1)\), we have
 \[
 d(y,a)\le \underbrace{d(y, x)}_{<r_1}+\underbrace{d(x, a)}_{r_0}
@@ -638,7 +641,7 @@ and closed in \(X\)). Thus henceforth we will assume that
 subset of \(X\), by definition). Then, \(X\setminus S\) is nonempty.
 
 Now, for any \(x\in X\setminus S=X\setminus\overline{B}(a,r)\), we let
-\(r_0=d(x,a)>r\). Now, choose \(\displaystyle r_1=\frac{r_0-r}{2}\). Then, for
+\(r_0=d(x,a)>r\). Now, choose \(r_1=\frac{r_0-r}{2}\). Then, for
 any \(y\in B(x, r_1)\), rearranging the inequality in (M3) gives
 \[
 d(y,a)\ge \underbrace{d(x,a)}_{r_0}-\underbrace{d(x,y)}_{<r_1}
@@ -684,7 +687,7 @@ subset of \(X\) and \(a\in S\). Then, an \defn{open neighborhood} of \(a\) in
 \end{tikzpicture}
 \end{center}
 More generally, a \defn{neighborhood} of \(a\) in \(S\) is a set \(U\subseteq
-S\) which contains \(a\) in its interior (in \(S\)).
+S\) which contains \(a\) in its interior.
 \begin{center}
 \begin{tikzpicture}
 \draw[fill, brown!20!white, draw=violet] (0,0) ellipse [x radius=2cm, y radius=1cm];
@@ -763,7 +766,7 @@ many} (\warn{} finitely many only!) open sets in \(X\) is open in \(X\).
 \end{proposition}
 \begin{pf}
 \begin{enumerate}
-\item We write \(\displaystyle S=\bigcup_{\lambda\in\Lambda}S_{\lambda}\) where
+\item We write \(S=\bigcup_{\lambda\in\Lambda}S_{\lambda}\) where
 \(S_{\lambda}\) is open in \(X\) (for any \(\lambda\in\Lambda\)), and
 \(\Lambda\) is any index set. Then, we want to show that \(S\) is open in \(X\)
 also. Consider any \(a\in S\). Note that \(a\in S_{\lambda^{*}}\) for some
@@ -774,7 +777,7 @@ B(a,r)\subseteq S_{\lambda^{*}}\subseteq S.
 \]
 Since \(a\) is arbitrary, this implies that \(S\) is open in \(X\).
 
-\item We write \(\displaystyle S=\bigcap_{i=1}^{n}S_i\) where \(S_{i}\) is open
+\item We write \(S=\bigcap_{i=1}^{n}S_i\) where \(S_{i}\) is open
 in \(X\) for any \(i=1,\dotsc,n\). Then, we want to show that \(S\) is open in
 \(X\).  Consider any \(a\in S\). By definition, \(a\in S_i\) for any
 \(i=1,\dotsc,n\), and so by the openness there exist \(r_1,\dotsc,r_n>0\) such
@@ -810,7 +813,7 @@ Thus, by \labelcref{it:open-sets-intersect-open}, the set
 \[
 \bigcap_{i=1}^{n}(X\setminus E_i)=X\setminus\qty(\bigcup_{i=1}^{n}E_i)\quad\text{(De Morgan's law)}
 \]
-is open in \(X\), so \(\displaystyle \bigcup_{i=1}^{n}E_i\) is closed in \(X\),
+is open in \(X\), so \(\bigcup_{i=1}^{n}E_i\) is closed in \(X\),
 as desired.
 
 \item Fix any index set \(\Lambda\), and let \(E_\lambda\subseteq X\) be a
@@ -820,7 +823,7 @@ Thus, by \labelcref{it:open-sets-union-open}, the set
 \[
 \bigcup_{\lambda\in\Lambda}(X\setminus E_{\lambda})=X\setminus\qty(\bigcap_{\lambda\in\Lambda}E_{\lambda})\quad\text{(De Morgan's law)}
 \]
-is open in \(X\), so \(\displaystyle \bigcap_{\lambda\in\Lambda}E_{\lambda}\) is closed in \(X\),
+is open in \(X\), so \(\bigcap_{\lambda\in\Lambda}E_{\lambda}\) is closed in \(X\),
 as desired.
 \end{enumerate}
 \end{pf}
@@ -841,7 +844,7 @@ This implies that
 \bigcup_{x\in T}B_S(x, r_x)\subseteq T.
 \]
 
-Now, let \(\displaystyle U=\bigcup_{x\in T}B_X(x,r_x)\), which is open
+Now, let \(U=\bigcup_{x\in T}B_X(x,r_x)\), which is open
 in \(X\) by \labelcref{it:open-sets-union-open} (as the open ball
 \(B_X(x,r_x)\) is always open in \(X\)).
 
@@ -942,18 +945,12 @@ for any \(\lambda\in\Lambda\), for some index set \(\Lambda\). Thus, by
 \emph{Lindel\"{o}f's theorem} (or \emph{Lindel\"{o}f's lemma}).
 \begin{theorem}[Lindel\"{o}f's theorem]
 \label{thm:lindelof}
-Let \(U\subseteq \R^n\) be an open set (open in \(\R^n\)). Write
-\[
-U=\bigcup_{\lambda\in\Lambda}U_{\lambda}
-\]
-where \(\Lambda\) is an index set, and \(U_\lambda\) is open in \(\R^n\) for
-any \(\lambda\in\Lambda\).  Then, there is a \emph{countable subset}
-\(\{U_i:i\in\Gamma\}\subseteq \{U_{\lambda}:\lambda\in\Lambda\}\) such that
-\[
-U=\bigcup_{i\in\Gamma}U_{i}
-\]
-where \(\Gamma\) is a countable (finite or countably infinite) set of
-indices.
+Let \(U\) be an open subset of \(\R^n\). Write
+\(U=\bigcup_{\lambda\in\Lambda}U_{\lambda}\) where \(\Lambda\) is an index set,
+and \(U_\lambda\) is open in \(\R^n\) for any \(\lambda\in\Lambda\).  Then,
+there is a \emph{countable subset} \(\{U_i:i\in\Gamma\}\subseteq
+\{U_{\lambda}:\lambda\in\Lambda\}\) such that \(U=\bigcup_{i\in\Gamma}U_{i}\)
+where \(\Gamma\) is a countable (finite or countably infinite) set of indices.
 \end{theorem}
 \begin{intuition}
 This result tells us that in \(\R^n\) we can always ``simplify'' an arbitrary
@@ -961,41 +958,34 @@ union of open sets to a \emph{countable} union of open sets.
 \end{intuition}
 
 \begin{pf}
-Note first that the family (or set)
-\[
-\mathcal{U}=\qty{B\qty(q,\frac{1}{k}):q\in \Q^n, k\in\N}
-\]
-is countable.
+Note first that the family \(\mathcal{U}=\qty{B\qty(q,\frac{1}{k}):q\in \Q^n,
+k\in\N}\) is countable.
 
-Then, fix any \(x\in U\subseteq \R^n\). Since we have \(\displaystyle
-U=\bigcup_{\lambda\in\Lambda}U_{\lambda}\), there exists
-\(\lambda\in\Lambda\) such that \(x\in U_{\lambda}\). Furthermore,
-since this \(U_{\lambda}\) is open in \(\R^n\), (by Archimedean property)
-there exists \(N\in\N\) such that \(\displaystyle x\in
+Then, fix any \(x\in U\subseteq \R^n\). Since we have \(
+U=\bigcup_{\lambda\in\Lambda}U_{\lambda}\), there exists \(\lambda\in\Lambda\)
+such that \(x\in U_{\lambda}\). Furthermore, since this \(U_{\lambda}\) is open
+in \(\R^n\), there exists \(N\in\N\) such that \(x\in
 B\qty(x,\frac{1}{N})\subseteq U_{\lambda}\).
 
 Next, by the \emph{density} of \(\Q^n\) on \(\R^n\)\footnote{This means that,
 for every \(x\in\R^n\), the following holds: For any \(\varepsilon>0\), there
 exists \(q_{x}\in\Q^n\) such that \(d(x,q_{x})<\varepsilon\).}, there exists
-\(q_{x}\in\Q^n\) such that \(\displaystyle d(q_{x},x)<\frac{1}{2N}\). Now
-consider the open ball \(\displaystyle Q_{x}\triangleq
-B\qty(q_{x},\frac{1}{2N})\in\mathcal{U}\). Firstly, since \(\displaystyle
-d(q_{x},x)<\frac{1}{2N}\), we have
-\[
-x\in Q_{x}\qqtext{or}\{x\}\subseteq Q_{x}.
-\]
-Secondly, for any \(\displaystyle y\in Q_{x}\), by triangle
-inequality we have
+\(q_{x}\in\Q^n\) such that \(d(q_{x},x)<\frac{1}{2N}\). Now
+consider the open ball \(Q_{x}\triangleq
+B\qty(q_{x},\frac{1}{2N})\in\mathcal{U}\). Firstly, since \(
+d(q_{x},x)<\frac{1}{2N}\), we have \(x\in Q_{x}\), thus \(\{x\}\subseteq Q_{x}\).
+
+Secondly, for any \(y\in Q_{x}\), by triangle inequality we have
 \[
 d(x,y)\le d(x,q_{x})+d(q_{x},y)
 <\frac{1}{2N}+\frac{1}{2N}=\frac{1}{N},
 \footnote{
-We have \(\displaystyle d(x,q_{x})<\frac{1}{2N}\) by
-above, and \(\displaystyle d(q_{x},y)<\frac{1}{2N}\) since
-\(\displaystyle y\in Q_{x}=B\qty(q_{x},\frac{1}{2N})\).
+We have \(d(x,q_{x})<\frac{1}{2N}\) by
+above, and \(d(q_{x},y)<\frac{1}{2N}\) since
+\(y\in Q_{x}=B\qty(q_{x},\frac{1}{2N})\).
 }
 \]
-which means \(\displaystyle y\in B\qty(x,\frac{1}{N})\).
+which means \(y\in B\qty(x,\frac{1}{N})\).
 Thus, we have
 \[
 Q_{x}\subseteq B\qty(x,\frac{1}{N})\subseteq U_{\lambda}.
@@ -1057,13 +1047,13 @@ U\), let
 I_x=\bigcup_{\lambda\in\Lambda_{x}}B_{\lambda}
 \]
 where \(B_{\lambda}=(a_{\lambda},b_{\lambda})\) (with
-\(a_{\lambda},b_{\lambda}\in\R\)) and \(\displaystyle
+\(a_{\lambda},b_{\lambda}\in\R\)) and \(
 \Lambda_{x}=\{\lambda:\text{\(B_{\lambda}\) is an open interval with \(x\in
 B_{\lambda}\subseteq U\)}\}\).
 
 Then, we have:
 \begin{enumerate}
-\item \(\displaystyle I_x=\qty(\inf_{\lambda\in\Lambda_{x}}\{a_{\lambda}\}
+\item \(I_x=\qty(\inf_{\lambda\in\Lambda_{x}}\{a_{\lambda}\}
 ,\sup_{\lambda\in\Lambda_x}\{b_{\lambda}\})\).
 
 \item (maximal property) \(I_x\) is the largest open interval containing \(x\)
@@ -1098,8 +1088,8 @@ I_x=\bigcup_{\lambda\in\Lambda_{x}}B_{\lambda}
 ,\sup_{\lambda\in\Lambda_x}\{b_{\lambda}\}).
 \]
 
-``\(\supseteq\)'': For notational convenience, write \(\displaystyle
-a=\inf_{\lambda\in\Lambda_{x}}\{a_{\lambda}\}\) and \(\displaystyle
+``\(\supseteq\)'': For notational convenience, write \(
+a=\inf_{\lambda\in\Lambda_{x}}\{a_{\lambda}\}\) and \(
 b=\sup_{\lambda\in\Lambda_{x}}\{b_{\lambda}\}\). For any \(m\in(a,b)\), there
 exist \(\lambda_1,\lambda_2\in\Lambda_{x}\) such that \(m>a_{\lambda_1}\) and
 \(m<b_{\lambda_2}\).\footnote{First consider the case that \(a\) and \(b\)
@@ -1151,7 +1141,7 @@ can actually be expressed as \(B_{\lambda_0}\) for some
 \(\lambda_0\in\Lambda_x\).
 
 Recall that \(m\) belongs to this union, i.e., \(m\in B_{\lambda_0}\).
-As \(m\) is an arbitrary element in \((a,b)\), we conclude that \(\displaystyle
+As \(m\) is an arbitrary element in \((a,b)\), we conclude that \(
 (a,b)\subseteq B_{\lambda_0}\subseteq
 \bigcup_{\lambda\in\Lambda_x}B_{\lambda}=I_x\).
 
@@ -1203,7 +1193,7 @@ intervals is \emph{unique}.
 \end{theorem}
 \begin{pf}
 Consider any nonempty open subset \(U\) of \(\R\). For any \(x\in U\), let
-\(\displaystyle I_x=\bigcup_{\lambda\in\Lambda_{x}}B_{\lambda}\) (which carries the same
+\(I_x=\bigcup_{\lambda\in\Lambda_{x}}B_{\lambda}\) (which carries the same
 meaning as that in \Cref{lma:open-int-union-int}).
 
 By \Cref{lma:open-int-union-int}, we have \(I_x\cap I_y=\varnothing\) or
@@ -1212,7 +1202,7 @@ By \Cref{lma:open-int-union-int}, we have \(I_x\cap I_y=\varnothing\) or
 intervals whose union is \(U\) (as the collection is just essentially obtained
 from removing redundancies in \(\{I_x:x\in U\}\) whose union is
 \(U\)\footnote{Since \(x\in I_x\) (or \(\{x\}\subseteq I_x\)) and
-\(I_x\subseteq U\) for any \(x\in U\), we have \(\displaystyle U=\bigcup_{x\in
+\(I_x\subseteq U\) for any \(x\in U\), we have \(U=\bigcup_{x\in
 U}\{x\}\subseteq \bigcup_{x\in U}I_x\subseteq U\).}, and removing redundancies
 would not affect the outcome for the union).
 
@@ -1243,7 +1233,7 @@ Due the pairwise disjoint property, for any \(x\in U\), there exists a
 and \(x\in J_{\theta_x}\). This implies that \(I_{\gamma_x}=I_x=J_{\theta_x}\) (see
 the claim in the proof of \Cref{lma:open-int-union-int}).
 
-As we consider all \(x\in U\), the equality would ``involve'' all pairs of
+As we consider all \(x\in U\), the equality would involve all pairs of
 intervals in \(\mathcal{I}\) and \(\mathcal{J}\), and so we conclude that
 \(\mathcal{I}=\mathcal{J}\), establishing the uniqueness.
 \end{pf}
@@ -1803,7 +1793,11 @@ implies that \(\overline{\partial S}=\partial S\). Thus,
 It is \underline{not} true that \(\partial(\partial S)\supseteq \partial S\). For example, consider
 \(S=\Q\) in \(\R\).
 \end{warning}
-\item \(\partial(S\cup T)\subseteq \partial S\cup\partial T\).
+
+\item \(S\subseteq T\rc{\centernot\implies }\partial S\subseteq \partial T\). Example:
+\(S=[1,2]\) and \(T=[0,3]\) in \(\R\).
+
+\item \(\partial S\cup\partial T\supseteq\partial(S\cup T)\).
 
 \begin{pf}
 Note that
@@ -1822,49 +1816,74 @@ Note that
 \end{pf}
 
 \begin{warning}
-It is \underline{not} true that \(\partial(S\cup T)\supseteq \partial
-S\cup\partial T\). For example, consider \(S=[0,2]\) and \(T=\{1\}\) in \(\R\).
+It is \underline{not} true that \(\partial S\cup\partial T\subseteq
+\partial(S\cup T)\). For example, consider \(S=[0,2]\) and \(T=\{1\}\) in
+\(\R\).
 \end{warning}
-\item \label{it:bound-inter-subset} \(\partial(S\cap T)\subseteq \partial S\cup\partial T\).
+\item \begin{enumerate}
+\item \(\partial S\cap\partial T\rc{\not\subseteq } \partial(S\cap T)\). Example:
+\(S=[0,1)\) and \(T=(1,2]\) in \(\R\).
+\item \(\partial S\cap\partial T\rc{\not\supseteq}\partial(S\cap T)\). Example:
+\(S=[1,2]\) and \(T=[0,3]\) in \(\R\).
 
-\begin{pf}
-Note that
-\begin{align*}
-\partial(S\cap T)
-&=\overline{S\cap T}\cap\overline{X\setminus (S\cap T)}\\
-&=\overline{S\cap T}\cap\overline{(X\setminus S)\cup (X\setminus T)}\\
-&=\overline{S\cap T}\cap (\overline{X\setminus S}\cup \overline{X\setminus T})\\
-&\subseteq \vc{(\overline{S}\cap\overline{T})}\cap(\overline{X\setminus S}\cup \overline{X\setminus T})\\
-&=[\vc{(\overline{S}\cap\overline{T})}\cap\overline{X\setminus S}]
-\cup[\vc{(\overline{S}\cap\overline{T})}\cap\overline{X\setminus T}]\\
-&\subseteq (\overline{S}\cap\overline{X\setminus S})
-\cup(\overline{T}\cap\overline{X\setminus T})\\
-&=\partial S\cup\partial T.
-\end{align*}
-\end{pf}
-
-\begin{warning}
-It is \underline{not} true that \(\partial(S\cap T)\supseteq \partial
-S\cup\partial T\). For example, consider \(S=[0,1]\) and \(T=\{2\}\) in \(\R\).
-\end{warning}
-
-\item \(\partial(S\setminus T)\subseteq \partial S\cup\partial T\).
-
-\begin{pf}
-Note that \(\partial S=\partial(X\setminus S)\). Thus, by
-\labelcref{it:bound-inter-subset} we have
-\[
-\partial(S\setminus T)=\partial(S\cap(X\setminus T))
-\subseteq \partial S\cup\partial(X\setminus T)
-=\partial S\cup\partial T.
-\]
-\end{pf}
-
-\begin{warning}
-It is \underline{not} true that \(\partial(S\setminus T)\supseteq \partial
-S\cup\partial T\). For example, consider \(S=[0,1]\) and \(T=\{2\}\) in \(\R\).
-\end{warning}
 \end{enumerate}
+%\item \label{it:bound-inter-subset} \(\partial(S\cap T)\subseteq \partial S\cup\partial T\).
+%
+%\begin{pf}
+%Note that
+%\begin{align*}
+%\partial(S\cap T)
+%&=\overline{S\cap T}\cap\overline{X\setminus (S\cap T)}\\
+%&=\overline{S\cap T}\cap\overline{(X\setminus S)\cup (X\setminus T)}\\
+%&=\overline{S\cap T}\cap (\overline{X\setminus S}\cup \overline{X\setminus T})\\
+%&\subseteq \vc{(\overline{S}\cap\overline{T})}\cap(\overline{X\setminus S}\cup \overline{X\setminus T})\\
+%&=[\vc{(\overline{S}\cap\overline{T})}\cap\overline{X\setminus S}]
+%\cup[\vc{(\overline{S}\cap\overline{T})}\cap\overline{X\setminus T}]\\
+%&\subseteq (\overline{S}\cap\overline{X\setminus S})
+%\cup(\overline{T}\cap\overline{X\setminus T})\\
+%&=\partial S\cup\partial T.
+%\end{align*}
+%\end{pf}
+%
+%\begin{warning}
+%It is \underline{not} true that \(\partial(S\cap T)\supseteq \partial
+%S\cup\partial T\). For example, consider \(S=[0,1]\) and \(T=\{2\}\) in \(\R\).
+%\end{warning}
+%
+%\item \(\partial(S\setminus T)\subseteq \partial S\cup\partial T\).
+%
+%\begin{pf}
+%Note that \(\partial S=\partial(X\setminus S)\). Thus, by
+%\labelcref{it:bound-inter-subset} we have
+%\[
+%\partial(S\setminus T)=\partial(S\cap(X\setminus T))
+%\subseteq \partial S\cup\partial(X\setminus T)
+%=\partial S\cup\partial T.
+%\]
+%\end{pf}
+%
+%\begin{warning}
+%It is \underline{not} true that \(\partial(S\setminus T)\supseteq \partial
+%S\cup\partial T\). For example, consider \(S=[0,1]\) and \(T=\{2\}\) in \(\R\).
+%\end{warning}
+\end{enumerate}
+\item \label{it:int-clos-deriv-bound-prop-summary} The following summarizes properties about
+interiors, closures, derived sets and boundaries.
+\begin{center}
+\begin{tabular}{ccccc}
+\toprule
+type&idempotent?&preserve subset?&commute with \(\cup\)?&commute with \(\cap\)? \\
+\midrule
+interior \(S^{\circ}\) & \cmark &\cmark& \xmark (\(S^{\circ}\cup T^{\circ}\subseteq (S\cup T)^{\circ}\) only) & \cmark\\
+closure \(\overline{S}\) & \cmark &\cmark& \cmark& \xmark (\(\overline{S}\cap
+\overline{T}\supseteq \overline{S\cap T}\) only)\\
+derived set \(S'\) & \xmark (\(\subseteq\) only) &\cmark &\cmark&\xmark (\(S'\cap
+T'\supseteq (S\cap T)'\) only)\\
+boundary \(\partial S\) & \xmark (\(\subseteq\) only) &\xmark&\xmark
+(\(\partial S\cup\partial T\supseteq \partial(S\cup T)\) only)&\xmark\\
+\bottomrule
+\end{tabular}
+\end{center}
 \end{enumerate}
 \subsection{Compactness}
 \label{subsect:compactness}
@@ -2049,33 +2068,23 @@ be closed in \(X\). So we are done with this case.
 
 Henceforth, we assume that \(S\ne\varnothing\). Fix any \(x\in S\). We first
 show the \underline{boundedness}. Consider the open cover
-\[
-\mathcal{F}=\{B(x,n):n\in\N\}
-\]
-of \(S\). \begin{note}
-We have \(B(x,1)\subseteq B(x,2)\subseteq B(x,3)\subseteq \dotsb\).
-\end{note}
-By the compactness, \(\mathcal{F}\) has a finite subcover \(\mathcal{F}_0\).
-Then, we have
-\[
-\bigcup_{F\in\mathcal{F}_0}F\supseteq S.
-\]
-By the finiteness, we know that the union \(\displaystyle
-\bigcup_{F\in\mathcal{F}_0}F\) must be a subset of a large open ball
-\(B(x,M)\) where \(M\in\N\). Hence, for this \(M\), we have \(d(P,Q)\le
-M\) for any \(P,Q\in S\), establishing the boundedness.
+\(\mathcal{F}=\{B(x,n):n\in\N\}\) of \(S\). \begin{note} We have
+\(B(x,1)\subseteq B(x,2)\subseteq B(x,3)\subseteq \dotsb\).  \end{note} By the
+compactness, \(\mathcal{F}\) has a finite subcover \(\mathcal{F}_0\).  Then, we
+have \(\bigcup_{F\in\mathcal{F}_0}F\supseteq S\). By the finiteness, we know
+that the union \(\bigcup_{F\in\mathcal{F}_0}F\) must be a subset
+of an open ball \(B(x,M)\) for some \(M\in\N\). Hence, for this \(M\), we have
+\(d(P,Q)\le M\) for any \(P,Q\in S\), establishing the boundedness.
 
 Next, we show the \underline{closedness}. By definition, it suffices to show
 that \(X\setminus S\) is open in \(X\). Fix any \(p\in X\setminus S\). We would
 like to find a \(r>0\) such that \(B(p,r)\subseteq X\setminus S\), i.e.,
 \(B(p,r)\cap S=\varnothing\).
 
-Since \(S\) is compact, the open cover \(\displaystyle
-\mathcal{F}=\qty{B\qty(x,\frac{1}{2}d(x,p)):x\in S}\) of \(S\) has a finite subcover,
-written as \(\{B(x_i,r_i):i=1,\dotsc,n\}\). Then we have
-\[
-\bigcup_{i=1}^{n}B(x_i,r_i)\supseteq S.
-\]
+Since \(S\) is compact, the open cover \(
+\mathcal{F}=\qty{B\qty(x,\frac{1}{2}d(x,p)):x\in S}\) of \(S\) has a finite
+subcover, written as \(\{B(x_i,r_i):i=1,\dotsc,n\}\). Then we have
+\(\bigcup_{i=1}^{n}B(x_i,r_i)\supseteq S.\)
 
 Let \(r=\min\{r_1,\dotsc,r_n\}\).  Then, we can observe that \(B(p,r)\cap
 B(x_i,r_i)=\varnothing\) for any \(i=1,\dotsc,n\), by the construction of the
@@ -2099,14 +2108,18 @@ node[midway, right=0.3cm, magenta]{\(r_1=d(x_1,p)/2\)};
 node[midway, right=0.3cm, magenta]{\(r_2=d(x_2,p)/2\)};
 \end{tikzpicture}
 \end{center}
-Since \(\displaystyle \bigcup_{i=1}^{n}B(x_i,r_i)\supseteq S\), it follows that
-\(B(p,r)\cap S=\varnothing\) also. Thus, we conclude that \(S\) is closed in \(X\).
+Since \(\bigcup_{i=1}^{n}B(x_i,r_i)\supseteq S\), it follows that \(B(p,r)\cap
+S=\varnothing\) also. Thus, we conclude that \(S\) is closed in \(X\).
 \end{pf}
 \item The next one is about the so-called \emph{Boltzano-Weierstrass property}.
+A subset \(S\) of a metric space \(X\) has the \defn{Boltzano-Weierstrass
+property}, or is \defn{limit point compact} if every infinite subset of
+\(S\) has an accumulation point in \(S\) (where \(S\) is considered as a metric
+subspace).
+
 \begin{theorem}
 \label{thm:cpt-bw-prop}
-Every compact subset \(S\) of \(X\) has the \defn{Boltzano-Weierstrass
-property}, i.e., every infinite subset of \(S\) has an accumulation point in \(S\).
+Every compact subset \(S\) of \(X\) has the Boltzano-Weierstrass property.
 \end{theorem}
 \begin{pf}
 Assume to the contrary that \(T\subseteq S\) is an infinite set with no
@@ -2120,7 +2133,7 @@ finite subcover \(\mathcal{F}_0\). Note that we then have
 \[
 \bigcup_{F\in\mathcal{F}_0}F\supseteq S\supseteq T.
 \]
-Since the union \(\displaystyle \bigcup_{F\in\mathcal{F}_0}F\) is finite (as
+Since the union \(\bigcup_{F\in\mathcal{F}_0}F\) is finite (as
 each family member contains either zero or one element), it implies that \(T\)
 is finite also, contradiction.
 \end{pf}
@@ -2128,7 +2141,7 @@ is finite also, contradiction.
 a compact set.
 \begin{theorem}
 \label{thm:subset-closed-in-cpt-is-cpt}
-Every closed subset of a compact set \(S\) (closed in \(S\)) is compact.
+Every closed subset of a compact set \(S\) is compact.
 \end{theorem}
 \begin{pf}
 Let \(S\subseteq X\) be a compact set and \(T\subseteq S\) be a closed set in
@@ -2140,35 +2153,21 @@ Hence, \(\mathcal{F}\cup(S\setminus T)\) is an open cover of \(S\) in \(S\),
 thus it has a finite sub-cover \(\mathcal{F}_0\). By adding the set
 \(S\setminus T\) into \(\mathcal{F}_0\) if needed, we can assume that
 \(S\setminus T\in\mathcal{F}_0\), so \(\mathcal{F}_0\) takes the form
-\[
-\{U_1,\dotsc,U_n,S\setminus T\}
-\]
-(with possibly relabelling for the indices). Hence, we have
-\[
-T\subseteq S\subseteq \qty(\bigcup_{i=1}^{n}U_i)\cup (S\setminus T).
-\]
-Since \(T\cap (S\setminus T)=\varnothing\), it follows that
-\[
-T\subseteq \bigcup_{i=1}^{n}U_i.
-\]
-Thus, the family \(\{U_1,\dotsc,U_n\}\) serves as a finite subcover of
-\(\mathcal{F}=\{U_{\lambda}:\lambda\in\Lambda\}\), as desired.
-\end{pf}
-\item In fact, we can generalize \Cref{thm:subset-closed-in-cpt-is-cpt} a bit to
-the case below.
+\(\{U_1,\dotsc,U_n,S\setminus T\}\) (with possibly relabelling for the
+indices). Hence, we have \(T\subseteq S\subseteq \qty(\bigcup_{i=1}^{n}U_i)\cup
+(S\setminus T)\).
 
-\begin{corollary}
-\label{cor:closed-subset-of-cpt-is-cpt}
-Let \((X,d)\) be a metric space.  Then, every closed subset of a compact set
-\(S\) (\emph{closed in \(X\)}) is compact.
-\end{corollary}
-\begin{pf}
-Let \(S\subseteq X\) be any compact set, and let \(T\subseteq S\) be a closed
-set in \(X\). Note that we can write \(T=T\cap S\). Then, since \(T\) is closed
-in \(X\), by \labelcref{it:open-closed-equiv-crit-metric-subspace} we know that
-\(T\) is also closed in \(S\).  Then, we can apply
-\Cref{thm:subset-closed-in-cpt-is-cpt}.
+Since \(T\cap (S\setminus T)=\varnothing\), it follows that \(T\subseteq
+\bigcup_{i=1}^{n}U_i.\) Thus, the family \(\{U_1,\dotsc,U_n\}\) serves as a
+finite subcover of \(\mathcal{F}=\{U_{\lambda}:\lambda\in\Lambda\}\), as
+desired.
 \end{pf}
+
+\begin{note}
+Since every subset \(T\subseteq S\) which is closed in \(X\) can be written as
+\(T=T\cap S\), it is also closed in \(S\). Hence, we can still apply
+\Cref{thm:subset-closed-in-cpt-is-cpt} for such closed subsets.
+\end{note}
 \item We now consider the compactness of union/intersection of compact sets:
 \begin{enumerate}
 \item \label{it:cpt-union-cpt} The union of \emph{finitely many} compact sets in \(X\) is compact in
@@ -2178,27 +2177,27 @@ compact in \(X\).
 \end{enumerate}
 \begin{pf}
 \begin{enumerate}
-\item Write \(\displaystyle S=\bigcup_{i=1}^{n}S_i\) where \(S_i\) is compact
+\item Write \(S=\bigcup_{i=1}^{n}S_i\) where \(S_i\) is compact
 for each \(i=1,\dotsc,n\).  Fix any open cover \(\mathcal{F}\) of the union
 \(\bigcup_{i=1}^{n}S_i\). Note that for every \(i=1,\dotsc,n\), \(\mathcal{F}\)
 also covers \(S_i\), thus there exists a finite subcover \(\mathcal{F}_i\)
-where \(\displaystyle \bigcup_{F\in\mathcal{F}_i}F\supseteq S_i\) by the compactness of \(S_i\).
+that covers \(S_i\) by the compactness of \(S_i\).
 
-Then, the union \(\mathcal{G}=\mathcal{F}_1\cup\dotsb\cup \mathcal{F}_n\) is a finite
-subcover of \(\mathcal{F}\), since \(\mathcal{F}_i\) is finite for each
-\(i=1,\dotsc,n\), and
-\[
-\bigcup_{F\in\mathcal{G}}F\supseteq \bigcup_{i=1}^{n}S_i=S.
-\]
-\item Write \(\displaystyle S=\bigcap_{\lambda\in\Lambda}S_{\lambda}\) where
-\(S_{\lambda}\) is compact, hence closed (by
-\Cref{thm:compact-imp-closed-bounded}), for any \(\lambda\in\Lambda\).  By
-\labelcref{it:closed-sets-intersect-closed}, the intersection \(S=\displaystyle
-\bigcap_{i=1}^{n}S_i\) is also closed in \(X\). Now pick any set in the
-collection of compact sets, say \(S_{\lambda^*}\), and we can see that
-\(\displaystyle \bigcap_{i=1}^{n}S_i\subseteq S_{\lambda^*}\).  Thus, as a
-closed subset of a compact set, we conclude by
-\Cref{cor:closed-subset-of-cpt-is-cpt} that the intersection is compact in \(X\).
+Let \(\mathcal{G}=\mathcal{F}_1\cup\dotsb\cup \mathcal{F}_n\).  Since
+\(\mathcal{F}_i\) is finite for each \(i=1,\dotsc,n\), and
+\(\bigcup_{F\in\mathcal{G}}F\supseteq \bigcup_{i=1}^{n}S_i=S,\) the union
+\(\mathcal{G}\) is a finite subcover of \(\mathcal{F}\) that covers
+\(\bigcup_{i=1}^{n}S_i\).
+
+\item Write \(S=\bigcap_{\lambda\in\Lambda}S_{\lambda}\) where \(S_{\lambda}\)
+is compact, hence closed (by \Cref{thm:compact-imp-closed-bounded}), for any
+\(\lambda\in\Lambda\).  By \labelcref{it:closed-sets-intersect-closed}, the
+intersection \(S= \bigcap_{\lambda\in\Lambda}S_i\) is also closed in \(X\). Now pick any
+set in the collection of compact sets, say \(S_{\lambda^*}\), and we can see
+that \(\bigcap_{\lambda\in\Lambda}S_i\subseteq S_{\lambda^*}\).  Thus, as a closed subset
+of a compact set, we conclude by \Cref{thm:subset-closed-in-cpt-is-cpt} that
+the intersection is compact in \(X\).
+
 \end{enumerate}
 \end{pf}
 \end{enumerate}
@@ -2239,9 +2238,7 @@ Every bounded infinite set \(S\subseteq \R^n\) has an accumulation point in
 We prove only the case \(n=2\). Proofs for other cases are analogous. Firstly,
 due to the boundedness of \(S\), we are able to choose a sufficiently large
 \(N\) such that the square \([-N,N]\times [-N,N]\) fully contains \(S\), i.e.,
-\[
-S\subseteq [-N,N]^{2}.
-\]
+\(S\subseteq [-N,N]^{2}\).
 \begin{center}
 \begin{tikzpicture}
 \draw[-Latex] (-3,0) -- (3,0);
@@ -2334,16 +2331,10 @@ It suffices to show that for any \(r>0\), \(B(p,r)\supseteq Q_n\) for some
 points of \(S\), and thus \(p\) is an accumulation point of \(S\) by \Cref{prp:acc-pt-inf-set}.
 
 Fix any \(r>0\). Since \(\{(a_n,c_n)\}\to p\), there exists \(M_1\in\N\) such
-that
-\[
-d(p,(a_n,c_n))<\frac{r}{4}
-\]
-for any positive integer \(n\ge M_1\). Also, there exists \(M_2\in\N\) such that
-the side length of \(Q_n\)
-\[
-\ell(Q_n)<\frac{r}{4}
-\]
-for any \(n\ge M_2\), as the side lengths are shrinking.
+that \(d(p,(a_n,c_n))<r/4\) for any positive integer \(n\ge M_1\).
+Also, there exists \(M_2\in\N\) such that the side length of \(Q_n\):
+\(\ell(Q_n)<r/4\) for any \(n\ge M_2\), as the side lengths are
+shrinking.
 
 Take \(M=\max\{M_1,M_2\}\), and choose any \(n\ge M\).  We then have for any
 \(q\in Q_n\),
@@ -2396,7 +2387,7 @@ sequence of non-empty closed subsets of \(\R^n\) satisfying
 \item \(Q_{k+1}\subseteq Q_k\) for any \(k\in\N\), and
 \item \(Q_1\) is bounded,
 \end{enumerate}
-then \(\displaystyle \bigcap_{k=1}^{\infty}Q_k\ne\varnothing\).
+then \(\bigcap_{k=1}^{\infty}Q_k\ne\varnothing\).
 \end{theorem}
 \begin{pf}
 Assume to the contrary that 
@@ -2444,7 +2435,7 @@ sequence contains distinct terms, i.e., \(x_{i}\ne x_{j}\) for any \(i\ne j\).
 \end{enumerate}
 Then, by Boltzano-Weierstrass theorem (\Cref{thm:boltzano-weierstrass}), the
 set \(\{x_i:i\in\N\}\), being an infinite bounded subset of \(\R^n\), has an
-accumulation point \(p\) in \(\R^n\). We then want to show that \(\displaystyle
+accumulation point \(p\) in \(\R^n\). We then want to show that \(
 p\in \bigcap_{k=1}^{\infty}Q_k\) to arrive at a contradiction.
 
 Fix any \(k\in\N\). By assumption, \(Q_k\) is closed, so \(\overline{Q}_k=Q_k\).
@@ -2452,22 +2443,19 @@ Hence, it suffices to show that \(p\) is an adherent point of \(Q_k\), which
 would then imply that \(p\in \overline{Q}_k=Q_k\). We shall prove this by
 definition.
 
-Fix any \(r>0\). Then we need to show that \(B(p,r)\cap Q_k\ne\varnothing\).
-Since \(p\) is an accumulation point of the set \(\{x_i:i\in\N\}\), for any
-\(r>0\) the open ball \(B(p,r)\) contains infinitely many points from
-\(\{x_i:i\in\N\}\) by \Cref{prp:acc-pt-inf-set}. Hence, there exists \(m>k\)
-such that \(B(p,r)\) contains \(x_m\). But we know that \(x_m\in Q_{n_m}\) also
-by construction. So, we actually have
-\[
-x_m\in B(p,r)\cap Q_{n_m}\implies B(p,r)\cap Q_{n_m}\ne\varnothing.
-\]
-Note that \(n_m\ge m>k\), so \(Q_{n_m}\subseteq Q_k\) by assumption, implying
-that
-\[
-B(p,r)\cap Q_{k}\ne\varnothing.
-\]
-Thus, \(p\in\overline{Q}_k=Q_k\). As \(k\in\N\) is arbitrary, it follows that
-\(\displaystyle p\in\bigcap_{k=1}^{\infty}Q_k\), which contradicts
+Fix any \(r>0\). Then we need to show that \vc{\(B(p,r)\cap Q_k\ne\varnothing\)}.
+Since \(p\) is an accumulation point of the set \(\{x_i:i\in\N\}\), the open
+ball \(B(p,r)\) contains infinitely many points from \(\{x_i:i\in\N\}\) by
+\Cref{prp:acc-pt-inf-set}. Hence, there exists \(m>k\) such that \(B(p,r)\)
+contains \(x_m\).
+
+By construction, we also have \(x_m\in Q_{n_m}\). So, we actually have \(x_m\in
+B(p,r)\cap Q_{n_m}\), which implies that \(B(p,r)\cap Q_{n_m}\ne\varnothing.\)
+Since \(n_m\ge m>k\), we have \(Q_{n_m}\subseteq Q_k\), thus \vc{\(B(p,r)\cap
+Q_{k}\ne\varnothing\)}. 
+
+Hence, \(p\in\overline{Q}_k=Q_k\). As \(k\in\N\) is arbitrary, it
+follows that \(p\in\bigcap_{k=1}^{\infty}Q_k\), which contradicts
 \Cref{eq:cantor-int-contrary-assum}.
 \end{pf}
 
@@ -2482,27 +2470,22 @@ Every closed and bounded subset of \(\R^n\) is compact.
 \begin{pf}
 Consider any closed and bounded set \(S\subseteq \R^n\). Let
 \(\mathcal{U}=\{U_{\lambda}:\lambda\in\Lambda\}\) be any open cover of \(S\),
-i.e.,
-\[
-\bigcup_{\lambda\in\Lambda}U_{\lambda}\supseteq S
-\]
-where \(U_{\lambda}\) is open (in \(\R^n\)) for any \(\lambda\in\Lambda\). To
-show the compactness, we want to find a finite subcover of \(\mathcal{U}\).
+i.e., \(\bigcup_{\lambda\in\Lambda}U_{\lambda}\supseteq S\) where
+\(U_{\lambda}\) is open (in \(\R^n\)) for any \(\lambda\in\Lambda\). To show
+the compactness, we want to find a finite subcover of \(\mathcal{U}\).
 
 We first use Lindel\"o{f}'s theorem (\Cref{thm:lindelof}). It suggests that
 there exists a countable family \(\{U_k\}_{k=1}^{\infty}\) such that for any
-\(k\in\N\), \(U_k=U_{\lambda}\) for some \(\lambda\in\Lambda\), and it satisfies
-\[
-\bigcup_{k=1}^{\infty}U_k=\bigcup_{\lambda\in\Lambda}U_{\lambda}\supseteq S
-\]
+\(k\in\N\), \(U_k=U_{\lambda}\) for some \(\lambda\in\Lambda\), and it
+satisfies
+\(\bigcup_{k=1}^{\infty}U_k=\bigcup_{\lambda\in\Lambda}U_{\lambda}\supseteq S\)
 
-Next, let \(\displaystyle Q_k=\bigcup_{i=1}^{k}U_i\), which is open since it is
-an union of open sets. Then, we have
-\[
-\bigcup_{k=1}^{\infty}Q_k=\bigcup_{i=1}^{\infty}U_i\supseteq S.
-\]
-\textbf{Claim:} There exists \(N\in\N\) such that \(\displaystyle
-Q_{N}=\bigcup_{i=1}^{N}U_i\supseteq S\) .
+Next, let \(Q_k=\bigcup_{i=1}^{k}U_i\), which is open since it is an union of
+open sets. Then, we have
+\(\bigcup_{k=1}^{\infty}Q_k=\bigcup_{i=1}^{\infty}U_i\supseteq S.\)
+
+\textbf{Claim:} There exists \(N\in\N\) such that
+\(Q_{N}=\bigcup_{i=1}^{N}U_i\supseteq S\).
 
 \begin{pf}
 Assume to the contrary that for any \(k\in\N\), \(S\) contains some elements
@@ -2526,9 +2509,9 @@ But on the other hand, we have
 &=S\setminus \qty[\bigcup_{k=1}^{\infty}(Q_k\cap S)]\\
 &=S\setminus \qty[\qty(\bigcup_{k=1}^{\infty}Q_k)\cap S]\\
 &=S\setminus S&\text{(since \(\textstyle\bigcup_{k=1}^{\infty}Q_k\supseteq S\))}\\
-&=\varnothing.
+&=\varnothing,
 \end{align*}
-Contradiction.
+contradiction.
 \end{pf}
 
 By the claim, we know that \(\{U_1,\dotsc,U_N\}\) is a finite subcover of
@@ -2600,4 +2583,20 @@ contradicting to the fact that \(r_0=d(y,x)\).
 By the claim, the arbitrarily chosen accumulation point \(x\) belongs to \(S\),
 as desired.
 \end{pf}
+
+\item For a general metric space, \Cref{thm:cpt-equiv-criteria-rn} is only
+``partially'' true.  To be more precise, we have:
+\begin{itemize}
+\item \(\text{(a)}\implies \text{(b)}\) by \Cref{thm:compact-imp-closed-bounded}
+\item \(\text{(a)}\implies \text{(c)}\) by \Cref{thm:cpt-bw-prop}
+\end{itemize}
+Indeed, it can still be shown that \(\text{(c)}\implies \text{(a)}\), but in
+general \(\text{(b)}\centernot\implies \text{(a)}\).
+
+Hence, for a general metric space, we have \(\text{(a)}\iff \text{(c)}\implies
+\text{(b)}\). Particularly, this shows that a criterion for compactness is the
+Boltzano-Weierstrass property.
+
+For a more general result concerning different criteria for compactness, see
+\Cref{thm:diff-cpt-relate}.
 \end{enumerate}

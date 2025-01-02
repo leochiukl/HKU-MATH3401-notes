@@ -62,6 +62,7 @@
 \newcommand*{\probtheta}[1]{\mathbb{P}_{\theta}\qty(#1)}
 \newcommand*{\expvtheta}[1]{\mathbb{E}_{\theta}\qty[#1]}
 \newcommand{\cmark}{\textcolor{green!80!black}{\faIcon{check}}}
+\newcommand{\xmark}{\textcolor{red}{\faIcon{times}}}
 \newcommand{\vc}[1]{{\color{violet}#1}}
 \newcommand{\blc}[1]{{\color{blue}#1}}
 \newcommand{\brc}[1]{{\color{brown}#1}}
@@ -77,7 +78,7 @@
 \newenvironment{intuition}{\sffamily\lbrack Intuition \textcolor{yellow!80!black}{\faIcon{lightbulb}}:}{\!\!\rbrack}
 \newenvironment{draft}{\sffamily\textcolor{cyan}{\lbrack Draft \faIcon{edit}:}}
 {\!\!\textcolor{cyan}{\rbrack}\begin{center}{\textbf{\underline{Actual work}}}\end{center}}
-\newenvironment{pf}{\sffamily\underline{Proof}:}{\qed}
+\newenvironment{pf}{\textit{Proof.}}{\qed}
 
 \theoremstyle{definition}
 \newtheorem{proposition}{Proposition}[subsection]
